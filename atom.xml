@@ -38,7 +38,7 @@ RWKV block 内部的 Time Mixing 和 Channel Mixing 模块：
 &lt;/ul&gt;
 &lt;h4&gt;Mamba: Linear-Time Sequence Modeling with Selective State Spaces&lt;/h4&gt;
 &lt;p&gt;Mamba 的架构主要基于 S4 (Structured State Spaces for Sequence Modeling)，这是一种最新的状态空间模型 (SSM，State Space  Model) 架构。详细介绍&lt;br&gt;
-可见&lt;a href=&#34;https://blog.csdn.net/v_JULY_v/article/details/134923301&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34; style=&#34;color: LimeGreen;&#34;&gt;一文通透想颠覆 Transformer 的 Mamba：从 SSM、HiPPO、S4 到 Mamba&lt;/a&gt;，内容非常详细全面，同时也推荐一下作者七月。&lt;/p&gt;
+可见&lt;a href=&#34;https://blog.csdn.net/v_JULY_v/article/details/134923301&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34; style=&#34;color: LimeGreen;&#34;&gt;一文通透想颠覆 Transformer 的 Mamba：从 SSM、HiPPO、S4 到 Mamba&lt;/a&gt;，内容非常详细全面，这里不再赘叙，同时也推荐一下作者七月。&lt;/p&gt;
 &lt;p&gt;Mamba 优点：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;改进 transformer 不擅长处理超长的序列的问题，随上下文长度的增加实现线性扩展。&lt;/li&gt;
@@ -75,7 +75,19 @@ RWKV block 内部的 Time Mixing 和 Channel Mixing 模块：
 &lt;/ul&gt;
 &lt;p&gt;&lt;a href=&#34;https://github.com/cheng-haha/此处&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34; style=&#34;color: LimeGreen;&#34;&gt;使用 MNIST 数据集测试 MLP 和 KAN，感兴趣的小伙伴可以试一下 (亲测可用)&lt;/p&gt;
 &lt;h4&gt;TTT：Learning to (Learn at Test Time): RNNs with Expressive Hidden States&lt;/h4&gt;
-&lt;p&gt;总结：大家欢喜，又可以水论文了&lt;/p&gt;
+TTT 层作为一种新的信息压缩和模型记忆机制，可以简单地直接替代 Transformer 中的自注意力层。关键思想是使隐藏状态本身成为机器学习模型，而更新规则则成为自监督学习的步骤。通俗来说，在以前，习惯的做法是把某个函数的输出当作Hidden State，通常是一个向量（如RNN）或者很多向量（如Transformer）。但TTT把自己(模型)当作了Hidden State。而这个hidden state的更新是靠一次基于反向传播的更新。
+![多层感知器（MLP）与Kolmogorov-Arnold网络（KANs）](/image/TTT1.jpg)
+&lt;strong&gt;序列模型会把历史上下文存储在一个隐藏状态中，这是不可避免的。像Mamba这样的RNN层，会随着时间的推移压缩成一个固定大小的状态，它们虽然效率很高，但性能受限于其表达能力。对于Transformer中的注意力机制，其有一个KV缓存，它会随着时间的推移不断增长。这个状态不会压缩任何历史上下文，但随着上下文长度的增加，成本也会越来越高。因此，TTT架构另辟蹊径，把上下文压缩到模型的权重中。与 Transformer 的Hidden State不同（每读一个token，就完整地扫描整个历史进行查找），TTT 不会随着处理数据的增多而无限扩展。相反，它会将数据编码成一组代表性的变量，即&#34;权重&#34;。这种形式是 TTT 模型高性能的原因，无论 TTT 模型处理多少数据，其内部模型的大小都不会改变。
+&lt;p&gt;最后，我想说 TTT 的本质依然是 RNN，并且从算法的角度看，这种用空间复杂度（这种说法其实不恰当）置换时间复杂度（长上下文查找效率）的方式导致的结果就是表达能力差，直观的理解就是对于几万的 token 使用的模型参数假设是 1MB，但这 1MB 参数真的能表达几万亿的 token 内容吗，这也是作者只在 1.2B 参数内进行实验的原因吧。&lt;/p&gt;
+&lt;p&gt;TTT 优点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;高效率。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;TTT 缺点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;TTT 架构的验证案例相对较少，主要集中在特定任务和小规模实验中，尚未在大规模实际应用中得到广泛验证。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;总结：喜大普奔，又可以水论文了 -.-&lt;/p&gt;
 </content>
         <updated>2024-07-20T03:59:00.000Z</updated>
     </entry>
