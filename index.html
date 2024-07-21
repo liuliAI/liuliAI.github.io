@@ -671,9 +671,7 @@
                             
                                 继RWKV、Mamba、KAN之后号称超越Transformer的线性架构TTT又来了
 
-
-
-最早从23年5月的RWKV(RKWV系列从V1更新到V6，并且作者确实认真做了不少事情的)，再到去年12月的Mamba，到今年4月的KAN，再到5
+最早从23年5月的RWKV(RKWV系列从V1更新到V6，并且作者确实认真做了不少事情的)，再到去年12月的Mamba，到今年4月的KAN，再到5月的
                             
                         </div>
                         <div class="publish-info">
@@ -1183,6 +1181,21 @@ $(function () {
     <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>
