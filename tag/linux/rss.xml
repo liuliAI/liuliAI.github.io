@@ -1,0 +1,443 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>liuliAI • Posts by &#34;linux&#34; tag</title>
+        <link>https://liuliai.github.io</link>
+        <description></description>
+        <language>zh-CN</language>
+        <pubDate>Mon, 01 Jul 2024 11:59:00 +0800</pubDate>
+        <lastBuildDate>Mon, 01 Jul 2024 11:59:00 +0800</lastBuildDate>
+        <category>RWKV</category>
+        <category>Mamba</category>
+        <category>KAN</category>
+        <category>TTT</category>
+        <category>线性架构</category>
+        <category>CoT</category>
+        <category>多模态</category>
+        <category>大模型</category>
+        <category>长期记忆</category>
+        <category>RAG</category>
+        <category>Linux</category>
+        <category>教程</category>
+        <category>Embodied AI</category>
+        <category>VLN</category>
+        <category>Python</category>
+        <category>多核并行</category>
+        <category>四元数</category>
+        <category>服务器</category>
+        <category>概率机器人</category>
+        <category>SALM</category>
+        <category>数学</category>
+        <category>矩阵分析</category>
+        <category>数值分析</category>
+        <category>数学建模</category>
+        <category>电工杯</category>
+        <category>遗传算法</category>
+        <category>状压DP</category>
+        <category>TSP旅行商</category>
+        <item>
+            <guid isPermalink="true">https://liuliai.github.io/2024/07/01/RCL%E5%AE%9E%E9%AA%8C%E5%AE%A4Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%93%8D%E4%BD%9C%E6%89%8B%E5%86%8C/</guid>
+            <title>RCL实验室Linux服务器操作手册</title>
+            <link>https://liuliai.github.io/2024/07/01/RCL%E5%AE%9E%E9%AA%8C%E5%AE%A4Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%93%8D%E4%BD%9C%E6%89%8B%E5%86%8C/</link>
+            <category>Linux</category>
+            <category>教程</category>
+            <category>服务器</category>
+            <pubDate>Mon, 01 Jul 2024 11:59:00 +0800</pubDate>
+            <description><![CDATA[ &lt;h2&gt;RCL实验室Linux服务器操作手册&lt;/h2&gt;
+仅供东北大学机器人科学与工程学院&lt;strong&gt;机器人认知实验室（Robot Cognition Lab，RCL）&lt;/strong&gt;成员使用。
+&lt;p&gt;RCL 实验室官网见&lt;a href=&#34;http://neurcl.cn/index.html&#34;&gt;&lt;strong&gt;&lt;font color=&#34;LimeGreen&#34;&gt;此处&lt;/font&gt;&lt;/strong&gt;&lt;/a&gt;，感兴趣获取更多详细信息。&lt;/p&gt;
+&lt;h4&gt;账号申请方法&lt;/h4&gt;
+&lt;p&gt;联系目前服务器管理员 &lt;a href=&#34;http://tencent://message/?uin=791037420&amp;amp;Site=https://liuliai.github.io/&amp;amp;Menu=yes&#34;&gt;&lt;strong&gt;&lt;font color=&#34;LimeGreen&#34;&gt;QQ&lt;/font&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;服务器介绍&lt;/h4&gt;
+&lt;h5&gt;服务器IP地址：172.17.27.232&lt;/h5&gt;
+&lt;table&gt;
+  &lt;tr&gt;
+    &lt;th align=&#34;center&#34;&gt;Device&lt;/th&gt;
+    &lt;th align=&#34;center&#34;&gt;Parameter&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align=&#34;center&#34;&gt;CPU&lt;/td&gt;
+    &lt;td align=&#34;center&#34;&gt;2*Intel(R) Xeon(R) Silver 4314 CPU @ 2.40GHz&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align=&#34;center&#34;&gt;GPU&lt;/td&gt;
+    &lt;td align=&#34;center&#34;&gt;8*NVIDIA GeForce RTX 3090&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td rowspan=&#34;2&#34;&gt;ROM&lt;/td&gt;
+    &lt;td align=&#34;center&#34;&gt;2*Intel® SSD D3-S4510 Series 480GB&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align=&#34;center&#34;&gt;2*Intel® SSD D3-S4510 Series 3.84TB&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;所有存储设备均采用 RAID 1 镜像配置，确保数据冗余与安全性&lt;/li&gt;
+&lt;li&gt;操作系统版本为 Ubuntu 18.04.6 LTS&lt;/li&gt;
+&lt;li&gt;CUDA 版本为 12.1&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5&gt;服务器IP地址：172.17.27.194&lt;/h5&gt;
+&lt;table border=&#34;1&#34;&gt;
+  &lt;tr&gt;
+    &lt;th align=&#34;center&#34;&gt;Device&lt;/th&gt;
+    &lt;th align=&#34;center&#34;&gt;Parameter&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align=&#34;center&#34;&gt;CPU&lt;/td&gt;
+    &lt;td align=&#34;center&#34;&gt;2*Intel(R) Xeon(R) Silver 4314 CPU @ 2.40GHz&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align=&#34;center&#34;&gt;GPU&lt;/td&gt;
+    &lt;td align=&#34;center&#34;&gt;8*NVIDIA GeForce RTX 3090&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align=&#34;center&#34; rowspan=&#34;3&#34;&gt;ROM&lt;/td&gt;
+    &lt;td align=&#34;center&#34;&gt;2*Intel® SSD D3-S4510 Series 480GB&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align=&#34;center&#34;&gt;2*Intel® SSD D3-S4510 Series 3.84TB&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td align=&#34;center&#34;&gt;2*致态 SC001 XT SATA SSD 2TB&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;致态 SC001 XT SATA SSD 2TB 采用 RAID 0 条带化配置，优化读写性能&lt;/li&gt;
+&lt;li&gt;其余存储设备采用 RAID 1 镜像配置，确保数据冗余与安全性&lt;/li&gt;
+&lt;li&gt;操作系统版本为 Ubuntu 18.04.6 LTS&lt;/li&gt;
+&lt;li&gt;CUDA 版本为 11.8&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;登陆方法&lt;/h4&gt;
+目前是校内分配的ip，校外是无法访问的。
+&lt;p&gt;①使用校园网 (每个月免费 10G，凌晨 0:00-6:00 免费)，校园网具体资费标准见 &lt;a href=&#34;https://ipgw.neu.edu.cn&#34; style=&#34;color: LimeGreen;&#34;&gt;此处&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;②使用 OpenVPN，使用学号和手机号验证码登陆，详细介绍在 &lt;a href=&#34;http://xwb.neu.edu.cn/10185/list.htm&#34; style=&#34;color: LimeGreen;&#34;&gt;此处&lt;/a&gt;。&lt;/p&gt;
+&lt;h5&gt;命令行使用&lt;/h5&gt;
+在 Windows 系统中，使用&#34;win+R&#34;快捷键，输入&#34;cmd&#34;，然后回车输入ssh user@hostname 或者ssh -l user hostname ，输入密码即可。
+&lt;p&gt;ssh 登录服务器的命令如下。ssh 默认连接服务器的 22 端口，-p 参数可以指定其他端口。&lt;br&gt;
+ &lt;code&gt;$ ssh hostname &lt;/code&gt; &lt;br&gt;
+上面命令中，hostname 是主机名，它可以是域名，也可能是 IP 地址或局域网内部的主机名（对于 RCL 实验室，为 172.17.27.194 或者 172.17.27.232）。不指定用户名的情况下，将使用客户端的当前用户名，作为远程服务器的登录用户名。如果要指定用户名，可以采用下面的命令。&lt;br&gt;
+ &lt;code&gt;$ ssh user@hostname &lt;/code&gt; &lt;br&gt;
+上面的命令中，用户名和主机名写在一起了，之间使用 @分隔。用户名也可以使用 ssh 的 - l 参数指定，这样的话，用户名和主机名就不用写在一起了。&lt;br&gt;
+ &lt;code&gt;$ ssh -l user hostname &lt;/code&gt;&lt;/p&gt;
+&lt;h5&gt;图形界面使用&lt;/h5&gt;
+首先下载VNC，在此处&lt;a href=&#34;https://www.realvnc.com/en/connect/download/viewer/windows/&#34; style=&#34;color: LimeGreen;&#34;&gt;官网&lt;/a&gt;下载，或者&lt;a href=&#34;https://pan.baidu.com/s/1qyTUfb-U2HPKqmGyg_GupQ?pwd=qn4o&#34; style=&#34;color: LimeGreen;&#34;&gt;百度网盘&lt;/a&gt;。
+&lt;p&gt;然后输入 IP 地址和端口号 (端口号为最后两位，以 63 为例)&lt;br&gt;
+&lt;img src=&#34;/image/RCL-linux-fig1.jpg&#34; alt=&#34;&#34;&gt;&lt;br&gt;
+ 点击 continue&lt;br&gt;
+&lt;img src=&#34;/image/RCL-linux-fig2.jpg&#34; alt=&#34;&#34;&gt;&lt;br&gt;
+ 输入默认密码 123456 即可&lt;br&gt;
+&lt;img src=&#34;/image/RCL-linux-fig3.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h4&gt;传输文件&lt;/h4&gt;
+①在本地cmd上，可以直接通过scp命令传输文件和文件夹。
+&lt;p&gt;从本地上传到服务器，如果想要把文件夹整个上传到服务器，那么加上参数 - r 即可。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;$ scp [-r] &amp;#123;local_file_path&amp;#125; &amp;#123;user&amp;#125;@&amp;#123;hostname&amp;#125;:&amp;#123;remote_file_path&amp;#125;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;从远程下载到本地&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;$ scp [-r] &amp;#123;user&amp;#125;@&amp;#123;hostname&amp;#125;:&amp;#123;remote_file_path&amp;#125; &amp;#123;local_file_path&amp;#125;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;详细使用信息见  &lt;a href=&#34;https://www.runoob.com/linux/linux-comm-scp.html&#34;&gt;&lt;strong&gt;&lt;font color=&#34;LimeGreen&#34;&gt;此处&lt;/font&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;②使用 ftp 工具 WinSCP 或者 FileZilla&lt;br&gt;
+ 参考教程 &lt;a href=&#34;https://blog.csdn.net/qq_26383975/article/details/120220823&#34;&gt;&lt;strong&gt;&lt;font color=&#34;LimeGreen&#34;&gt;文件传输工具 WinSCP 下载安装教程&lt;/font&gt;&lt;/strong&gt;&lt;/a&gt;和&lt;a href=&#34;https://blog.csdn.net/weixin_45309916/article/details/107782070&#34;&gt;&lt;strong&gt;&lt;font color=&#34;LimeGreen&#34;&gt;FileZilla 的下载与安装以及简单使用（有图解超简单）&lt;/font&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;文件系统介绍&lt;/h4&gt;
+目前每人的账号默认分配在home中（容量较小），请将数据集，conda环境创建在data(自动备份)或者bigdata(有需要请自行备份)中进行。
+&lt;p&gt;&lt;strong&gt;如有疑问请评论。&lt;/strong&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://liuliai.github.io/2023/09/01/Linux%20%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D/</guid>
+            <title>Linux 常用命令简单介绍</title>
+            <link>https://liuliai.github.io/2023/09/01/Linux%20%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D/</link>
+            <category>Linux</category>
+            <category>教程</category>
+            <pubDate>Fri, 01 Sep 2023 11:59:00 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;##Linux 常用命令简单介绍&lt;br&gt;
+与 Windows 的直观图形界面相比，Linux 的命令行界面显得有些抽象，尤其是对于初涉 Linux 的朋友，每当遇到新的 Linux 命令，我们通常会花费时间在搜索引擎上查找相关的使用说明。这样的过程既耗时又繁琐。因此，我整理了一些 Linux 的基础命令，作为我学习 Linux 过程中的一个备忘录。同时也希望能够为那些想要深入探索 Linux 世界的读者提供一些帮助。&lt;/p&gt;
+&lt;h4 id=&#34;apt-get-ubuntu系统包管理器&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#apt-get-ubuntu系统包管理器&#34;&gt;#&lt;/a&gt; apt-get   Ubuntu 系统包管理器&lt;/h4&gt;
+&lt;h5 id=&#34;命令&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#命令&#34;&gt;#&lt;/a&gt; 命令:&lt;/h5&gt;
+&lt;p&gt;update - 检索 新的包列表&lt;br&gt;
+ upgrade - 升级 可更新的所有软件包&lt;br&gt;
+ install - 安装 新软件包（pkg 是 libc6 不是 libc6.deb）&lt;br&gt;
+remove - 删除 软件包&lt;br&gt;
+ autoremove - 自动删除 所有未使用的软件包&lt;br&gt;
+ purge - 删除 软件包和配置文件&lt;br&gt;
+ clean - 清除 已下载的归档文件&lt;br&gt;
+ autoclean - 清除 旧的下载的档案文件&lt;br&gt;
+ check - 验证 是否有损坏的依赖&lt;br&gt;
+ download - 下载 二进制包到当前目录&lt;/p&gt;
+&lt;h5 id=&#34;选项&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#选项&#34;&gt;#&lt;/a&gt; 选项：&lt;/h5&gt;
+&lt;p&gt;-q ：不输出任何信息&lt;br&gt;
+ - qq ：除了错误之外，没有输出&lt;br&gt;
+ - d ：仅下载，不要安装或解压缩存档&lt;br&gt;
+ - y ：对所有确定询问都选择 Yes，并且不提示&lt;br&gt;
+ - f ：尝试纠正 被破坏依赖关系的系统&lt;br&gt;
+ - m ：如果存档是可定位的，则尝试继续&lt;br&gt;
+ - u ：显示升级包的列表&lt;br&gt;
+ - b ：在获取源代码包后构建源包&lt;/p&gt;
+&lt;h6 id=&#34;检索-新的包列表&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#检索-新的包列表&#34;&gt;#&lt;/a&gt; 检索 新的包列表&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;apt-get update&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;升级-可更新的所有软件包注意这个命令会升级所有的软件包所以会升级很长时间&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#升级-可更新的所有软件包注意这个命令会升级所有的软件包所以会升级很长时间&#34;&gt;#&lt;/a&gt; 升级 可更新的所有软件包（注意这个命令会升级所有的软件包，所以会升级很长时间）&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;apt-get upgrade&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;安装-nginx-软件包&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#安装-nginx-软件包&#34;&gt;#&lt;/a&gt; 安装 Nginx 软件包&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;apt-get install nginx&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;卸载-nginx-软件包&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#卸载-nginx-软件包&#34;&gt;#&lt;/a&gt; 卸载 Nginx 软件包&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;apt-get remove nginx&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;卸载-nginx-软件包-并删除所有相关配置文件&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#卸载-nginx-软件包-并删除所有相关配置文件&#34;&gt;#&lt;/a&gt; 卸载 Nginx 软件包 并删除所有相关配置文件&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;apt-get remove --purge nginx&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;在安装软件和卸载的时候，为了避免误操作，都会询问是否继续，每次都要输入 y 来确定会很麻烦，可以加上 -y 参数&lt;/p&gt;
+&lt;h6 id=&#34;安装-nginx-软件包-并不显示确定提示&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#安装-nginx-软件包-并不显示确定提示&#34;&gt;#&lt;/a&gt; 安装 Nginx 软件包 并不显示确定提示&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;apt-get install nginx -y&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;卸载-nginx-软件包删除所有相关配置文件-并不显示提示&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#卸载-nginx-软件包删除所有相关配置文件-并不显示提示&#34;&gt;#&lt;/a&gt; 卸载 Nginx 软件包，删除所有相关配置文件 并不显示提示&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;apt-get remove --purge nginx -y&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;清除-旧的无用-的软件包&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#清除-旧的无用-的软件包&#34;&gt;#&lt;/a&gt; 清除 旧的 / 无用 的软件包&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;apt-get clean &amp;amp;&amp;amp; apt-get autoclean&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;下载-nginx-二进制软件包到当前目录但不解压和安装&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#下载-nginx-二进制软件包到当前目录但不解压和安装&#34;&gt;#&lt;/a&gt; 下载 Nginx 二进制软件包到当前目录，但不解压和安装&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;apt-get download nginx -d&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;更多的命令可以用-apt-get-help-查看&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#更多的命令可以用-apt-get-help-查看&#34;&gt;#&lt;/a&gt; 更多的命令可以用 apt-get --help 查看。&lt;/h6&gt;
+&lt;h6 id=&#34;mkdir-新建文件夹&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#mkdir-新建文件夹&#34;&gt;#&lt;/a&gt; mkdir 新建文件夹&lt;/h6&gt;
+&lt;h6 id=&#34;在当前文件夹新建一个-bash-文件夹&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#在当前文件夹新建一个-bash-文件夹&#34;&gt;#&lt;/a&gt; 在当前文件夹新建一个 bash 文件夹&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;mkdir bash&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;更多的命令可以用-mkdir-help-查看&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#更多的命令可以用-mkdir-help-查看&#34;&gt;#&lt;/a&gt; 更多的命令可以用 mkdir --help 查看。&lt;/h6&gt;
+&lt;h5&gt;cd 进入文件夹&lt;/h5&gt;
+###### 一般结合ll(小写L)命令使用(全称：ls -l)，输出当前目录下的所有目录，然后使用cd命令跳转到某个目录
+###### 例如当前为起始/root目录中 ，跳转到 /root/data
+```cd data```
+&lt;h6 id=&#34;也可以多次跳转输入目录的绝对路径因此也可用作返回目录&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#也可以多次跳转输入目录的绝对路径因此也可用作返回目录&#34;&gt;#&lt;/a&gt; 也可以多次跳转，输入目录的绝对路径（因此也可用作返回目录）&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;cd /root/data/user/models/&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;值得注意的是在windows中的cmd使用cd命令时切换不同磁盘的目录时需要额外增加-d&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#值得注意的是在windows中的cmd使用cd命令时切换不同磁盘的目录时需要额外增加-d&#34;&gt;#&lt;/a&gt; 值得注意的是，在 Windows 中的 CMD 使用 cd 命令时，切换不同磁盘的目录时，需要额外增加 /d&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;cd /d D:\Program Files\PycharmProjects\experiment&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;返回上级目录&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#返回上级目录&#34;&gt;#&lt;/a&gt; 返回上级目录&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;cd ..&lt;/code&gt;&lt;/p&gt;
+&lt;h5&gt;cp 复制或重命名文件/文件夹&lt;/h5&gt;
+###### 复制当前目录内的 log.txt文件到 /var目录
+```cp log.txt /var/log.txt```
+&lt;h6 id=&#34;复制当前目录内的-bash文件夹到-home目录&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#复制当前目录内的-bash文件夹到-home目录&#34;&gt;#&lt;/a&gt; 复制当前目录内的 bash 文件夹到 /home 目录&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;cp -R bash /home/bash&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;复制当前目录内的所有txt后缀的文件到-varlog目录&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#复制当前目录内的所有txt后缀的文件到-varlog目录&#34;&gt;#&lt;/a&gt; 复制当前目录内的所有.txt 后缀的文件到 /var/log 目录&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;cp *.txt /var/log&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;复制当前目录内的所有以-sy1a-5uva-4q3n开头的文件到-varlog目录&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#复制当前目录内的所有以-sy1a-5uva-4q3n开头的文件到-varlog目录&#34;&gt;#&lt;/a&gt; 复制当前目录内的所有以 SY1A-5UVA-4Q3N 开头的文件到 /var/log 目录&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;cp SY1A-5UVA-4Q3N* /var/log&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;复制当前目录内的所有以-sy1a-5uva-4q3n开头-以txt后缀结尾的文件到-varlog目录&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#复制当前目录内的所有以-sy1a-5uva-4q3n开头-以txt后缀结尾的文件到-varlog目录&#34;&gt;#&lt;/a&gt; 复制当前目录内的所有以 SY1A-5UVA-4Q3N 开头 以.txt 后缀结尾的文件到 /var/log 目录&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;cp SY1A-5UVA-4Q3N*.txt /var/log&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;假设当前目录是-rootuserlog要把这个目录中的所有txt后缀的文件复制到上一级目录-rootuser那么这样做&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#假设当前目录是-rootuserlog要把这个目录中的所有txt后缀的文件复制到上一级目录-rootuser那么这样做&#34;&gt;#&lt;/a&gt; 假设当前目录是 /root/user/log，要把这个目录中的所有.txt 后缀的文件复制到上一级目录 /root/user，那么这样做&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;cp *.txt ..&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;就是相对路径代表上一级目录当然你也可以用绝对路径这样更不容易出错&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#就是相对路径代表上一级目录当然你也可以用绝对路径这样更不容易出错&#34;&gt;#&lt;/a&gt; … 就是相对路径，代表上一级目录，当然你也可以用绝对路径，这样更不容易出错&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;cp *.txt /root/user&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;重命名当前目录内的-logtxt文件为-log2txt&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#重命名当前目录内的-logtxt文件为-log2txt&#34;&gt;#&lt;/a&gt; 重命名当前目录内的 log.txt 文件为 log2.txt&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;cp log.txt log2.txt&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;复制当前目录内的-logtxt文件到-var目录并重命名为-log1txt&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#复制当前目录内的-logtxt文件到-var目录并重命名为-log1txt&#34;&gt;#&lt;/a&gt; 复制当前目录内的 log.txt 文件到 /var 目录并重命名为 log1.txt&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;cp log.txt /var/log1.txt&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;复制当前目录内的-bash文件夹到-home目录并重命名为-bash2&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#复制当前目录内的-bash文件夹到-home目录并重命名为-bash2&#34;&gt;#&lt;/a&gt; 复制当前目录内的 bash 文件夹到 /home 目录并重命名为 bash2&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;cp -R bash /home/bash2&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;复制当前目录内的-logtxt文件到-var目录但是-var-目录中已经存着-logtxt那么会提示-cp-overwrite-varlogtxt-可以用-f-强制覆盖&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#复制当前目录内的-logtxt文件到-var目录但是-var-目录中已经存着-logtxt那么会提示-cp-overwrite-varlogtxt-可以用-f-强制覆盖&#34;&gt;#&lt;/a&gt; 复制当前目录内的 log.txt 文件到 /var 目录，但是 /var 目录中已经存着 log.txt，那么会提示 cp: overwrite `/var/log.txt’? 可以用 -f 强制覆盖&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;cp -f log /var/log.txt&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;大家可能会发现当你使用-cp-f-强制覆盖的时候依然会询问你是否覆盖这是因为-cp-为了避免你手误默认加上了-i-参数该参数代表每次覆盖必须询问&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#大家可能会发现当你使用-cp-f-强制覆盖的时候依然会询问你是否覆盖这是因为-cp-为了避免你手误默认加上了-i-参数该参数代表每次覆盖必须询问&#34;&gt;#&lt;/a&gt; 大家可能会发现，当你使用 cp -f 强制覆盖的时候，依然会询问你是否覆盖，这是因为 CP 为了避免你手误，默认加上了 -i 参数（该参数代表每次覆盖必须询问）。&lt;/h6&gt;
+&lt;h6 id=&#34;所以想要避免-cp-默认的-i-参数只需要在-cp-命令前面加上斜杠即可&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#所以想要避免-cp-默认的-i-参数只需要在-cp-命令前面加上斜杠即可&#34;&gt;#&lt;/a&gt; 所以想要避免 CP 默认的 -i 参数，只需要在 CP 命令前面加上斜杠即可 “/”&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;/cp -f log /var/log.txt&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;复制当前目录内的-logtxt-log1txt-log2txt文件和-log233目录到-homelog目录中&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#复制当前目录内的-logtxt-log1txt-log2txt文件和-log233目录到-homelog目录中&#34;&gt;#&lt;/a&gt; 复制当前目录内的 log.txt log1.txt log2.txt 文件和 log233 目录到 /home/log 目录中&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;cp -R log.txt log1.txt log2.txt log233 /home/log&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;更多的命令可以用-cp-help-查看&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#更多的命令可以用-cp-help-查看&#34;&gt;#&lt;/a&gt; 更多的命令可以用 cp --help 查看。&lt;/h6&gt;
+&lt;h5&gt;mv 移动或重命名文件/文件夹&lt;/h5&gt;
+###### 移动当前目录内的 log.txt文件到 /var目录
+```mv log.txt /var/log.txt```
+&lt;h6 id=&#34;移动当前目录内的-bash文件夹到-home目录&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#移动当前目录内的-bash文件夹到-home目录&#34;&gt;#&lt;/a&gt; 移动当前目录内的 bash 文件夹到 /home 目录&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;mv bash /home/bash&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;重命名当前目录内的-logtxt文件为-log2txt-2&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#重命名当前目录内的-logtxt文件为-log2txt-2&#34;&gt;#&lt;/a&gt; 重命名当前目录内的 log.txt 文件为 log2.txt&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;mv log.txt log2.txt&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;复制当前目录内的-logtxt文件到-var目录并重命名为-log1txt-2&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#复制当前目录内的-logtxt文件到-var目录并重命名为-log1txt-2&#34;&gt;#&lt;/a&gt; 复制当前目录内的 log.txt 文件到 /var 目录并重命名为 log1.txt&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;mv log.txt /var/log1.txt&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;复制当前目录内的-bash文件夹到-home目录并重命名为-bash2-2&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#复制当前目录内的-bash文件夹到-home目录并重命名为-bash2-2&#34;&gt;#&lt;/a&gt; 复制当前目录内的 bash 文件夹到 /home 目录并重命名为 bash2&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;mv bash /home/bash2&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;更多的命令可以用-mv-help-查看&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#更多的命令可以用-mv-help-查看&#34;&gt;#&lt;/a&gt; 更多的命令可以用 mv --help 查看。&lt;/h6&gt;
+&lt;h5&gt;rm 删除文件/文件夹&lt;/h5&gt;
+###### 删除当前目录下的 log.txt文件
+```rm log.txt```
+&lt;h6 id=&#34;删除当前目录下所有txt后缀的文件&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#删除当前目录下所有txt后缀的文件&#34;&gt;#&lt;/a&gt; 删除当前目录下所有.txt 后缀的文件&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;rm *.txt&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;使用-rm-命令删除时会提示你是否确定删除输入-y-即删除输入-n-则取消&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#使用-rm-命令删除时会提示你是否确定删除输入-y-即删除输入-n-则取消&#34;&gt;#&lt;/a&gt; 使用 rm 命令删除时，会提示你是否确定删除，输入 y 即删除，输入 n 则取消&lt;/h6&gt;
+&lt;h6 id=&#34;rm-remove-regular-file-logtxt-y&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#rm-remove-regular-file-logtxt-y&#34;&gt;#&lt;/a&gt; rm: remove regular file `log.txt’? y&lt;/h6&gt;
+&lt;h6 id=&#34;删除当前目录下所有txt后缀的文件-2&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#删除当前目录下所有txt后缀的文件-2&#34;&gt;#&lt;/a&gt; 删除当前目录下所有.txt 后缀的文件&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;rm *.txt&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;删除当前目录下所有以-sy1a-5uva-4q3n开头的文件&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#删除当前目录下所有以-sy1a-5uva-4q3n开头的文件&#34;&gt;#&lt;/a&gt; 删除当前目录下所有以 SY1A-5UVA-4Q3N 开头的文件&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;rm SY1A-5UVA-4Q3N*&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;删除当前目录下所有以-sy1a-5uva-4q3n开头-以txt后缀结尾的文件&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#删除当前目录下所有以-sy1a-5uva-4q3n开头-以txt后缀结尾的文件&#34;&gt;#&lt;/a&gt; 删除当前目录下所有以 SY1A-5UVA-4Q3N 开头 以.txt 后缀结尾的文件&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;rm SY1A-5UVA-4Q3N*.txt&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;当你用-rm-删除目录的时候会发现提示这不是一个文件rm-cannot-remove-bash-is-a-directory&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#当你用-rm-删除目录的时候会发现提示这不是一个文件rm-cannot-remove-bash-is-a-directory&#34;&gt;#&lt;/a&gt; 当你用 rm 删除目录的时候会发现提示这不是一个文件 &lt;code&gt;rm: cannot remove &lt;/code&gt; bash’: Is a directory`&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;rm bash&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;可以加上-r-来归递删除目录及其目录下的内容&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#可以加上-r-来归递删除目录及其目录下的内容&#34;&gt;#&lt;/a&gt; 可以加上 -r 来归递删除目录及其目录下的内容&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;rm -r bash&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;因为为了避免手误删除错误所以-rm默认是加上了-i-的参数也就是每一次删除文件目录都会提示如果觉得烦可以用-rf-参数&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#因为为了避免手误删除错误所以-rm默认是加上了-i-的参数也就是每一次删除文件目录都会提示如果觉得烦可以用-rf-参数&#34;&gt;#&lt;/a&gt; 因为为了避免手误删除错误，所以 rm 默认是加上了 -i 的参数，也就是每一次删除文件 / 目录都会提示，如果觉得烦可以用 -rf 参数&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;rm -rf bash&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;rm-rf-这个命令请慎重使用而且千万不要使用-rm-rf-或者-rm-rf-之类的命令系统自杀可能会让你系统爆炸所以使用请慎重&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#rm-rf-这个命令请慎重使用而且千万不要使用-rm-rf-或者-rm-rf-之类的命令系统自杀可能会让你系统爆炸所以使用请慎重&#34;&gt;#&lt;/a&gt; rm -rf 这个命令请慎重使用，而且千万不要使用 rm -rf / 或者 rm -rf /* 之类的命令 (系统自杀)，可能会让你系统爆炸，所以使用请慎重！&lt;/h6&gt;
+&lt;h6 id=&#34;更多的命令可以用-rm-help-查看&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#更多的命令可以用-rm-help-查看&#34;&gt;#&lt;/a&gt; 更多的命令可以用 rm --help 查看。&lt;/h6&gt;
+&lt;h5&gt;ls 显示目录中文件（l为小写L）&lt;/h5&gt;
+###### 显示当前目录下的所有文件, -a代表“all”，这个命令会列出目录中的所有文件，包括以点（.）开头的隐藏文件。它不会显示文件的详细信息，只会显示文件名。
+```ls -a```
+&lt;h6 id=&#34;它不仅显示文件名还显示文件的权限-所有者-大小-最后修改日期等详细信息&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#它不仅显示文件名还显示文件的权限-所有者-大小-最后修改日期等详细信息&#34;&gt;#&lt;/a&gt; 它不仅显示文件名，还显示文件的权限、所有者、大小、最后修改日期等详细信息。&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;ls -l&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;命令后面加上-绝对路径相对路径-就会显示指定文件夹内的所有文件&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#命令后面加上-绝对路径相对路径-就会显示指定文件夹内的所有文件&#34;&gt;#&lt;/a&gt; 命令后面加上 绝对路径 / 相对路径 就会显示指定文件夹内的所有文件&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;ls -a bash/log&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;相对路径当前目录是-root-欲查看的目录是-rootbashlog&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#相对路径当前目录是-root-欲查看的目录是-rootbashlog&#34;&gt;#&lt;/a&gt; 相对路径，当前目录是 /root ，欲查看的目录是 /root/bash/log&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;ls -a /root/bash/log&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;绝对路径-当前目录是-root-欲查看的目录是-rootbashlog&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#绝对路径-当前目录是-root-欲查看的目录是-rootbashlog&#34;&gt;#&lt;/a&gt; 绝对路径， 当前目录是 /root ，欲查看的目录是 /root/bash/log&lt;/h6&gt;
+&lt;h6 id=&#34;更多的命令可以用-ls-help-来查看&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#更多的命令可以用-ls-help-来查看&#34;&gt;#&lt;/a&gt; 更多的命令可以用 ls --help 来查看。&lt;/h6&gt;
+&lt;h5&gt;du 查看文件/文件夹占用磁盘空间的大小&lt;/h5&gt;
+参数介绍：
+-h ：以人类易读的方式显示
+-a ：显示 目录占用的磁盘空间大小，并显示其下目录和文件占用磁盘空间的大小
+-s ：显示 目录占用的磁盘空间大小，但不显示其下子目录和文件占用的磁盘空间大小
+-c ：显示几个目录或文件占用的磁盘空间大小，还要统计它们的总和
+--apparent-size：显示目录或文件自身的大小
+-l ：统计硬链接占用磁盘空间的大小
+-L ：统计符号链接所指向的文件占用的磁盘空间大小
+&lt;h6 id=&#34;假设当前位于-root-目录下则显示-root-文件夹的大小但不显示其子目录和文件的大小&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#假设当前位于-root-目录下则显示-root-文件夹的大小但不显示其子目录和文件的大小&#34;&gt;#&lt;/a&gt; 假设当前位于 /root 目录下，则显示 /root 文件夹的大小，但不显示其子目录和文件的大小&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;du -sh&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;假设当前位于-root-目录下则显示-root-文件夹的大小并显示其子目录和文件的大小&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#假设当前位于-root-目录下则显示-root-文件夹的大小并显示其子目录和文件的大小&#34;&gt;#&lt;/a&gt; 假设当前位于 /root 目录下，则显示 /root 文件夹的大小，并显示其子目录和文件的大小&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;du -ah&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;假设当前位于-root-目录下则显示-root-文件夹下的所有文件夹的大小及其总和&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#假设当前位于-root-目录下则显示-root-文件夹下的所有文件夹的大小及其总和&#34;&gt;#&lt;/a&gt; 假设当前位于 /root 目录下，则显示 /root 文件夹下的所有文件夹的大小及其总和&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;du -lh --max-depth=1&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;更多的命令可以用-du-help-来查看&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#更多的命令可以用-du-help-来查看&#34;&gt;#&lt;/a&gt; 更多的命令可以用 du --help 来查看。&lt;/h6&gt;
+&lt;h5&gt;cat 查看文件内容&lt;/h5&gt;
+假设 log.txt文件的内容为：
+&lt;p&gt;SY1A-5UVA-4Q3N233&lt;br&gt;
+SY1A-5UVA-4Q3N&lt;/p&gt;
+&lt;p&gt;SY1A-5UVA-4Q3N666&lt;/p&gt;
+&lt;p&gt;SY1A-5UVA-4Q3N2366&lt;br&gt;
+SY1A-5UVA-4Q3N8888&lt;br&gt;
+ 查看文件：&lt;/p&gt;
+&lt;h6 id=&#34;查看-logtxt文件的所有内容&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#查看-logtxt文件的所有内容&#34;&gt;#&lt;/a&gt; 查看 log.txt 文件的所有内容&lt;/h6&gt;
+&lt;p&gt;cat log.txt&lt;/p&gt;
+&lt;h6 id=&#34;输出示例如下&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#输出示例如下&#34;&gt;#&lt;/a&gt; 输出示例如下&lt;/h6&gt;
+&lt;p&gt;SY1A-5UVA-4Q3N233&lt;br&gt;
+SY1A-5UVA-4Q3N&lt;/p&gt;
+&lt;p&gt;SY1A-5UVA-4Q3N666&lt;/p&gt;
+&lt;p&gt;SY1A-5UVA-4Q3N2366&lt;br&gt;
+SY1A-5UVA-4Q3N8888&lt;/p&gt;
+&lt;h6 id=&#34;查看-logtxt文件的所有内容并对所有行编号&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#查看-logtxt文件的所有内容并对所有行编号&#34;&gt;#&lt;/a&gt; 查看 log.txt 文件的所有内容，并对所有行编号&lt;/h6&gt;
+&lt;p&gt;cat -n log.txt&lt;/p&gt;
+&lt;h6 id=&#34;输出示例如下-2&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#输出示例如下-2&#34;&gt;#&lt;/a&gt; 输出示例如下：&lt;/h6&gt;
+&lt;pre&gt;&lt;code&gt; 1	SY1A-5UVA-4Q3N233
+ 2	SY1A-5UVA-4Q3N
+ 3	
+ 4	
+ 5	SY1A-5UVA-4Q3N666
+ 6	
+ 7	SY1A-5UVA-4Q3N2366
+ 8	SY1A-5UVA-4Q3N8888
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h6 id=&#34;查看-logtxt文件的所有内容并对非空行编号&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#查看-logtxt文件的所有内容并对非空行编号&#34;&gt;#&lt;/a&gt; 查看 log.txt 文件的所有内容，并对非空行编号&lt;/h6&gt;
+&lt;p&gt;cat -b log.txt&lt;/p&gt;
+&lt;h6 id=&#34;输出示例如下-3&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#输出示例如下-3&#34;&gt;#&lt;/a&gt; 输出示例如下：&lt;/h6&gt;
+&lt;pre&gt;&lt;code&gt; 1	SY1A-5UVA-4Q3N233
+ 2	SY1A-5UVA-4Q3N
+
+
+ 3	SY1A-5UVA-4Q3N666
+
+ 4	SY1A-5UVA-4Q3N2366
+ 5	SY1A-5UVA-4Q3N8888
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h6 id=&#34;查看-logtxt文件的所有内容并对非空行编号且不输出多行空行&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#查看-logtxt文件的所有内容并对非空行编号且不输出多行空行&#34;&gt;#&lt;/a&gt; 查看 log.txt 文件的所有内容，并对非空行编号，且不输出多行空行&lt;/h6&gt;
+&lt;p&gt;cat -bs log.txt&lt;/p&gt;
+&lt;h6 id=&#34;输出示例如下-4&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#输出示例如下-4&#34;&gt;#&lt;/a&gt; 输出示例如下：&lt;/h6&gt;
+&lt;pre&gt;&lt;code&gt; 1	SY1A-5UVA-4Q3N233
+ 2	SY1A-5UVA-4Q3N
+
+ 3	SY1A-5UVA-4Q3N666
+
+ 4	SY1A-5UVA-4Q3N2366
+ 5	SY1A-5UVA-4Q3N8888
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;清空文件：&lt;/p&gt;
+&lt;h6 id=&#34;清空当前目录中的-logtxt-文件&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#清空当前目录中的-logtxt-文件&#34;&gt;#&lt;/a&gt; 清空当前目录中的 log.txt 文件&lt;/h6&gt;
+&lt;p&gt;cat /dev/null &amp;gt; log.txt&lt;/p&gt;
+&lt;h6 id=&#34;清空-var目录中的-logtxt-文件&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#清空-var目录中的-logtxt-文件&#34;&gt;#&lt;/a&gt; 清空 /var 目录中的 log.txt 文件&lt;/h6&gt;
+&lt;p&gt;cat /dev/null &amp;gt; /var/log.txt&lt;br&gt;
+ 写入文件：&lt;/p&gt;
+&lt;h6 id=&#34;写入文本到当前目录中的-logtxt文件中加入文本到文件内容最后&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#写入文本到当前目录中的-logtxt文件中加入文本到文件内容最后&#34;&gt;#&lt;/a&gt; 写入文本到当前目录中的 log.txt 文件中 (加入文本到文件内容最后)&lt;/h6&gt;
+&lt;p&gt;cat &amp;gt;&amp;gt; log.txt &amp;lt;&amp;lt;-EOF&lt;br&gt;
+SY1A-5UVA-4Q3N&lt;br&gt;
+SY1A-5UVA-4Q3N233&lt;br&gt;
+SY1A-5UVA-4Q3N666&lt;br&gt;
+EOF&lt;/p&gt;
+&lt;h6 id=&#34;清空文件并写入文本到-var目录中的-logtxt文件中先清空后写入&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#清空文件并写入文本到-var目录中的-logtxt文件中先清空后写入&#34;&gt;#&lt;/a&gt; 清空文件并写入文本到 /var 目录中的 log.txt 文件中 (先清空后写入)&lt;/h6&gt;
+&lt;p&gt;cat &amp;gt; /var/log.txt &amp;lt;&amp;lt;-EOF&lt;br&gt;
+SY1A-5UVA-4Q3N&lt;br&gt;
+SY1A-5UVA-4Q3N233&lt;br&gt;
+SY1A-5UVA-4Q3N666&lt;br&gt;
+EOF&lt;/p&gt;
+&lt;h6 id=&#34;更多的命令可以用-cat-help-来查看&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#更多的命令可以用-cat-help-来查看&#34;&gt;#&lt;/a&gt; 更多的命令可以用 cat --help 来查看。&lt;/h6&gt;
+&lt;h5&gt;VI、VIM 编辑文件内容&lt;/h5&gt;
+###### 打开当前目录下的 log.txt文件，如果没有那么会新建 log.txt文件（安装vim后，使用 vi和 vim打开文件没区别）
+vi log.txt
+vim log.txt
+###### 在命令行模式下，直接输入以下 符号和字母(区分大小写)
+#进入编辑模式（插入模式，按 Esc键 即可返回命令行模式）
+i
+###### 删除光标当前所在的一行
+dd
+###### 删除文件内所有内容
+dddG
+###### 复制光标当前所在的一行
+yy
+###### 粘贴刚才复制的一行内容
+p
+###### 撤销上个操作（误操作可以用这个恢复）
+u
+###### 保存当前文件（ : 是英文的冒号）
+:w
+###### 另存当前文件内容为 log2.txt
+:w log2.txt
+###### 退出当前文件
+:q
+###### 不保存 并强制退出当前文件
+:q!
+###### 保存并退出当前文件
+:wq
+&lt;h6 id=&#34;更多的命令可以用-vi-help-vim-help-来查看&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#更多的命令可以用-vi-help-vim-help-来查看&#34;&gt;#&lt;/a&gt; 更多的命令可以用 vi --help /vim --help 来查看。&lt;/h6&gt;
+&lt;h5&gt;wget 下载工具&lt;/h5&gt;
+参数介绍：
+&lt;h6 id=&#34;只介绍最常用的参数&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#只介绍最常用的参数&#34;&gt;#&lt;/a&gt; 只介绍最常用的参数&lt;/h6&gt;
+&lt;h6 id=&#34;如果提示命令不存在那么使用-yum-install-wget-y-apt-get-install-wget-y-来安装有一些非常精简的系统可能会没装&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#如果提示命令不存在那么使用-yum-install-wget-y-apt-get-install-wget-y-来安装有一些非常精简的系统可能会没装&#34;&gt;#&lt;/a&gt; 如果提示命令不存在，那么使用 yum install wget -y /apt-get install wget -y 来安装（有一些非常精简的系统可能会没装）&lt;/h6&gt;
+&lt;p&gt;-b ：启动后，后台下载&lt;br&gt;
+ - q ：安静模式（不输出任何信息）&lt;br&gt;
+-c ：断点续传下载文件&lt;br&gt;
+ - O ：指定下载后的文件名（可使用绝对路径目录 + 文件名）&lt;br&gt;
+-P ：指定下载后的文件目录（-P 只能指定下载目录，并不能指定文件名）&lt;br&gt;
+-t ：设置重试次数（0 代表无限）&lt;br&gt;
+-T ：设置超时时间（单位：秒）&lt;br&gt;
+-N ：只获取比本地新的文件（新的覆盖旧的）&lt;br&gt;
+-4 ：仅连接至 IPv4 地址&lt;br&gt;
+ - 6 ：仅连接至 IPv6 地址&lt;br&gt;
+–limit-rate=xxxk : 限制下载速度（k 代表 KB/S）&lt;br&gt;
+–post-data ：通过 POST 方式发送数据&lt;br&gt;
+–no-check-certificate ：不验证服务器的 SSL 证书&lt;/p&gt;
+&lt;h6 id=&#34;下载一个文件到当前目录&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#下载一个文件到当前目录&#34;&gt;#&lt;/a&gt; 下载一个文件到当前目录&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;wget https://yun.doubibackup.com/100MB.bin&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;下载文件到当前目录并重命名为-200mbbin&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#下载文件到当前目录并重命名为-200mbbin&#34;&gt;#&lt;/a&gt; 下载文件到当前目录并重命名为 200MB.bin&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;wget -O &amp;quot;200MB.bin&amp;quot; https://yun.doubibackup.com/100MB.bin&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;下载文件到-root目录-p只能指定下载目录并不能指定文件名&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#下载文件到-root目录-p只能指定下载目录并不能指定文件名&#34;&gt;#&lt;/a&gt; 下载文件到 /root 目录（-P 只能指定下载目录，并不能指定文件名）&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;wget -P &amp;quot;/root&amp;quot; https://yun.doubibackup.com/100MB.bin&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;下载文件到-rootdoubi目录并重命名为-200mbbin&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#下载文件到-rootdoubi目录并重命名为-200mbbin&#34;&gt;#&lt;/a&gt; 下载文件到 /root/doubi 目录并重命名为 200MB.bin&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;wget -O &amp;quot;/root/doubi/200MB.bin&amp;quot; https://yun.doubibackup.com/100MB.bin&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;下载文件完成之前-wget进程结束了那么可以使用断点续传重新下载中断的文件前提是下载服务器支持断点续传&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#下载文件完成之前-wget进程结束了那么可以使用断点续传重新下载中断的文件前提是下载服务器支持断点续传&#34;&gt;#&lt;/a&gt; 下载文件完成之前 wget 进程结束了，那么可以使用断点续传重新下载中断的文件（前提是下载服务器支持断点续传）&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;wget -c https://yun.doubibackup.com/100MB.bin&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;通过后台下载文件到-rootdoubi目录并重命名为-200mbbin&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#通过后台下载文件到-rootdoubi目录并重命名为-200mbbin&#34;&gt;#&lt;/a&gt; 通过后台下载文件到 /root/doubi 目录并重命名为 200MB.bin&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;wget -b -O &amp;quot;/root/doubi/200MB.bin&amp;quot; https://yun.doubibackup.com/100MB.bin&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;continuing-in-background-pid-2333&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#continuing-in-background-pid-2333&#34;&gt;#&lt;/a&gt; Continuing in background, pid 2333.&lt;/h6&gt;
+&lt;h6 id=&#34;output-will-be-written-to-wget-log&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#output-will-be-written-to-wget-log&#34;&gt;#&lt;/a&gt; Output will be written to `wget-log’.&lt;/h6&gt;
+&lt;h6 id=&#34;后台下后你可以使用以下命令来查看下载进度&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#后台下后你可以使用以下命令来查看下载进度&#34;&gt;#&lt;/a&gt; 后台下后，你可以使用以下命令来查看下载进度：&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;tail -f wget-log&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;有时候一些linux系统中的ssl证书不完整会导致下载一些-https网站文件的时候会验证ssl证书失败可以这样做&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#有时候一些linux系统中的ssl证书不完整会导致下载一些-https网站文件的时候会验证ssl证书失败可以这样做&#34;&gt;#&lt;/a&gt; 有时候一些 Linux 系统中的 SSL 证书不完整，会导致下载一些 HTTPS 网站文件的时候会验证 SSL 证书失败，可以这样做&lt;/h6&gt;
+&lt;h6 id=&#34;不验证服务器ssl证书下载文件到当前目录并重命名为-200mbbin&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#不验证服务器ssl证书下载文件到当前目录并重命名为-200mbbin&#34;&gt;#&lt;/a&gt; 不验证服务器 SSL 证书，下载文件到当前目录并重命名为 200MB.bin&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;wget --no-check-certificate -O &amp;quot;200MB.bin&amp;quot; https://yun.doubibackup.com/100MB.bin&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;使用wget发送post请求数据&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#使用wget发送post请求数据&#34;&gt;#&lt;/a&gt; 使用 wget 发送 POST 请求数据&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;wget --post-data &amp;quot;user=doubi&amp;amp;passwd=23333&amp;quot; https://xxx.xx/&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;下载文件到当前目录-并仅通过ipv4连接-只获取比本地新的文件限速-200kbs&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#下载文件到当前目录-并仅通过ipv4连接-只获取比本地新的文件限速-200kbs&#34;&gt;#&lt;/a&gt; 下载文件到当前目录 并仅通过 IPv4 连接 只获取比本地新的文件，限速 200KB/S&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;wget --limit-rate=200k -N -4 https://yun.doubibackup.com/100MB.bin&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;下载文件到当前目录-并重试次数为-1超时时间为-2秒&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#下载文件到当前目录-并重试次数为-1超时时间为-2秒&#34;&gt;#&lt;/a&gt; 下载文件到当前目录 并重试次数为 1，超时时间为 2 秒&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;wget -t1 -T2 https://yun.doubibackup.com/100MB.bin&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;通过-wget来获取服务器的外网ip-qo-代表运行完会输出下载的信息并不会保存到本地文件&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#通过-wget来获取服务器的外网ip-qo-代表运行完会输出下载的信息并不会保存到本地文件&#34;&gt;#&lt;/a&gt; 通过 wget 来获取服务器的外网 IP（-qO- 代表运行完会输出下载的信息，并不会保存到本地文件）&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;wget -qO- ipinfo.io/ip&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;更多的命令可以用-wget-help-来查看&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#更多的命令可以用-wget-help-来查看&#34;&gt;#&lt;/a&gt; 更多的命令可以用 wget --help 来查看。&lt;/h6&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

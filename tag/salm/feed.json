@@ -1,0 +1,19 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "liuliAI • All posts by \"salm\" tag",
+    "description": "",
+    "home_page_url": "https://liuliai.github.io",
+    "items": [
+        {
+            "id": "https://liuliai.github.io/2023/12/09/%E6%A6%82%E7%8E%87%E6%9C%BA%E5%99%A8%E4%BA%BA-SALM/",
+            "url": "https://liuliai.github.io/2023/12/09/%E6%A6%82%E7%8E%87%E6%9C%BA%E5%99%A8%E4%BA%BA-SALM/",
+            "title": "概率机器人-SALM",
+            "date_published": "2023-12-09T03:59:00.000Z",
+            "content_html": "<p>记录下这门折磨的全英授课形式的课程，英语水平直线上升（但也是我所有课程中最高的成绩 - 97，）。同时推荐一下方老师，方老师是国内 SALM 领域中的大牛，从零几年到现在一直深耕，发表多篇顶会。 最经典的 SALM 十四讲也是好起来了，能请到方老师作序。（学 SALM 的人必看，犹如西瓜书、花书在深度学习的地位），而且方老师会带学生 DeBug，技术能力也超强。不禁让我回想起本科双语教学的最优化理论及方法，同样的大佬，同样的哀嚎一片的学生。<br>\n<img src=\"/image/salm.png\" alt=\"\"><br>\n上课偷拍<br>\n<video width=\"320\" height=\"240\" controls></p>\n  <source src=\"/image/salm.mp4\" type=\"video/mp4\">\n  您的浏览器不支持 HTML5 视频。\n</video>\n<p>这是使用期末作业，使用 Jupyter 完成，有需要的，初学 SALM 的可以留言找我领取资料。<br>\n<img src=\"/image/homework.jpg\" alt=\"\"><br>\n<img src=\"/image/homework2.jpg\" alt=\"\"><br>\n<img src=\"/image/homework1.jpg\" alt=\"\"><br>\n<img src=\"/image/homework3.jpg\" alt=\"\"></p>\n",
+            "tags": [
+                "概率机器人",
+                "SALM"
+            ]
+        }
+    ]
+}

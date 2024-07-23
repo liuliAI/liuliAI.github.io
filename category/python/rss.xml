@@ -1,0 +1,302 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>liuliAI • Posts by &#34;python&#34; category</title>
+        <link>https://liuliai.github.io</link>
+        <description></description>
+        <language>zh-CN</language>
+        <pubDate>Sun, 10 Mar 2024 11:59:00 +0800</pubDate>
+        <lastBuildDate>Sun, 10 Mar 2024 11:59:00 +0800</lastBuildDate>
+        <category>RWKV</category>
+        <category>Mamba</category>
+        <category>KAN</category>
+        <category>TTT</category>
+        <category>线性架构</category>
+        <category>CoT</category>
+        <category>多模态</category>
+        <category>大模型</category>
+        <category>长期记忆</category>
+        <category>RAG</category>
+        <category>Linux</category>
+        <category>教程</category>
+        <category>Embodied AI</category>
+        <category>VLN</category>
+        <category>Python</category>
+        <category>多核并行</category>
+        <category>四元数</category>
+        <category>服务器</category>
+        <category>概率机器人</category>
+        <category>SALM</category>
+        <category>数学</category>
+        <category>矩阵分析</category>
+        <category>数值分析</category>
+        <category>数学建模</category>
+        <category>电工杯</category>
+        <category>遗传算法</category>
+        <category>状压DP</category>
+        <category>TSP旅行商</category>
+        <item>
+            <guid isPermalink="true">https://liuliai.github.io/2024/03/10/Python%E5%A4%9A%E6%A0%B8%E5%B9%B6%E8%A1%8C%E6%93%8D%E4%BD%9C/</guid>
+            <title>Python多核并行操作</title>
+            <link>https://liuliai.github.io/2024/03/10/Python%E5%A4%9A%E6%A0%B8%E5%B9%B6%E8%A1%8C%E6%93%8D%E4%BD%9C/</link>
+            <category>Python</category>
+            <category>多核并行</category>
+            <pubDate>Sun, 10 Mar 2024 11:59:00 +0800</pubDate>
+            <description><![CDATA[ &lt;h2&gt;Python多核并行操作&lt;/h2&gt;
+&lt;p&gt;如果你执行的只是很小的程序，可能单核便能满足你的要求。但是如果你要运行很大的数据类型，比如生物信息学，比如图像的预处理等，这些如果单核处理起来会非常废时间，64 核的 CPU 很多核都没有利用起来。这个时候就需要使用 CPU 的多核并行技术来提升效率。 使用 &lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;h&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;mi&gt;o&lt;/mi&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;htop&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.8888799999999999em;vertical-align:-0.19444em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;h&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;o&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;p&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; 命令就可以看到服务器的核运行情况。&lt;/p&gt;
+&lt;p&gt;Python 默认的多进程、多线程库 multiprocessing and threading 很好用，如果你用的是 Python 默认的解析器 (CPython)，那么你只能放弃使用 threading 库，因为 GIL 的存在，多线程会让你的 Python 程序跑的比单线程还慢。当然，如果你使用的是 JPython 解析器，或者说你的解析器没有 GIL 对你程序的影响，那么你可以尝试去使用多线程。关于 GIL 的更多信息可在此处查看&lt;a href=&#34;https://www.realvnc.com/en/connect/download/viewer/windows/&#34; style=&#34;color: LimeGreen;&#34;&gt;Python 的 GIL 是什么鬼，多线程性能究竟如何&lt;/a&gt;（最近的 Python 3.12 新特性可以为每个子解释器单独创建一个 GIL，这样就可以让 Python 充分利用多核的性能，详细信息可见&lt;a href=&#34;https://cloud.tencent.com/developer/article/2219746&#34; style=&#34;color: LimeGreen;&#34;&gt;Python-3.12 告别 GIL 锁 &amp;amp; 性能原地飞升！&lt;/a&gt;和&lt;a href=&#34;https://www.cnblogs.com/Chang-LeHung/p/17747159.html&#34; style=&#34;color: LimeGreen;&#34;&gt;Python3.12 新特性 ——GIL 重大突破！&lt;/a&gt;）&lt;/p&gt;
+&lt;p&gt;这里只讲述 Python 库 multiprocessing。&lt;br&gt;
+讲怎么使用之前，需要先明确一个概念。由于 multiprocessing 是一个创建多进程的库，那么如果你要调用的函数在同一个.py 文件下运行的话是不可以的，你分配给进程的函数需要通过 import 导入。例如：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-none&#34;&gt;&lt;code class=&#34;language-none&#34;&gt;import multiprocessing
+def f(x):
+    return x ** 2
+pool &amp;#x3D; multiprocessing.Pool(processes&amp;#x3D;5)
+y &amp;#x3D; range(5)
+print(pool.map(f, y))&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;上述程序是不能跑的，因为要调用的函数和 pool 的创建在同一个进程中。正确做法应该是：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-none&#34;&gt;&lt;code class=&#34;language-none&#34;&gt;import multiprocessing
+def f(x):
+    return x ** 2
+if __name__ &amp;#x3D;&amp;#x3D; &amp;#39;__main__&amp;#39;:
+    pool &amp;#x3D; multiprocessing.Pool(processes&amp;#x3D;5)
+    y &amp;#x3D; range(5)
+    print(pool.map(f, y))&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;或者：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-none&#34;&gt;&lt;code class=&#34;language-none&#34;&gt;import multiprocessing
+from fx import f
+pool &amp;#x3D; multiprocessing.Pool(processes&amp;#x3D;5)
+y &amp;#x3D; range(5)
+print(pool.map(f, y))   # [0, 1, 4, 9, 16]&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这样做的目的是为了进程安全，&lt;a href=&#34;https://docs.python.org/3/library/multiprocessing.html#multiprocessing-programming&#34; style=&#34;color: LimeGreen;&#34;&gt;更多信息&lt;/a&gt;&lt;br&gt;
+那么，明确了这个问题之后，开始讲一下 multiprocessing 如何使用。&lt;/p&gt;
+&lt;h4 id=&#34;pool对象&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#pool对象&#34;&gt;#&lt;/a&gt; Pool 对象&lt;/h4&gt;
+&lt;p&gt;Python 提供了非常简单的 Pool 对象来实现进程池。&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-none&#34;&gt;&lt;code class=&#34;language-none&#34;&gt;pool &amp;#x3D; multiprocessing.Pool(processes&amp;#x3D;5)    # 创建进程池，并且容纳上限为5个进程。&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;而 pool.map (f, y) 是对可迭代对象 y 的每个对象均使用一次 f 函数，并返回每次执行后的数据列表。 与 pool.map () 相似的还有 pool.imap () 和 pool.imap_unordered ()，不同的是后面两个返回的都是迭代器，而最后一个和名字一样，返回的数据是无序的。&lt;/p&gt;
+&lt;h4 id=&#34;process对象&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#process对象&#34;&gt;#&lt;/a&gt; Process 对象&lt;/h4&gt;
+&lt;p&gt;具体例子&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-none&#34;&gt;&lt;code class=&#34;language-none&#34;&gt;import os
+import multiprocessing
+
+# Main
+print(&amp;#39;Main:&amp;#39;, os.getpid())
+
+
+# worker function
+def worker(sign, lock):
+    lock.acquire()
+    print(sign, os.getpid())
+    lock.release()
+
+
+# Multi-process
+record &amp;#x3D; []
+lock &amp;#x3D; multiprocessing.Lock()
+
+if __name__ &amp;#x3D;&amp;#x3D; &amp;#39;__main__&amp;#39;:
+    for i in range(5):
+        process &amp;#x3D; multiprocessing.Process(target&amp;#x3D;worker, args&amp;#x3D;(&amp;#39;process&amp;#39;, lock))    # 创建进程对象，把和参数(&amp;#39;process&amp;#39;, lock)赋给函数worker并且让进程执行worker
+        process.start() # 启动进程
+        record.append(process)
+
+    for process in record:
+        process.join()  # 这里可以填入参数，效果为阻塞多少秒，如果为None那么就是终止进程。&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h5 id=&#34;output&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#output&#34;&gt;#&lt;/a&gt; output:&lt;/h5&gt;
+&lt;pre class=&#34;line-numbers language-none&#34;&gt;&lt;code class=&#34;language-none&#34;&gt;Main: 96217
+process 96300
+process 96301
+process 96302
+process 96303
+process 96304&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这是创建进程对象并且让他自己打印自己的 PID，为了防止输出的数据是乱序的，这里加了一把进程锁 lock =multiprocessing.Lock ()，只有拿到锁的进程才能够打印自己的 PID。&lt;/p&gt;
+&lt;h4 id=&#34;pipe和queue&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#pipe和queue&#34;&gt;#&lt;/a&gt; Pipe 和 Queue&lt;/h4&gt;
+&lt;p&gt;和名字一样，分别对应操作系统中的管道和消息队列。看两个例子：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-none&#34;&gt;&lt;code class=&#34;language-none&#34;&gt;import multiprocessing as mul
+
+
+def proc1(pipe):
+    pipe.send(&amp;#39;hello&amp;#39;)
+    print(&amp;#39;proc1 rec:&amp;#39;, pipe.recv())
+
+
+def proc2(pipe):
+    print(&amp;#39;proc2 rec:&amp;#39;, pipe.recv())
+    pipe.send(&amp;#39;hello, too&amp;#39;)
+
+
+# Build a pipe
+pipe &amp;#x3D; mul.Pipe()
+if __name__ &amp;#x3D;&amp;#x3D; &amp;#39;__main__&amp;#39;:
+    # Pass an end of the pipe to process 1
+    p1 &amp;#x3D; mul.Process(target&amp;#x3D;proc1, args&amp;#x3D;(pipe[0],))
+    # Pass the other end of the pipe to process 2
+    p2 &amp;#x3D; mul.Process(target&amp;#x3D;proc2, args&amp;#x3D;(pipe[1],))
+    p1.start()
+    p2.start()
+    p1.join()
+    p2.join()&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h5 id=&#34;output-2&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#output-2&#34;&gt;#&lt;/a&gt; output:&lt;/h5&gt;
+&lt;pre class=&#34;line-numbers language-none&#34;&gt;&lt;code class=&#34;language-none&#34;&gt;proc2 rec: hello
+proc1 rec: hello, too&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Pipe 对象建立的时候，返回一个含有两个元素的表，每个元素代表 Pipe 的一端 (Connection 对象)。我们对 Pipe 的某一端调用 send () 方法来传送对象，在另一端使用 recv () 来接收。&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-none&#34;&gt;&lt;code class=&#34;language-none&#34;&gt;import os
+import multiprocessing
+import time
+
+def inputQ(queue):
+    info &amp;#x3D; str(os.getpid()) + &amp;#39;(put):&amp;#39; + str(time.time())
+    queue.put(info)
+
+def outputQ(queue,lock):
+    info &amp;#x3D; queue.get()
+    lock.acquire()
+    print (str(os.getpid()) + &amp;#39; get: &amp;#39; + info)
+    lock.release()
+    
+record1 &amp;#x3D; []   # store input processes
+record2 &amp;#x3D; []   # store output processes
+lock  &amp;#x3D; multiprocessing.Lock()    # To prevent messy print
+queue &amp;#x3D; multiprocessing.Queue(3)
+
+if __name__ &amp;#x3D;&amp;#x3D; &amp;#39;__main__&amp;#39;:
+    # input processes
+    for i in range(10):
+        process &amp;#x3D; multiprocessing.Process(target&amp;#x3D;inputQ,args&amp;#x3D;(queue,))
+        process.start()
+        record1.append(process)
+    
+    # output processes
+    for i in range(10):
+        process &amp;#x3D; multiprocessing.Process(target&amp;#x3D;outputQ,args&amp;#x3D;(queue,lock))
+        process.start()
+        record2.append(process)
+    
+    for p in record1:
+        p.join()
+    
+    queue.close()  # No more object will come, close the queue
+    
+    for p in record2:
+        p.join()&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;一些进程使用 put () 在 Queue 中放入字符串，这个字符串中包含 PID 和时间。另一些进程从 Queue 中取出，并打印自己的 PID 以及 get () 的字符串。&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://liuliai.github.io/2023/06/12/%E5%9C%A8%20Python%20%E4%B8%AD%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</guid>
+            <title>Python 中的正则表达式</title>
+            <link>https://liuliai.github.io/2023/06/12/%E5%9C%A8%20Python%20%E4%B8%AD%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</link>
+            <category>Python</category>
+            <pubDate>Mon, 12 Jun 2023 11:59:00 +0800</pubDate>
+            <description><![CDATA[ &lt;h2&gt;Python 中的正则表达式&lt;/h2&gt;
+&lt;p&gt;每当你遇到文本处理问题时，正则表达式（regex）不可或缺（在算法题目中也会出现）。&lt;/p&gt;
+&lt;h3 id=&#34;验证电子邮件地址&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#验证电子邮件地址&#34;&gt;#&lt;/a&gt; 验证电子邮件地址&lt;/h3&gt;
+&lt;pre class=&#34;line-numbers language-none&#34;&gt;&lt;code class=&#34;language-none&#34;&gt;import re
+def val_email(email):
+    pattern &amp;#x3D; r&amp;quot;^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]&amp;#123;2,&amp;#125;$&amp;quot;
+    if re.match(pattern, email):
+        print(&amp;quot;合法的邮件地址:)&amp;quot;)
+    else:
+        print(&amp;quot;无效的邮件地址!!&amp;quot;)
+
+val_email(email&amp;#x3D;&amp;quot;elon@example.com&amp;quot;)# 合法的邮件地址
+
+val_email(email&amp;#x3D;&amp;quot;elonexample.com&amp;quot;)# 无效的邮件地址!!
+
+val_email(email&amp;#x3D;&amp;quot;elon@example.c&amp;quot;)# 无效的邮件地址!!&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;在这个例子中，我们使用 Python 中的 re 模块来编译一个匹配有效电子邮件格式的正则表达式模式。然后，我们使用它的 match () 函数来检查 email 变量是否与模式匹配。&lt;/p&gt;
+&lt;p&gt;在模式中，有几个关键点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;我们使用 [] 表示一个范围。例如，[a-zA-Z0-9] 可以匹配 0 到 9 之间的数字、A 到 Z 之间的字母或 a 到 z 之间的字母。&lt;/li&gt;
+&lt;li&gt;^ 表示行的开头。在我们的例子中，我们使用它来确保文本必须以 [a-zA-Z0-9] 开始。&lt;/li&gt;
+&lt;li&gt;$ 表示行的结尾。&lt;/li&gt;
+&lt;li&gt;\ 用于转义特殊字符（允许我们匹配像 ‘.’ 这样的字符）。&lt;/li&gt;
+&lt;li&gt;{n,m} 语法是用来匹配 n-m 个先前的正则表达式。我们使用了 {2,}，这意味着前面的部分 [a-zA-Z] 应该至少重复 2 次。这就是为什么 “elon@example.c” 被识别为无效的电子邮件地址。&lt;/li&gt;
+&lt;li&gt;. 表示匹配前面的正则表达式至少 1 次。例如，ab+ 将匹配 a 后面的任何非零数量的 b。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;从字符串中提取数字&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#从字符串中提取数字&#34;&gt;#&lt;/a&gt; 从字符串中提取数字&lt;/h3&gt;
+&lt;p&gt;要从长文本中找到一些特殊字符，最直接的想法是使用 for 循环遍历所有字符并找到所需的内容。&lt;/p&gt;
+&lt;p&gt;但是，没有必要使用任何循环。正则表达式就是为了作为过滤器而生的。（时间复杂度更低，更快！！）&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-none&#34;&gt;&lt;code class=&#34;language-none&#34;&gt;import re
+
+def extract_numbers(text):
+    pattern &amp;#x3D; r&amp;quot;\d+&amp;quot;
+    return re.findall(pattern, text)
+
+print(extract_numbers(&amp;quot;先将键盘1上的三4行字母5进行6打表100000000。&amp;quot;))
+# [&amp;#39;1456100000000&amp;#39;]&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;re.findall () 函数接收一个正则表达式和一个文本，可以方便地帮助我们找到所有我们需要的字符。&lt;/p&gt;
+&lt;p&gt;其中 \d 用于在正则表达式中匹配数字。&lt;/p&gt;
+&lt;h3 id=&#34;验证有效电话号码&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#验证有效电话号码&#34;&gt;#&lt;/a&gt; 验证有效电话号码&lt;/h3&gt;
+&lt;pre class=&#34;line-numbers language-none&#34;&gt;&lt;code class=&#34;language-none&#34;&gt;import re
+
+def is_valid_phone_number(phone_number):
+    pattern &amp;#x3D; r&amp;quot;^\d&amp;#123;3&amp;#125;-\d&amp;#123;3&amp;#125;-\d&amp;#123;4&amp;#125;$&amp;quot;
+    return bool(re.match(pattern, phone_number))
+
+print(is_valid_phone_number(&amp;quot;123-456-7890&amp;quot;))  # True
+print(is_valid_phone_number(&amp;quot;1234567890&amp;quot;))  # False&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;将文本分割成单词&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#将文本分割成单词&#34;&gt;#&lt;/a&gt; 将文本分割成单词&lt;/h3&gt;
+&lt;p&gt;将长文本分割成单独的单词是日常编程中的另一个常见需求。借助 re 模块的 split () 函数，我们可以轻松完成此任务：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-none&#34;&gt;&lt;code class=&#34;language-none&#34;&gt;re.split(r&amp;#39;\s+&amp;#39;, &amp;#39;a b   c&amp;#39;)
+# [&amp;#39;a&amp;#39;, &amp;#39;b&amp;#39;, &amp;#39;c&amp;#39;]
+
+re.split(r&amp;#39;[\s\,]+&amp;#39;, &amp;#39;a,b, c  d&amp;#39;)
+# [&amp;#39;a&amp;#39;, &amp;#39;b&amp;#39;, &amp;#39;c&amp;#39;, &amp;#39;d&amp;#39;]
+
+re.split(r&amp;#39;[\s\,\;]+&amp;#39;, &amp;#39;a,b;; c  d&amp;#39;)
+[&amp;#39;a&amp;#39;, &amp;#39;b&amp;#39;, &amp;#39;c&amp;#39;, &amp;#39;d&amp;#39;]&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;使用正则表达式查找和替换文本&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#使用正则表达式查找和替换文本&#34;&gt;#&lt;/a&gt; 使用正则表达式查找和替换文本&lt;/h3&gt;
+&lt;pre class=&#34;line-numbers language-none&#34;&gt;&lt;code class=&#34;language-none&#34;&gt;import re
+
+text &amp;#x3D; &amp;quot;linuxmi is an full-stack software engineer.&amp;quot;
+pattern &amp;#x3D; r&amp;quot;[a-e]&amp;quot;
+replacement &amp;#x3D; &amp;quot;*&amp;quot;
+
+new_text &amp;#x3D; re.sub(pattern, replacement, text)
+print(new_text)  
+#linuxmi is *n full-st**k softw*r* *ngin**r.&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://liuliai.github.io/2023/05/16/%E7%90%86%E8%A7%A3%20Python%20%E4%B8%AD%E7%9A%84%E6%B5%85%E5%A4%8D%E5%88%B6%E5%92%8C%E6%B7%B1%E5%A4%8D%E5%88%B6/</guid>
+            <title>理解 Python 中的浅复制和深复制</title>
+            <link>https://liuliai.github.io/2023/05/16/%E7%90%86%E8%A7%A3%20Python%20%E4%B8%AD%E7%9A%84%E6%B5%85%E5%A4%8D%E5%88%B6%E5%92%8C%E6%B7%B1%E5%A4%8D%E5%88%B6/</link>
+            <category>Python</category>
+            <pubDate>Tue, 16 May 2023 11:59:00 +0800</pubDate>
+            <description><![CDATA[ &lt;h2&gt;理解 Python 中的浅复制和深复制
+&lt;/h2&gt;
+Python 提供了多种有效的方法来管理数据。在处理嵌套列表、字典或自定义对象等数据结构时，理解浅复制和深复制的概念是至关重要的。
+&lt;p&gt;在 Python 中，浅拷贝和深拷贝是两种不同的拷贝方式。浅拷贝只复制引用，不复制内部对象，而深拷贝则完全复制整个对象，包括其内部的子对象。尤其是在算法中，可能需要用到拷贝的概念来解决问题，如列表、字符串等数据结构（初学者包括我会犯的错， &lt;code&gt;a=[1,2,3,4]&lt;/code&gt; ，然后又使用 &lt;code&gt;b=a&lt;/code&gt; ，然后在 b 上修改列表，导致 a 也发生变化）&lt;/p&gt;
+&lt;p&gt;浅拷贝在 Python 中可以通过几种方式实现，如使用 copy 模块的 copy () 函数，切片操作 [:]，以及字典和集合的拷贝方法.copy ()。深拷贝则可以通过 copy 模块的 deepcopy () 函数来实现。在选择拷贝方式时，重要的是理解对象的结构和需求，以确保拷贝行为符合预期。&lt;/p&gt;
+&lt;p&gt;使用浅复制&lt;br&gt;
+浅复制通过创建原始对象的顶层结构的副本来工作。这意味着如果原始对象包含嵌套对象，复制将引用与原始对象相同的嵌套对象。换句话说，对对象进行浅复制会复制其最外层结构，而不会复制它可能包含的任何嵌套对象。&lt;/p&gt;
+&lt;p&gt;要在 Python 中执行浅复制，您可以使用 copy 模块的 copy () 函数或对象上的 .copy () 方法。&lt;br&gt;
+要在 Python 中创建深度复制，可以使用 copy 模块的 deepcopy () 函数。&lt;/p&gt;
+&lt;p&gt;考虑一个在 Python 中使用列表或字典的示例。&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-none&#34;&gt;&lt;code class=&#34;language-none&#34;&gt;import copy
+
+main_list &amp;#x3D; [29, 49, [&amp;quot;Q&amp;quot;, &amp;quot;R&amp;quot;]]
+shallow_copy &amp;#x3D; copy.copy(main_list)
+shallow_copy2 &amp;#x3D; copy.deepcopy(main_list)
+# 修改嵌套列表
+shallow_copy[2][0] &amp;#x3D; 99
+main_list[2][1] &amp;#x3D; 100
+
+print(f&amp;quot;The main list: &amp;#123;main_list&amp;#125;&amp;quot;)
+print(f&amp;quot;The shallow copy list: &amp;#123;shallow_copy&amp;#125;&amp;quot;)
+print(f&amp;quot;The shallow copy list2: &amp;#123;shallow_copy2&amp;#125;&amp;quot;)&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;上面的代码中，main_list 变量包含一个包含整数和包含字母的内部列表（嵌套对象）。copy 函数创建了 main_list 的副本，代码将其存储在另一个变量 shallow_copy 中。&lt;/p&gt;
+&lt;p&gt;与此同时，对 shallow_copy 或 main_list 中的外部项（整数）所做的任何更改仅会影响该实例。这些外部项本质上是独立的值，而不仅仅是引用。&lt;/p&gt;
+&lt;p&gt;当您修改 deep_copy 中的嵌套列表或外部项时，您的更改不会影响原始列表，反之亦然。这表明嵌套列表或外部元素不在两个副本之间共享。&lt;/p&gt;
+&lt;p&gt;在处理字典时，相同的理念也适用。&lt;/p&gt;
+&lt;p&gt;#### 使用浅复制和深复制的用途&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;如果您想要复制一个复杂对象而不生成其嵌套对象的新实例，则使用浅复制。这种方法比深复制更节省内存并且更快，因为它不会复制嵌套对象。&lt;/li&gt;
+&lt;li&gt;如果您想要创建对象状态的快照，同时仍然在原始对象和复制对象之间共享一些基础数据，则使用浅复制。&lt;/li&gt;
+&lt;li&gt;如果您想要修改对象的副本而不影响原始对象，则使用深复制。这会生成独立的嵌套对象的副本，确保对副本的任何更改不会应用于原始对象。&lt;/li&gt;
+&lt;li&gt;当您需要独立副本的嵌套数据结构时，特别是在处理递归或复杂的对象层次结构时，深复制非常重要。&lt;/li&gt;
+&lt;/ul&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

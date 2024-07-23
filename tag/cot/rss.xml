@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>liuliAI • Posts by &#34;cot&#34; tag</title>
+        <link>https://liuliai.github.io</link>
+        <description></description>
+        <language>zh-CN</language>
+        <pubDate>Thu, 25 Apr 2024 11:59:00 +0800</pubDate>
+        <lastBuildDate>Thu, 25 Apr 2024 11:59:00 +0800</lastBuildDate>
+        <category>RWKV</category>
+        <category>Mamba</category>
+        <category>KAN</category>
+        <category>TTT</category>
+        <category>线性架构</category>
+        <category>CoT</category>
+        <category>多模态</category>
+        <category>大模型</category>
+        <category>长期记忆</category>
+        <category>RAG</category>
+        <category>Linux</category>
+        <category>教程</category>
+        <category>Embodied AI</category>
+        <category>VLN</category>
+        <category>Python</category>
+        <category>多核并行</category>
+        <category>四元数</category>
+        <category>服务器</category>
+        <category>概率机器人</category>
+        <category>SALM</category>
+        <category>数学</category>
+        <category>矩阵分析</category>
+        <category>数值分析</category>
+        <category>数学建模</category>
+        <category>电工杯</category>
+        <category>遗传算法</category>
+        <category>状压DP</category>
+        <category>TSP旅行商</category>
+        <item>
+            <guid isPermalink="true">https://liuliai.github.io/2024/04/25/Cantor%EF%BC%9A%20Inspiring%20Multimodal%20Chain-of-Thought%20of%20MLLM/</guid>
+            <title>Cantor：Inspiring Multimodal Chain-of-Thought of MLLM</title>
+            <link>https://liuliai.github.io/2024/04/25/Cantor%EF%BC%9A%20Inspiring%20Multimodal%20Chain-of-Thought%20of%20MLLM/</link>
+            <category>CoT</category>
+            <category>多模态</category>
+            <category>大模型</category>
+            <pubDate>Thu, 25 Apr 2024 11:59:00 +0800</pubDate>
+            <description><![CDATA[ &lt;h2&gt;Cantor: Inspiring Multimodal Chain-of-Thought of MLLM&lt;/h2&gt;
+&lt;p&gt;本文是论文&lt;a href=&#34;https://arxiv.org/abs/2404.16033&#34;&gt;&lt;strong&gt;&lt;font color=&#34;LimeGreen&#34;&gt;Cantor: Inspiring Multimodal Chain-of-Thought of MLLM&lt;/font&gt;&lt;/strong&gt;&lt;/a&gt;的阅读笔记和个人理解，论文由厦门大学和腾讯优图实验室共同合作而成。探讨了一种多模态 CoT 框架，名为 Cantor，它具有感知决策架构，有效地集成了视觉上下文和逻辑推理来解决视觉推理任务。&lt;/p&gt;
+&lt;p&gt;Cantor 的特点是感知 - 决策架构。Cantor 首先充当决策生成器，并集成视觉输入来分析图像和问题，确保与实际上下文更紧密地保持一致。此外，Cantor 利用 MLLM 的高级认知功能作为多方面的专家来获取更高层次的信息，从而增强 CoT 生成过程。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;这种多模态思维链方法无需额外训练&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/image/Cantor-fig1.jpg&#34; alt=&#34; 决策生成中视觉信息的比较&#34;&gt;&lt;/p&gt;
+&lt;h6&gt;（a） 决策生成中视觉信息的比较：由于图像不够清晰，询问GPT-3.5（没有视觉背景）会导致“确定幻觉”。Cantor（带字幕）通过字幕引入视觉背景，不会遇到这个问题。Cantor（带图像）更加精确，提高了任务分配的合理性。（b） 不同视觉工具的比较：传统方法中使用的低级专业感知工具只能获得基本数据。由MLLM代理的高级通用认知专家获得对象数关系，实现直接和后续推理。&lt;/h6&gt;
+&lt;p&gt;&lt;strong&gt;但我感觉这个图的比较不太恰当，在多模态 CoT 领域，却拿 GPT-3.5 这种 LLM 来做比较，只询问烧杯最大刻度，缺乏图像信息当然无法正确回答了，为什么不使用 GPT-4V 或者 Gemini 等多模态模型进行对比呢，而且 Baseline 就应该使用图像字幕的形式，而不是说 Cantor 通过字幕引入了视觉语境，避免了决策幻觉。&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;摘要&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;随着大型语言模型 （LLMs）的出现，通过思维链 （CoT）方法得到增强，视觉推理问题通常被分解为可管理的子任务，并用各种外部工具依次解决。然而，由于视觉信息不足和低级感知工具的局限性，无法提供全面推理所需的抽象摘要，这种范式面临着决策中潜在的 “决定性幻觉” 的挑战。我们认为，融合视觉上下文获取和逻辑推理对于解决视觉推理任务至关重要。本文深入研究了多模态 CoT 领域，以多模态大型语言模型 （MLLMs）及其认知能力解决复杂的视觉推理任务。为此，我们提出了一种创新的多模态 CoT 框架，称为 Cantor，其特点是感知 - 决策架构。Cantor 首先充当决策生成器，并集成视觉输入来分析图像和问题，确保与实际上下文更紧密地保持一致。此外，Cantor 利用 MLLM 的高级认知功能作为多方面的专家来获取更高层次的信息，从而增强 CoT 生成过程。我们广泛的实验证明了所提出的框架的有效性，表明在两个复杂的视觉推理数据集中，多模态 CoT 性能显着提高，而无需微调或地面真实原理。项目页面：&lt;br&gt;
+&lt;a href=&#34;https://ggg0919.github.io/cantor/&#34;&gt;&lt;strong&gt;&lt;font color=&#34;HotPink&#34;&gt;https://ggg0919.github.io/cantor/&lt;/font&gt;&lt;/strong&gt;&lt;/a&gt; .&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/image/Cantor-fig2.jpg&#34; alt=&#34;Cantor概述和具体示例&#34;&gt;&lt;/p&gt;
+&lt;h6&gt;Cantor概述和具体示例。Cantor通过决策生成器分析图像和问题，提供问题的原理分析，并提供模块选择和原因，以及具体的任务分配。随后，MLLM充当各种专家模块来执行子任务。最后，Cantor通过答案生成器进行综合和思考，提供最终答案。&lt;/h6&gt;
+&lt;blockquote&gt;
+&lt;p&gt;引言&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;随着大型语言模型 （LLMs）的发展，研究者开始采用思维链 （CoT）策略来提高模型在推理任务中的性能。CoT 模仿人类的渐进推理过程，通过构建一系列逻辑步骤来解决复杂的视觉推理问题，帮助模型提高他们的深度理解和分析能力。CoT 的有效性已在语言推理任务中得到广泛验证。最近，研究人员自然而然地将其应用扩展到了多模态域。视觉推理任务天生就适合于思维链 （CoT）方法。这些任务要求模型不仅要 “感知” 图像中的内容和上下文，还要 “理解” 这些视觉元素，以做出连贯的推理和决策。因此，多模态 CoT 的探索在研究界得到了显着扩展。大多数现有的多模态 CoT 方法分为两个阶段：决策生成和执行。1）决策生成。这是多模态 CoT 方法的第一步，涉及理解、分析和制定问题的推理计划。现有的确定方法包括将问题分解为子问题 、在图像中捕捉场景图 、查找相关图像的异同等  。他们试图在文本层面简化问题，或在视觉层面添加更多上下文信息。2）执行。在此阶段，模型执行由上一个确定阶段安排的特定操作。具体而言，该模型将规划转化为实际解决方案。现有的执行方法通常依赖于各种专门的 API 工具或视觉语言模型 （VLMs），前者强调任务执行的特殊性，后者强调任务执行的普遍性。虽然这些多模态 CoT 方法提高了视觉推理任务的性能，但仍存在局限性：首先，现有方法在做出决策时，往往直接将纯文本输入到 LLM 中，而不考虑视觉上下文。从直觉上讲，这增加了 LLM 对问题的发散性思维，但实际上，它可能导致 “确定幻觉”。如图 1（a）所示，如果问题本身与图像没有密切关系，而只是根据文本询问 “这个类测量的最高量是多少？”，则 LLM（GPT-3.5）不清楚 “这个类” 的具体含义。它会回答所提供的信息不足，并开始猜测 “类” 是指物理学中的度量还是编程中的类。这种感知的不确定性可能导致 LLM 做出与问题无关的决策，甚至是不正确的、误导性的后续执行，并导致完全不相关的答案。&lt;/p&gt;
+&lt;p&gt;其次，在执行过程中，现有方法通常通过调用外部工具来执行任务，因为 MLLM 仍然无法解决众多的视觉推理任务。但这些工具大多是低级的视觉感知工具 （检测器、识别器、OCR 等），只能提取低级的视觉信息。如图 1（b）所示，在比较溶液中的粒子数时，它们仅提供粒子的位置，而无法推断出它们数量之间的关系等高级信息。他们进一步将这些低级线索输入到 LLM 中进行组织和总结 。当复杂的线索增加时，这无疑增加了 LLM 对长文本推理的负担。同时，使用许多外部工具，也增加了管道的复杂性。为了解决上述局限性，我们提出了一种新颖的多模态 CoT 框架 Cantor。在决策生成中，我们使 MLLM 或 LLM 在合唱中充当唱者，同时处理视觉和文本上下文以进行全面理解，然后将特定任务分配给由单个 MLLM 执行的 “专家”，以进行高级逻辑问题解决。具体来说，在决策生成过程中，我们详细分析了视觉信息在决策阶段的重要性。这包括有或没有视觉信息的确定质量，以及详细或简洁的视觉信息对确定的影响的差异。最终，我们得出结论，视觉信息在决策生成阶段至关重要。当我们使用 MLLM 模型 （如 Gemini）作为决策生成器时，我们直接将图像输入到模型中，以充分理解问题并对其进行深思熟虑。然而，当采用 LLM 模型 （如 GPT-3.5）时，我们发现提供更详细的图像标题更有利于理解问题。此外，决策生成器需要明确提供解释性决策，包括解决问题的策略、专家调用的原因以及每个专家的具体任务执行。因此，它指导 MLLM 充当量身定制的专家 （例如 ObjectQuant Locator、TextIntel Extractor、VisionIQAnalyst 和 ChartSense Expert），为流程中的子任务提供结论性答案。如图 1（a）所示，当使用 LLM 做出决定时，在详细的标题指导下，模型知道它要求烧杯的最大体积并做出正确的决定。当图像可供 MLLM 使用时，决策会更加清晰，也就是说，需要 VisionIQAnalyst 提取杯壁顶部的数字。在执行过程中，我们观察到 MLLM 是一种高级认知工具，在直接获取高级信息（例如，相对位置和数量）方面比获取低级视觉信息（如检测位置）性能更好。这种高级信息对于多模态 CoT 来说是优越的。Cantor 没有使用多个外部工具，而是通过不同的专家身份和任务说明将不同的任务分配给单个 MLLM，探索充当某些专家的 MLLM 的专业潜力。量身定做的专家直接提供高水平的专业信息，从而减轻了后续综合推理的负担。如图 1（b）所示，在比较绿色颗粒的浓度时，我们需要先比较两个瓶子中的颗粒数量。MLLM 充当 ObjectQuant 定位器，直接比较两个解决方案中的数量方差。与获取粒子位置相比，MLLM 更准确地获得数量关系的结果。该结果直接应用于最终答案的进一步推断。&lt;/p&gt;
+&lt;p&gt;我们提出的框架 Cantor 在 ScinceQA 和 Mathvista 中均实现了 SOTA 结果。当 Gemini 用作决策生成器时，Cantor 分别获得 4.11% 和 5.9% 的精度增益。在 Cantor 中使用 GPT-3.5 还可以实现 2.24% 和 9.2% 的准确度增益。在我们所有的实验中，我们只使用一个 MLLM （Gemini）来扮演多个专家的角色，执行不同的子任务，有不同的要求。我们的贡献如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;我们提出了一个鼓舞人心的多模态 CoT 框架，名为 Cantor，它具有感知决策架构，有效地集成了视觉上下文和逻辑推理来解决视觉推理任务。&lt;/li&gt;
+&lt;li&gt;我们利用 MLLM 的高级认知能力，充当多方面的专家，获取更高层次的信息并显着增强 CoT 的生成。&lt;/li&gt;
+&lt;li&gt;我们在两个具有挑战性的基准测试中证明了 Cantor 的有效性，大大超过了现有的同行。&lt;/li&gt;
+&lt;/ul&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

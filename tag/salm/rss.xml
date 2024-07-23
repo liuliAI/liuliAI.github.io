@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>liuliAI • Posts by &#34;salm&#34; tag</title>
+        <link>https://liuliai.github.io</link>
+        <description></description>
+        <language>zh-CN</language>
+        <pubDate>Sat, 09 Dec 2023 11:59:00 +0800</pubDate>
+        <lastBuildDate>Sat, 09 Dec 2023 11:59:00 +0800</lastBuildDate>
+        <category>RWKV</category>
+        <category>Mamba</category>
+        <category>KAN</category>
+        <category>TTT</category>
+        <category>线性架构</category>
+        <category>CoT</category>
+        <category>多模态</category>
+        <category>大模型</category>
+        <category>长期记忆</category>
+        <category>RAG</category>
+        <category>Linux</category>
+        <category>教程</category>
+        <category>Embodied AI</category>
+        <category>VLN</category>
+        <category>Python</category>
+        <category>多核并行</category>
+        <category>四元数</category>
+        <category>服务器</category>
+        <category>概率机器人</category>
+        <category>SALM</category>
+        <category>数学</category>
+        <category>矩阵分析</category>
+        <category>数值分析</category>
+        <category>数学建模</category>
+        <category>电工杯</category>
+        <category>遗传算法</category>
+        <category>状压DP</category>
+        <category>TSP旅行商</category>
+        <item>
+            <guid isPermalink="true">https://liuliai.github.io/2023/12/09/%E6%A6%82%E7%8E%87%E6%9C%BA%E5%99%A8%E4%BA%BA-SALM/</guid>
+            <title>概率机器人-SALM</title>
+            <link>https://liuliai.github.io/2023/12/09/%E6%A6%82%E7%8E%87%E6%9C%BA%E5%99%A8%E4%BA%BA-SALM/</link>
+            <category>概率机器人</category>
+            <category>SALM</category>
+            <pubDate>Sat, 09 Dec 2023 11:59:00 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;记录下这门折磨的全英授课形式的课程，英语水平直线上升（但也是我所有课程中最高的成绩 - 97，）。同时推荐一下方老师，方老师是国内 SALM 领域中的大牛，从零几年到现在一直深耕，发表多篇顶会。 最经典的 SALM 十四讲也是好起来了，能请到方老师作序。（学 SALM 的人必看，犹如西瓜书、花书在深度学习的地位），而且方老师会带学生 DeBug，技术能力也超强。不禁让我回想起本科双语教学的最优化理论及方法，同样的大佬，同样的哀嚎一片的学生。&lt;br&gt;
+&lt;img src=&#34;/image/salm.png&#34; alt=&#34;&#34;&gt;&lt;br&gt;
+上课偷拍&lt;br&gt;
+&lt;video width=&#34;320&#34; height=&#34;240&#34; controls&gt;&lt;/p&gt;
+  &lt;source src=&#34;/image/salm.mp4&#34; type=&#34;video/mp4&#34;&gt;
+  您的浏览器不支持 HTML5 视频。
+&lt;/video&gt;
+&lt;p&gt;这是使用期末作业，使用 Jupyter 完成，有需要的，初学 SALM 的可以留言找我领取资料。&lt;br&gt;
+&lt;img src=&#34;/image/homework.jpg&#34; alt=&#34;&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;/image/homework2.jpg&#34; alt=&#34;&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;/image/homework1.jpg&#34; alt=&#34;&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;/image/homework3.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>
