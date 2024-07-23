@@ -4,8 +4,11 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="概率机器人-SALM, 全栈,深度学习,大型语言模型,LLM,python,算法">
-    <meta name="description" content="记录下这门折磨的全英授课形式的课程，英语水平直线上升（但也是我所有课程中最高的成绩 97，）。同时推荐一下方老师，方老师是国内 SALM 领域中的大牛，从零几年到现在一直深耕，发表多篇顶会。 最经典的 SALM 十四讲也是好起来了，能请到方">
+    <meta name="keywords" content="Multimodal Large Language Model 总结, 全栈,深度学习,大型语言模型,LLM,python,算法">
+    <meta name="description" content="Multimodal Large Language Model 总结
+由于最近论文工作需求，本文以总结的形式梳理了近期比较有代表性的MLLM, 推荐有基础后再阅读
+Revolution of Visual-Language Adapter
+">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +20,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>概率机器人-SALM | liuliAI</title>
+    <title>Multimodal Large Language Model 总结 | liuliAI</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
     <style>
@@ -343,12 +346,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">概率机器人-SALM</h1>
+                    <h1 class="description center-align post-title">Multimodal Large Language Model 总结</h1>
                 </div>
             </div>
         </div>
@@ -372,12 +375,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%A6%82%E7%8E%87%E6%9C%BA%E5%99%A8%E4%BA%BA/">
-                                <span class="chip bg-color">概率机器人</span>
-                            </a>
-                        
-                            <a href="/tags/SALM/">
-                                <span class="chip bg-color">SALM</span>
+                            <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/">
+                                <span class="chip bg-color">多模态大模型</span>
                             </a>
                         
                     </div>
@@ -388,8 +387,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%95%B0%E5%AD%A6/" class="post-category">
-                                数学
+                            <a href="/categories/%E8%AE%BA%E6%96%87/" class="post-category">
+                                论文
                             </a>
                         
                     </div>
@@ -401,7 +400,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-03-29
+                    2024-06-17
                 </div>
                 
 
@@ -415,14 +414,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    211
+                    1.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    4 分
                 </div>
                 
 
@@ -440,17 +439,65 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>记录下这门折磨的全英授课形式的课程，英语水平直线上升（但也是我所有课程中最高的成绩 97，）。同时推荐一下方老师，方老师是国内 SALM 领域中的大牛，从零几年到现在一直深耕，发表多篇顶会。 最经典的 SALM 十四讲也是好起来了，能请到方老师作序。（学 SALM 的人必看，犹如西瓜书、花书在深度学习的地位），而且方老师会带学生 DeBug，技术能力也超强。不禁让我回想起本科双语教学的最优化理论及方法，同样的大佬，同样的哀嚎一片的学生。<br>
-<img src="/image/salm.png" alt=""><br>
-上课偷拍<br>
-<video width="320" height="240" controls></p>
-  <source src="D:/Program Files/good-blog/source/image/salm.mp4" type="video/mp4">
-</video>
-<p>这是使用期末作业，使用 Jupyter 完成，有需要的，初学 SALM 的可以留言找我领取资料。<br>
-<img src="/image/homework.jpg" alt=""><br>
-<img src="/image/homework2.jpg" alt=""><br>
-<img src="/image/homework1.jpg" alt=""><br>
-<img src="/image/homework3.jpg" alt=""></p>
+                <h2>Multimodal Large Language Model 总结</h2>
+由于最近论文工作需求，本文以总结的形式梳理了近期比较有代表性的MLLM, 推荐有基础后再阅读
+<h4>Revolution of Visual-Language Adapter</h4>
+目前的MLLM基本组成有三部分, <strong>Visual Backbone, V-L Adapter, LLM</strong>
+<img src="/image/mllm1.jpg" alt="The Revolution of Multimodal Large Language Models: A Survey">
+大多数MLLM基本在LLM内部没有什么变化, Visual Encoder基本也用的CLIP的Vision Encoder, 主要区别在于Adapter上
+<h4>Flamingo</h4>
+论文: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2204.14198" style="color: LimeGreen;">Flamingo: a Visual Language Model for Few-Shot Learning</a>.
+Flamingo代表了在LLM主干中加入Cross Attention从而用视觉增强文本表示的一派.
+<p>Flamingo 将视觉信息融入 LLM 的方式是在 LM Block 的主干上串行的加入一个用 Cross Attention 增强文本表示的模块，从而让文本表示中能融入视觉信息<br>
+<img src="/image/mllm2.jpg"></p>
+<p><strong>V 预训练 LM 为 Chinchilla 1.4 / 7 / 70B.</strong></p>
+<p>作者在每个 LM Block 前面加上了一个 Gated Cross - Attention Block. 以 Language 为 Query, Vision input 为 Key 和 Value, 并用 Tanh 和残差做一下过滤，决定视觉增强的文本表示流通率的门控系数为全 0 初始化，跟 LoRA 有点类似.</p>
+<p>比较有趣的是作者提到了 Flamingo 对交错图文 (Interleaved Image Text) 的数据的处理方法<br>
+<img src="/image/mllm3.jpg"><br>
+在一系列文本和一系列图像构成的图文交错数据中，每个文本块中 Token 在 Cross - Attention 中只能对对应的 Visual Token 做 Attention (深蓝色), 而无法对其他 Visual Token 做 Attention (浅蓝).</p>
+<p><strong>在作者的实验中，将作者构建的交错图文数据集去掉后，模型效果下降非常严重。也许交错图文是一个 Tricks</strong></p>
+<h4>BLIP-2</h4>
+<strong>BLIP-2开创了以VL对齐的Q - Former抽取视觉信息送给LLM的先河</strong>
+论文：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2301.12597" style="color: LimeGreen;">BLIP-2: Bootstrapping Language-Image Pre-training with Frozen Image Encoders and Large Language Models</a>
+<p>BLIP-2 提出的背景： 当前大规模模型在预训练期间的高额计算消耗太大，数据也用的特别多。作者引入一个 lightweight Querying Transformer (Q - Former) 来完成 Visual &amp; Language 模态的桥接过程<br>
+<img src="/image/mllm4.jpg"><br>
+作者把 Q - Former 的训练拆分为两个阶段:</p>
+<ul>
+<li>首阶段：让 Q - Former 从 Freeze Image Encoder 中学习 VL 表示.</li>
+<li>次阶段：从 Freeze LLM 中学习 VL 表示.</li>
+</ul>
+<p>Q - Former 结构和首阶段预训练如下<br>
+<img src="/image/mllm5.jpg"><br>
+Q - Former 实际上由双塔的两个 Transformer 组成，分别被称为 Image Transformer 和 Text Transformer.</p>
+<p>由于在首阶段中 Q - Former 已经完成了 Query 从 Image Encoder 中抽取关键信息的学习，这也就使得 Visual Signal 可以被 Query 以 Soft Visual Prompt 的形式传递给 LLM. 所以 Q - Former 中的 Text Transformer 变得不再必要，可以被丢弃. Query 表示还需要过一层 Linear Project 和大模型输入维度对齐.</p>
+<h4>InstructBLIP</h4>
+论文：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2305.06500" style="color: LimeGreen;">InstructBLIP: Towards General-purpose Vision-Language Models with Instruction Tuning</a>
+延续BLIP-2的Q - Former, 在Q - Former中添加了Instruct, 从而使得Q - Former能完成Instruction-aware Visual Feature Extraction, 从而将Visual Feature从静态的变为动态的, 能够做到instruction following，其余细节基本一致
+<img src="/image/mllm6.jpg">
+<p>与之类似的还有同样为 BLIP 系列续作的 X-InstructBLIP, 但审稿人似乎认为这种方法并没有具备很大的贡献，以及实验不够充分缺乏与当前的 MLLM 对比，于是在 ICLR 24 被拒稿了.</p>
+<h4>LLaVA</h4>
+LLaVA代表了整个使用MLP为Adapter的一派
+<p>论文：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2304.08485" style="color: LimeGreen;">Visual Instruction Tuning</a><br>
+与 BLIP-2 的 Q - Former 不同，LLaVA 抛弃了沉重的 Visual Extractor 设计<br>
+<img src="/image/mllm7.jpg"><br>
+用预训练的 CLIP 抽取的 Visual Feature 作为 Vision Signal, 再用一次 Linear Projection 后送到 LLM 里面. LLaVA 训练的时候遵循多轮对话</p>
+<p>作者设计了两阶段微调，让 LLM 能适配 Visual Input:</p>
+<ul>
+<li>Stage 1: Pre - training for Feature Alignment, 只调 Linear Projection 的参数，使 Visual Feature 和 LLM Embedding Space 对齐.</li>
+<li>Stage 2: Fine - tuning End-to-End, 让 Linear Projection 和 LLM 一起调.</li>
+</ul>
+<p>比较有意思的是，LLaVA 的指令数据集是用 LLM (ChatGPT / GPT4) 生成的，通过把图像中的信息以自然语言描述出来从而传递给更高阶的 LLM, 让 LLM 生成指令数据.</p>
+<h4>LLaVA-1.5</h4>
+<p>论文：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2310.03744" style="color: LimeGreen;">Improved Baselines with Visual Instruction Tuning</a><br>
+LLaVA 1.5 是 LLaVA 的改进版本<br>
+<img src="/image/mllm8.jpg"><br>
+主要做了如下改动:</p>
+<ul>
+<li>限制了 LLM 的输出格式，让 LLaVA 直接以简短的方式回答，有利于 VQA 任务.</li>
+<li>从一层 Linear Project 变成了两层 MLP.</li>
+<li>加入了学术方面的数据集，用于解锁 LLaVA 对视觉区域细粒度理解能力.</li>
+<li>提高了图像分辨率，并加入了额外数据源.</li>
+</ul>
 
                 
             </div>
@@ -477,7 +524,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://liuliai.github.io/2024/03/29/%E6%A6%82%E7%8E%87%E6%9C%BA%E5%99%A8%E4%BA%BA-SALM/">https://liuliai.github.io/2024/03/29/%E6%A6%82%E7%8E%87%E6%9C%BA%E5%99%A8%E4%BA%BA-SALM/</a>
+                    <a href="https://liuliai.github.io/2024/06/17/Multimodal%20Large%20Language%20Model%20%E6%80%BB%E7%BB%93/">https://liuliai.github.io/2024/06/17/Multimodal%20Large%20Language%20Model%20%E6%80%BB%E7%BB%93/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -515,12 +562,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%A6%82%E7%8E%87%E6%9C%BA%E5%99%A8%E4%BA%BA/">
-                                    <span class="chip bg-color">概率机器人</span>
-                                </a>
-                            
-                                <a href="/tags/SALM/">
-                                    <span class="chip bg-color">SALM</span>
+                                <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/">
+                                    <span class="chip bg-color">多模态大模型</span>
                                 </a>
                             
                         </div>
@@ -1144,13 +1187,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2024/05/15/Python%E5%A4%9A%E6%A0%B8%E5%B9%B6%E8%A1%8C%E6%93%8D%E4%BD%9C/">
+                <a href="/2024/06/19/Cantor%EF%BC%9A%20Inspiring%20Multimodal%20Chain-of-Thought%20of%20MLLM/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Python多核并行操作">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Cantor：Inspiring Multimodal Chain-of-Thought of MLLM">
                         
-                        <span class="card-title">Python多核并行操作</span>
+                        <span class="card-title">Cantor：Inspiring Multimodal Chain-of-Thought of MLLM</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1161,14 +1204,14 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-05-15
+                            <i class="far fa-clock fa-fw icon-date"></i>2024-06-19
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Python/" class="post-category">
-                                    Python
+                            <a href="/categories/%E8%AE%BA%E6%96%87/" class="post-category">
+                                    论文
                                 </a>
                             
                             
@@ -1178,12 +1221,16 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Python/">
-                        <span class="chip bg-color">Python</span>
+                    <a href="/tags/CoT/">
+                        <span class="chip bg-color">CoT</span>
                     </a>
                     
-                    <a href="/tags/%E5%A4%9A%E6%A0%B8%E5%B9%B6%E8%A1%8C/">
-                        <span class="chip bg-color">多核并行</span>
+                    <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/">
+                        <span class="chip bg-color">多模态</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/">
+                        <span class="chip bg-color">大模型</span>
                     </a>
                     
                 </div>
@@ -1197,13 +1244,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2024/03/29/%E7%9F%A9%E9%98%B5%E5%88%86%E6%9E%90%E5%92%8C%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90/">
+                <a href="/2024/05/24/MemoryBank%EF%BC%9AEnhancing%20Large%20Language%20Models%20with%20Long-Term%20Memory/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="矩阵分析和数值分析">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="MemoryBank：Enhancing Large Language Models with Long-Term Memory">
                         
-                        <span class="card-title">矩阵分析和数值分析</span>
+                        <span class="card-title">MemoryBank：Enhancing Large Language Models with Long-Term Memory</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1214,14 +1261,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-03-29
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-05-24
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%95%B0%E5%AD%A6/" class="post-category">
-                                    数学
+                            <a href="/categories/%E8%AE%BA%E6%96%87/" class="post-category">
+                                    论文
                                 </a>
                             
                             
@@ -1231,16 +1278,16 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%95%B0%E5%AD%A6/">
-                        <span class="chip bg-color">数学</span>
+                    <a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/">
+                        <span class="chip bg-color">大模型</span>
                     </a>
                     
-                    <a href="/tags/%E7%9F%A9%E9%98%B5%E5%88%86%E6%9E%90/">
-                        <span class="chip bg-color">矩阵分析</span>
+                    <a href="/tags/%E9%95%BF%E6%9C%9F%E8%AE%B0%E5%BF%86/">
+                        <span class="chip bg-color">长期记忆</span>
                     </a>
                     
-                    <a href="/tags/%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90/">
-                        <span class="chip bg-color">数值分析</span>
+                    <a href="/tags/RAG/">
+                        <span class="chip bg-color">RAG</span>
                     </a>
                     
                 </div>
@@ -1401,13 +1448,6 @@
 
 </main>
 
-
-<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script>
-    MathJax.Hub.Config({
-        tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
-    });
-</script>
 
 
 

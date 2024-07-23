@@ -496,9 +496,9 @@ WKV 这块（公式 14）是 Time Mix 的核心，它的作用就是前面提到
 </ul>
 <h4>KAN: Kolmogorov-Arnold Networks</h4>
 <p>KAN 网络结构思路来自 Kolmogorov-Arnold 表示定理。MLP 在节点（“神经元”）上具有固定的激活函数，而 KAN 在边（“权重”）上具有可学习的激活函数。在数据拟合和 PDE 求解中，较小的 KAN 可以比较大的 MLP 获得更好的准确性。</p>
-<p>KAN 本质上是样条（Spline）曲线和 MLP 的组合，吸收了两者的优点。即<strong>KAN = MLP + Spline</strong>（在数学中，样条曲线是由多项式分段定义的函数。一般的 Spline 可以是特定区间的 3 阶多项式。在插值问题中，样条插值通常优于多项式插值。）<br>
-&lt;img src=&quot;/image/KAN1.png alt=“多层感知器（MLP）与 Kolmogorov-Arnold 网络（KANs）”&gt;<br>
- 与传统的 MLP 相比，KAN 有 4 个主要特点：</p>
+<p>KAN 本质上是样条（Spline）曲线和 MLP 的组合，吸收了两者的优点。即<strong>KAN = MLP + Spline</strong>（在数学中，样条曲线是由多项式分段定义的函数。一般的 Spline 可以是特定区间的 3 阶多项式。在插值问题中，样条插值通常优于多项式插值。）</p>
+<img src="/image/KAN1.png" alt="对比">
+<p>与传统的 MLP 相比，KAN 有 4 个主要特点：</p>
 <ul>
 <li>激活函数位于 &quot;边&quot; 而不是节点（Node）上。</li>
 <li>激活函数是可学习的而不是固定的。</li>
@@ -1839,21 +1839,6 @@ $(function () {
     <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>
