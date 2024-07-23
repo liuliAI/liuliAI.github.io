@@ -65,7 +65,7 @@ RCL 实验室官网见此处，感兴趣获取更多详细信息。
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
 <body>
@@ -423,7 +423,7 @@ RCL 实验室官网见此处，感兴趣获取更多详细信息。
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    863
+                    879
                 </div>
                 
 
@@ -450,9 +450,9 @@ RCL 实验室官网见此处，感兴趣获取更多详细信息。
             <div id="articleContent">
                 <h2>RCL实验室Linux服务器操作手册</h2>
 仅供东北大学机器人科学与工程学院<strong>机器人认知实验室（Robot Cognition Lab，RCL）</strong>成员使用。
-<p>RCL 实验室官网见<a href="http://neurcl.cn/index.html" target="_blank" rel="noopener"><strong><font color="LimeGreen">此处</font></strong></a>，感兴趣获取更多详细信息。</p>
+<p>RCL 实验室官网见<a target="_blank" rel="noopener" href="http://neurcl.cn/index.html"><strong><font color="LimeGreen">此处</font></strong></a>，感兴趣获取更多详细信息。</p>
 <h4>账号申请方法</h4>
-<p>联系目前服务器管理员 <a href="http://tencent://message/?uin=791037420&amp;Site=https://liuliai.github.io/&amp;Menu=yes" target="_blank" rel="noopener"><strong><font color="LimeGreen">QQ</font></strong></a></p>
+<p>联系目前服务器管理员 <a target="_blank" rel="noopener" href="http://tencent://message/?uin=791037420&amp;Site=https://liuliai.github.io/&amp;Menu=yes"><strong><font color="LimeGreen">QQ</font></strong></a></p>
 <h4>服务器介绍</h4>
 <h5>服务器IP地址：172.17.27.232</h5>
 <table>
@@ -514,8 +514,8 @@ RCL 实验室官网见此处，感兴趣获取更多详细信息。
 </ul>
 <h4>登陆方法</h4>
 目前是校内分配的ip，校外是无法访问的。
-<p>①使用校园网 (每个月免费 10G，凌晨 0:00-6:00 免费)，校园网具体资费标准见 <a href="https://ipgw.neu.edu.cn" target="_blank" rel="noopener" style="color: LimeGreen;">此处</a>。</p>
-<p>②使用 OpenVPN，使用学号和手机号验证码登陆，详细介绍在 <a href="http://xwb.neu.edu.cn/10185/list.htm" target="_blank" rel="noopener" style="color: LimeGreen;">此处</a>。</p>
+<p>①使用校园网 (每个月免费 10G，凌晨 0:00-6:00 免费)，校园网具体资费标准见 <a target="_blank" rel="noopener" href="https://ipgw.neu.edu.cn" style="color: LimeGreen;">此处</a>。</p>
+<p>②使用 OpenVPN，使用学号和手机号验证码登陆，详细介绍在 <a target="_blank" rel="noopener" href="http://xwb.neu.edu.cn/10185/list.htm" style="color: LimeGreen;">此处</a>。</p>
 <h5>命令行使用</h5>
 在 Windows 系统中，使用"win+R"快捷键，输入"cmd"，然后回车输入ssh user@hostname 或者ssh -l user hostname ，输入密码即可。
 <p>ssh 登录服务器的命令如下。ssh 默认连接服务器的 22 端口，-p 参数可以指定其他端口。<br>
@@ -525,7 +525,7 @@ RCL 实验室官网见此处，感兴趣获取更多详细信息。
 上面的命令中，用户名和主机名写在一起了，之间使用 @分隔。用户名也可以使用 ssh 的 - l 参数指定，这样的话，用户名和主机名就不用写在一起了。<br>
  <code>$ ssh -l user hostname </code></p>
 <h5>图形界面使用</h5>
-首先下载VNC，在此处<a href="https://www.realvnc.com/en/connect/download/viewer/windows/" target="_blank" rel="noopener" style="color: LimeGreen;">官网</a>下载，或者<a href="https://pan.baidu.com/s/1qyTUfb-U2HPKqmGyg_GupQ?pwd=qn4o" target="_blank" rel="noopener" style="color: LimeGreen;">百度网盘</a>。
+首先下载VNC，在此处<a target="_blank" rel="noopener" href="https://www.realvnc.com/en/connect/download/viewer/windows/" style="color: LimeGreen;">官网</a>下载，或者<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1qyTUfb-U2HPKqmGyg_GupQ?pwd=qn4o" style="color: LimeGreen;">百度网盘</a>。
 <p>然后输入 IP 地址和端口号 (端口号为最后两位，以 63 为例)<br>
 <img src="/image/RCL-linux-fig1.jpg" alt=""><br>
  点击 continue<br>
@@ -535,12 +535,12 @@ RCL 实验室官网见此处，感兴趣获取更多详细信息。
 <h4>传输文件</h4>
 ①在本地cmd上，可以直接通过scp命令传输文件和文件夹。
 <p>从本地上传到服务器，如果想要把文件夹整个上传到服务器，那么加上参数 - r 即可。</p>
-<p><code>$ scp [-r] {local_file_path} {user}@{hostname}:{remote_file_path}</code></p>
+<p><code>$ scp [-r] &#123;local_file_path&#125; &#123;user&#125;@&#123;hostname&#125;:&#123;remote_file_path&#125;</code></p>
 <p>从远程下载到本地</p>
-<p><code>$ scp [-r] {user}@{hostname}:{remote_file_path} {local_file_path}</code></p>
-<p>详细使用信息见  <a href="https://www.runoob.com/linux/linux-comm-scp.html" target="_blank" rel="noopener"><strong><font color="LimeGreen">此处</font></strong></a></p>
+<p><code>$ scp [-r] &#123;user&#125;@&#123;hostname&#125;:&#123;remote_file_path&#125; &#123;local_file_path&#125;</code></p>
+<p>详细使用信息见  <a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-scp.html"><strong><font color="LimeGreen">此处</font></strong></a></p>
 <p>②使用 ftp 工具 WinSCP 或者 FileZilla<br>
- 参考教程 <a href="https://blog.csdn.net/qq_26383975/article/details/120220823" target="_blank" rel="noopener"><strong><font color="LimeGreen">文件传输工具 WinSCP 下载安装教程</font></strong></a>和<a href="https://blog.csdn.net/weixin_45309916/article/details/107782070" target="_blank" rel="noopener"><strong><font color="LimeGreen">FileZilla 的下载与安装以及简单使用（有图解超简单）</font></strong></a></p>
+ 参考教程 <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_26383975/article/details/120220823"><strong><font color="LimeGreen">文件传输工具 WinSCP 下载安装教程</font></strong></a>和<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45309916/article/details/107782070"><strong><font color="LimeGreen">FileZilla 的下载与安装以及简单使用（有图解超简单）</font></strong></a></p>
 <h4>文件系统介绍</h4>
 目前每人的账号默认分配在home中（容量较小），请将数据集，conda环境创建在data(自动备份)或者bigdata(有需要请自行备份)中进行。
 <p><strong>如有疑问请评论。</strong></p>
@@ -1306,13 +1306,13 @@ RCL 实验室官网见此处，感兴趣获取更多详细信息。
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2024/06/15/Linux%20%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D/">
+                <a href="/2024/04/25/Cantor%EF%BC%9A%20Inspiring%20Multimodal%20Chain-of-Thought%20of%20MLLM/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="Linux 常用命令简单介绍">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Cantor：Inspiring Multimodal Chain-of-Thought of MLLM">
                         
-                        <span class="card-title">Linux 常用命令简单介绍</span>
+                        <span class="card-title">Cantor：Inspiring Multimodal Chain-of-Thought of MLLM</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1323,14 +1323,14 @@ RCL 实验室官网见此处，感兴趣获取更多详细信息。
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-06-15
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-04-25
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Linux/" class="post-category">
-                                    Linux
+                            <a href="/categories/%E8%AE%BA%E6%96%87/" class="post-category">
+                                    论文
                                 </a>
                             
                             
@@ -1340,12 +1340,16 @@ RCL 实验室官网见此处，感兴趣获取更多详细信息。
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Linux/">
-                        <span class="chip bg-color">Linux</span>
+                    <a href="/tags/CoT/">
+                        <span class="chip bg-color">CoT</span>
                     </a>
                     
-                    <a href="/tags/%E6%95%99%E7%A8%8B/">
-                        <span class="chip bg-color">教程</span>
+                    <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/">
+                        <span class="chip bg-color">多模态</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/">
+                        <span class="chip bg-color">大模型</span>
                     </a>
                     
                 </div>
@@ -1833,6 +1837,21 @@ $(function () {
     <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>

@@ -62,7 +62,7 @@
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
 <body>
@@ -373,16 +373,16 @@
                     
                     <div class="article-tag">
                         
+                            <a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/">
+                                <span class="chip bg-color">大模型</span>
+                            </a>
+                        
                             <a href="/tags/%E9%95%BF%E6%9C%9F%E8%AE%B0%E5%BF%86/">
                                 <span class="chip bg-color">长期记忆</span>
                             </a>
                         
                             <a href="/tags/RAG/">
                                 <span class="chip bg-color">RAG</span>
-                            </a>
-                        
-                            <a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/">
-                                <span class="chip bg-color">大模型</span>
                             </a>
                         
                     </div>
@@ -446,10 +446,10 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2>MemoryBank：Enhancing Large Language Models with Long-Term Memory</h2>
-<p>本文是论文<a href="https://arxiv.org/abs/2305.10250" target="_blank" rel="noopener"><strong><font color="LimeGreen">MemoryBank：Enhancing Large Language Models with Long-Term Memory</font></strong></a>的阅读笔记和个人理解，论文来自 AAAI2024. 探讨了一种私人的长期记忆机制，利用持续互动随着时间推移能够适应用户个性的私人 LLM 系统。</p>
+<p>本文是论文<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2305.10250"><strong><font color="LimeGreen">MemoryBank：Enhancing Large Language Models with Long-Term Memory</font></strong></a>的阅读笔记和个人理解，论文来自 AAAI2024. 探讨了一种私人的长期记忆机制，利用持续互动随着时间推移能够适应用户个性的私人 LLM 系统。</p>
 <p>MemoryBank 建立在一个具有内存检索和更新机制的内存存储器上，能够总结过去的事件和用户的个性。通过不断的记忆更新不断进化，通过合成以前交互的信息，随着时间的推移理解和适应用户的个性，允许 LLM 根据经过的时间和记忆的相对重要性来忘记和强化记忆，从而提供更像人类的记忆机制和丰富的用户体验（需要持续互动，如私人伴侣系统、心理咨询和秘书协助）</p>
 <p><strong>包容性强，对 ChatGPT 这样的封闭源代码模型和像 ChatGLM 这样的开放源代码模型方面是通用的</strong></p>
-<p>MemoryBank 思想在作者源码上体现的很简单，就是他每次出现查询请求时，都会遍历一遍历史对话记录，然后当前查询的内容遗忘保留率<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">s+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">s</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> (有具体的数学模型，可以参考链接：<a href="https://www.zhihu.com/question/364132423" target="_blank" rel="noopener"><strong><font color="LimeGreen">https://www.zhihu.com/question/364132423</font></strong></a>，但是作者为了方便简化了)，作者的数学模型就是<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>e</mi><mrow><mo>−</mo><mfrac><mi>t</mi><mi>s</mi></mfrac></mrow></msup></mrow><annotation encoding="application/x-tex">e^{-\frac{t}{s}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9393400000000001em;vertical-align:0em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9393400000000001em;"><span style="top:-3.363em;margin-right:0.05em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight"><span class="mopen nulldelimiter sizing reset-size3 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8233428571428572em;"><span style="top:-2.656em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">s</span></span></span></span><span style="top:-3.2255000000000003em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line mtight" style="border-bottom-width:0.049em;"></span></span><span style="top:-3.384em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.344em;"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span></span></span></span></span></span></span></span></span>，然后计算出这个遗忘强度值，然后用 random 随机数进行比较，当大于就删除这个，小于就保留，就实现了艾宾浩斯记忆曲线可以遗忘和增强记忆的功能。</p>
+<p>MemoryBank 思想在作者源码上体现的很简单，就是他每次出现查询请求时，都会遍历一遍历史对话记录，然后当前查询的内容遗忘保留率<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">s+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">s</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> (有具体的数学模型，可以参考链接：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/364132423"><strong><font color="LimeGreen">https://www.zhihu.com/question/364132423</font></strong></a>，但是作者为了方便简化了)，作者的数学模型就是<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>e</mi><mrow><mo>−</mo><mfrac><mi>t</mi><mi>s</mi></mfrac></mrow></msup></mrow><annotation encoding="application/x-tex">e^{-\frac{t}{s}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9393400000000001em;vertical-align:0em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9393400000000001em;"><span style="top:-3.363em;margin-right:0.05em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight"><span class="mopen nulldelimiter sizing reset-size3 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8233428571428572em;"><span style="top:-2.656em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">s</span></span></span></span><span style="top:-3.2255000000000003em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line mtight" style="border-bottom-width:0.049em;"></span></span><span style="top:-3.384em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.344em;"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span></span></span></span></span></span></span></span></span>，然后计算出这个遗忘强度值，然后用 random 随机数进行比较，当大于就删除这个，小于就保留，就实现了艾宾浩斯记忆曲线可以遗忘和增强记忆的功能。</p>
 <p><img src="/image/MemoryBank-fig1.jpg" alt="MemoryBank概述"></p>
 <h6>记忆存储器（§2.1）存储过去的对话、总结的事件和用户画像，而记忆更新机制（§2.3）更新记忆存储器。记忆检索（§2.2）召回相关记忆。SiliconFriend（第3节）是一个基于LLM的人工智能伴侣，基于MemoryBank。</h6>
 <blockquote>
@@ -534,16 +534,16 @@
                     
                         <div class="article-tag">
                             
+                                <a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/">
+                                    <span class="chip bg-color">大模型</span>
+                                </a>
+                            
                                 <a href="/tags/%E9%95%BF%E6%9C%9F%E8%AE%B0%E5%BF%86/">
                                     <span class="chip bg-color">长期记忆</span>
                                 </a>
                             
                                 <a href="/tags/RAG/">
                                     <span class="chip bg-color">RAG</span>
-                                </a>
-                            
-                                <a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/">
-                                    <span class="chip bg-color">大模型</span>
                                 </a>
                             
                         </div>
@@ -1201,16 +1201,16 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/">
-                        <span class="chip bg-color">大模型</span>
-                    </a>
-                    
                     <a href="/tags/CoT/">
                         <span class="chip bg-color">CoT</span>
                     </a>
                     
                     <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/">
                         <span class="chip bg-color">多模态</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/">
+                        <span class="chip bg-color">大模型</span>
                     </a>
                     
                 </div>
@@ -1751,6 +1751,21 @@ $(function () {
     <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>

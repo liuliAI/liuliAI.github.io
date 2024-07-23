@@ -61,7 +61,7 @@
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 
 <body>
@@ -408,11 +408,11 @@
                 
                 
                 
-                <a href="/categories/Python/" title="Python: 1">
+                <a href="/categories/%E8%AE%BA%E6%96%87/" title="论文: 3">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #F9EBEA;">Python
-                        <span class="tag-length">1</span>
+                            style="background-color: #F9EBEA;">论文
+                        <span class="tag-length">3</span>
                     </span>
                 </a>
                 
@@ -426,11 +426,20 @@
                 </a>
                 
                 
-                <a href="/categories/%E8%AE%BA%E6%96%87/" title="论文: 3">
+                <a href="/categories/Python/" title="Python: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #D5F5E3;">论文
-                        <span class="tag-length">3</span>
+                            style="background-color: #D5F5E3;">Python
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/%E6%95%B0%E5%AD%A6/" title="数学: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            style="background-color: #E8F8F5;">数学
+                        <span class="tag-length">1</span>
                     </span>
                 </a>
                 
@@ -477,7 +486,7 @@
                     color: '#3C4858'
                 }
             },
-            indicator: [{"name":"Python","max":4},{"name":"Linux","max":4},{"name":"论文","max":4}],
+            indicator: [{"name":"论文","max":4},{"name":"Linux","max":4},{"name":"Python","max":4},{"name":"数学","max":4}],
             nameGap: 5,
             center: ['50%','55%'],
             radius: '66%'
@@ -488,7 +497,7 @@
             itemStyle: {normal: {areaStyle: {type: 'default'}}},
             data : [
                 {
-                    value : [1,2,3],
+                    value : [3,2,1,1],
                     name : '文章分类数量'
                 }
             ]
@@ -827,6 +836,21 @@ $(function () {
     <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>
