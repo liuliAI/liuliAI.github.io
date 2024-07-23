@@ -205,6 +205,56 @@
     </entry>
     
     
+    
+    <entry>
+      <title>Python 中的正则表达式</title>
+      <link href="/2023/06/12/%E5%9C%A8%20Python%20%E4%B8%AD%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
+      <url>/2023/06/12/%E5%9C%A8%20Python%20%E4%B8%AD%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
+      
+        <content type="html"><![CDATA[<h2>Python 中的正则表达式</h2><p>每当你遇到文本处理问题时，正则表达式（regex）不可或缺（在算法题目中也会出现）。</p><h3 id="验证电子邮件地址"><a class="markdownIt-Anchor" href="#验证电子邮件地址">#</a> 验证电子邮件地址</h3><pre class="line-numbers language-none"><code class="language-none">import redef val_email(email):    pattern &#x3D; r&quot;^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]&#123;2,&#125;$&quot;    if re.match(pattern, email):        print(&quot;合法的邮件地址:)&quot;)    else:        print(&quot;无效的邮件地址!!&quot;)val_email(email&#x3D;&quot;elon@example.com&quot;)# 合法的邮件地址val_email(email&#x3D;&quot;elonexample.com&quot;)# 无效的邮件地址!!val_email(email&#x3D;&quot;elon@example.c&quot;)# 无效的邮件地址!!<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>在这个例子中，我们使用 Python 中的 re 模块来编译一个匹配有效电子邮件格式的正则表达式模式。然后，我们使用它的 match () 函数来检查 email 变量是否与模式匹配。</p><p>在模式中，有几个关键点：</p><ul><li>我们使用 [] 表示一个范围。例如，[a-zA-Z0-9] 可以匹配 0 到 9 之间的数字、A 到 Z 之间的字母或 a 到 z 之间的字母。</li><li>^ 表示行的开头。在我们的例子中，我们使用它来确保文本必须以 [a-zA-Z0-9] 开始。</li><li>$ 表示行的结尾。</li><li>\ 用于转义特殊字符（允许我们匹配像 ‘.’ 这样的字符）。</li><li>{n,m} 语法是用来匹配 n-m 个先前的正则表达式。我们使用了 {2,}，这意味着前面的部分 [a-zA-Z] 应该至少重复 2 次。这就是为什么 “elon@example.c” 被识别为无效的电子邮件地址。</li><li>. 表示匹配前面的正则表达式至少 1 次。例如，ab+ 将匹配 a 后面的任何非零数量的 b。</li></ul><h3 id="从字符串中提取数字"><a class="markdownIt-Anchor" href="#从字符串中提取数字">#</a> 从字符串中提取数字</h3><p>要从长文本中找到一些特殊字符，最直接的想法是使用 for 循环遍历所有字符并找到所需的内容。</p><p>但是，没有必要使用任何循环。正则表达式就是为了作为过滤器而生的。（时间复杂度更低，更快！！）</p><pre class="line-numbers language-none"><code class="language-none">import redef extract_numbers(text):    pattern &#x3D; r&quot;\d+&quot;    return re.findall(pattern, text)print(extract_numbers(&quot;先将键盘1上的三4行字母5进行6打表100000000。&quot;))# [&#39;1456100000000&#39;]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>re.findall () 函数接收一个正则表达式和一个文本，可以方便地帮助我们找到所有我们需要的字符。</p><p>其中 \d 用于在正则表达式中匹配数字。</p><h3 id="验证有效电话号码"><a class="markdownIt-Anchor" href="#验证有效电话号码">#</a> 验证有效电话号码</h3><pre class="line-numbers language-none"><code class="language-none">import redef is_valid_phone_number(phone_number):    pattern &#x3D; r&quot;^\d&#123;3&#125;-\d&#123;3&#125;-\d&#123;4&#125;$&quot;    return bool(re.match(pattern, phone_number))print(is_valid_phone_number(&quot;123-456-7890&quot;))  # Trueprint(is_valid_phone_number(&quot;1234567890&quot;))  # False<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h3 id="将文本分割成单词"><a class="markdownIt-Anchor" href="#将文本分割成单词">#</a> 将文本分割成单词</h3><p>将长文本分割成单独的单词是日常编程中的另一个常见需求。借助 re 模块的 split () 函数，我们可以轻松完成此任务：</p><pre class="line-numbers language-none"><code class="language-none">re.split(r&#39;\s+&#39;, &#39;a b   c&#39;)# [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]re.split(r&#39;[\s\,]+&#39;, &#39;a,b, c  d&#39;)# [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;]re.split(r&#39;[\s\,\;]+&#39;, &#39;a,b;; c  d&#39;)[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h3 id="使用正则表达式查找和替换文本"><a class="markdownIt-Anchor" href="#使用正则表达式查找和替换文本">#</a> 使用正则表达式查找和替换文本</h3><pre class="line-numbers language-none"><code class="language-none">import retext &#x3D; &quot;linuxmi is an full-stack software engineer.&quot;pattern &#x3D; r&quot;[a-e]&quot;replacement &#x3D; &quot;*&quot;new_text &#x3D; re.sub(pattern, replacement, text)print(new_text)  #linuxmi is *n full-st**k softw*r* *ngin**r.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>理解 Python 中的浅复制和深复制</title>
+      <link href="/2023/05/16/%E7%90%86%E8%A7%A3%20Python%20%E4%B8%AD%E7%9A%84%E6%B5%85%E5%A4%8D%E5%88%B6%E5%92%8C%E6%B7%B1%E5%A4%8D%E5%88%B6/"/>
+      <url>/2023/05/16/%E7%90%86%E8%A7%A3%20Python%20%E4%B8%AD%E7%9A%84%E6%B5%85%E5%A4%8D%E5%88%B6%E5%92%8C%E6%B7%B1%E5%A4%8D%E5%88%B6/</url>
+      
+        <content type="html"><![CDATA[<h2>理解 Python 中的浅复制和深复制</h2>Python 提供了多种有效的方法来管理数据。在处理嵌套列表、字典或自定义对象等数据结构时，理解浅复制和深复制的概念是至关重要的。<p>在 Python 中，浅拷贝和深拷贝是两种不同的拷贝方式。浅拷贝只复制引用，不复制内部对象，而深拷贝则完全复制整个对象，包括其内部的子对象。尤其是在算法中，可能需要用到拷贝的概念来解决问题，如列表、字符串等数据结构（初学者包括我会犯的错， <code>a=[1,2,3,4]</code> ，然后又使用 <code>b=a</code> ，然后在 b 上修改列表，导致 a 也发生变化）</p><p>浅拷贝在 Python 中可以通过几种方式实现，如使用 copy 模块的 copy () 函数，切片操作 [:]，以及字典和集合的拷贝方法.copy ()。深拷贝则可以通过 copy 模块的 deepcopy () 函数来实现。在选择拷贝方式时，重要的是理解对象的结构和需求，以确保拷贝行为符合预期。</p><p>使用浅复制<br>浅复制通过创建原始对象的顶层结构的副本来工作。这意味着如果原始对象包含嵌套对象，复制将引用与原始对象相同的嵌套对象。换句话说，对对象进行浅复制会复制其最外层结构，而不会复制它可能包含的任何嵌套对象。</p><p>要在 Python 中执行浅复制，您可以使用 copy 模块的 copy () 函数或对象上的 .copy () 方法。<br>要在 Python 中创建深度复制，可以使用 copy 模块的 deepcopy () 函数。</p><p>考虑一个在 Python 中使用列表或字典的示例。</p><pre class="line-numbers language-none"><code class="language-none">import copymain_list &#x3D; [29, 49, [&quot;Q&quot;, &quot;R&quot;]]shallow_copy &#x3D; copy.copy(main_list)shallow_copy2 &#x3D; copy.deepcopy(main_list)# 修改嵌套列表shallow_copy[2][0] &#x3D; 99main_list[2][1] &#x3D; 100print(f&quot;The main list: &#123;main_list&#125;&quot;)print(f&quot;The shallow copy list: &#123;shallow_copy&#125;&quot;)print(f&quot;The shallow copy list2: &#123;shallow_copy2&#125;&quot;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>上面的代码中，main_list 变量包含一个包含整数和包含字母的内部列表（嵌套对象）。copy 函数创建了 main_list 的副本，代码将其存储在另一个变量 shallow_copy 中。</p><p>与此同时，对 shallow_copy 或 main_list 中的外部项（整数）所做的任何更改仅会影响该实例。这些外部项本质上是独立的值，而不仅仅是引用。</p><p>当您修改 deep_copy 中的嵌套列表或外部项时，您的更改不会影响原始列表，反之亦然。这表明嵌套列表或外部元素不在两个副本之间共享。</p><p>在处理字典时，相同的理念也适用。</p><p>#### 使用浅复制和深复制的用途</p><ul><li>如果您想要复制一个复杂对象而不生成其嵌套对象的新实例，则使用浅复制。这种方法比深复制更节省内存并且更快，因为它不会复制嵌套对象。</li><li>如果您想要创建对象状态的快照，同时仍然在原始对象和复制对象之间共享一些基础数据，则使用浅复制。</li><li>如果您想要修改对象的副本而不影响原始对象，则使用深复制。这会生成独立的嵌套对象的副本，确保对副本的任何更改不会应用于原始对象。</li><li>当您需要独立副本的嵌套数据结构时，特别是在处理递归或复杂的对象层次结构时，深复制非常重要。</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
   
   
 </search>
