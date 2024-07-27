@@ -4,6 +4,107 @@
   
     
     <entry>
+      <title>Linux(Ubuntu)服务器网络问题,甚至网关都不能ping通</title>
+      <link href="/2024/07/27/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BD%91%E7%BB%9C%E9%97%AE%E9%A2%98,%E7%94%9A%E8%87%B3%E7%BD%91%E5%85%B3%E9%83%BD%E4%B8%8D%E8%83%BDping%E9%80%9A/"/>
+      <url>/2024/07/27/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BD%91%E7%BB%9C%E9%97%AE%E9%A2%98,%E7%94%9A%E8%87%B3%E7%BD%91%E5%85%B3%E9%83%BD%E4%B8%8D%E8%83%BDping%E9%80%9A/</url>
+      
+        <content type="html"><![CDATA[<h2>Linux(Ubuntu)服务器网络问题,甚至网关都不能ping通</h2><p><strong>心累，每天都被服务器包围 T_T </strong></p><p><img src="/image/linux1.png" alt=""></p><p>如果 ping，显示 100% 丢包 time out，使用常规方法即可，参考<a href="https://blog.csdn.net/weixin_43700340/article/details/88393833" style="color: LimeGreen;">博客</a>。</p><p>如果无法 ping 通网关并且 ping 百度显示 <code>ping:未知的名称或服务</code></p><p>使用命令 <code>vim /etc/netplan/01-network-manager-all.yaml</code>  修改配置</p><p>使用 ifconfig 获取信息并修改<br><img src="/image/linux10.jpg" alt=""></p><p>eth0 是网卡名称，gateway4 是网关，addresses 那个是 IPv4，nameservers 下面的 add 是 DNS，注意格式要跟这个一样</p><p>在执行 <code>netplan apply</code>  即可</p><p>如果还没用，那大概率是交换机的问题，换个端口就行</p><h5>如有疑问请评论。</h5>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> 教程 </tag>
+            
+            <tag> 服务器 </tag>
+            
+            <tag> 网关 </tag>
+            
+            <tag> DNS </tag>
+            
+            <tag> IPv4 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Linux(Ubuntu)服务器重装NVIDIA驱动</title>
+      <link href="/2024/07/27/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%87%8D%E8%A3%85NVIDIA%E9%A9%B1%E5%8A%A8/"/>
+      <url>/2024/07/27/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%87%8D%E8%A3%85NVIDIA%E9%A9%B1%E5%8A%A8/</url>
+      
+        <content type="html"><![CDATA[<p><strong>心累，每天都被服务器包围 T_T </strong><br><img src="/image/linux1.png" alt=""></p><h2>Linux(Ubuntu)服务器重装NVIDIA驱动</h2><h4>下载显卡驱动</h4>准备 gpu 驱动和 CUDA 软件包，下载显卡驱动，下面是下载显卡驱动链接<p><a href="https://www.nvidia.cn/drivers/lookup/" style="color: LimeGreen;">https://www.nvidia.cn/drivers/lookup/</a></p><p>选择对应显卡下载，点击查找 ——&gt; 点击下载<br><img src="/image/linux11.jpg" alt=""></p><p>CUDA 下载链接：<a href="https://developer.nvidia.com/cuda-downloads" style="color: LimeGreen;">https://developer.nvidia.com/cuda-downloads</a>选择合适的操作系统版本进行下载。<br><img src="/image/linux12.jpg" alt=""></p><ul><li>deb 方式安装 CUDA，会附带安装显卡驱动，默认安装；</li><li>run 方式安装 CUDA，会附带安装显卡驱动，可以选择不安装；</li><li>安装显卡驱动的时候，最好安装高版本的，这样不会受 CUDA 版本的影响；</li><li>runfile：下载并运行.run 文件，可以选择是否安装 N 卡驱动；</li><li>deb：下载.deb 包，利用 apt-get install 方式安装，会自动安装.deb 包名中写的 N 卡驱动；</li><li>如果 N 卡驱动和.deb 包名中写的 N 卡驱动对应（或低于），则安装完 CUDA 之后 N 卡驱动可以正常启动。</li></ul><h4>安装显卡驱动以及 cuda</h4><h5>服务器端安装 ssh 功能</h5>` sudo apt-get install openssh-server `<p>首先将提前下载好的驱动使用 xftp 传输到命令行端，或者 U 盘挂载放入系统中</p><p>然后 ls 查看传输的驱动包是否存在，禁用系统自带的 nouveau 模块</p><p><code>sudo lsmod | grep nouveau</code></p><p><code>sudo vi /etc/modprobe.d/blacklist.conf</code></p><p>在文本最后添加以下内容：</p><pre class="line-numbers language-none"><code class="language-none">blacklist nouveauoptions nouveau modeset&#x3D;0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p>保存退出，执行以下命令生效</p><p><code>update-initramfs -u</code></p><p>重启操作系统</p><p><code>sudo reboot</code></p><h4>hmod +x 给予显卡驱动包权限，以及安装软件包</h4><p>例如  <code>chmod +x NVIDIA-Linux-x86 64-550.100.run</code></p><p><code>sudo apt-get update</code></p><p><code>sudo apt-get install gcc</code></p><p><code>sudo apt-get install g++</code></p><p><code>sudo apt-get install make</code></p><h4>然后安装显卡驱动前查看 GPU 是否识别全</h4><p><code>sudo lspci | grep -i nvidia</code>  或者  <code>sudo lspci | grep -i vga</code> <br><img src="/image/linux13.png" alt=""></p><p>之后输入命令进行安装</p><p><code>sudo ./NVIDIA-Linux-x86 64-550.100.run</code></p><p>出现如下界面<br><img src="/image/linux15.png" alt=""></p><p>第一个选择选择 &quot;Continue installation&quot;，使用 <code>←</code> 和 <code>→</code> 控制</p><p>选择 &quot;No&quot;<br><img src="/image/linux16.png" alt=""></p><p>选择 &quot;Yes&quot;<br><img src="/image/linux17.png" alt=""></p><p>查看驱动包是否安装</p><p><code>nvidia-smi</code></p><p>同样的，chmod +x 给予 cuda 软件包权限，安装 cuda 软件包，sudo ./cuda-xxx.run</p><p><img src="/image/linux14.jpg" alt=""><br>注意 driver 选项，表示是否安装 GPU 驱动，如果之前已经安装了 GPU 驱动，这里不<br>要再勾选。</p><p>配置环境变量</p><p>添加到 /etc/profile 文件中</p><p><code>sudo vi /etc/profile</code></p><p>在文本最后添加以下内容：</p><pre class="line-numbers language-none"><code class="language-none">export PATH&#x3D;&#x2F;usr&#x2F;local&#x2F;cuda&#x2F;bin:$PATH export LD_LIBRARY_PATH&#x3D;&#x2F;usr&#x2F;local&#x2F;cuda&#x2F;lib64:$LD_LIBRARY_PATH <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p>保存退出，执行以下命令生效：</p><p><code>sudo source /etc/profile</code></p><p>安装完成后查看  <code>nvcc -V </code> 是否安装成功</p><h5>如有疑问请评论。</h5>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> 教程 </tag>
+            
+            <tag> 服务器 </tag>
+            
+            <tag> NVIDIA </tag>
+            
+            <tag> 驱动 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Linux(Ubuntu)服务器RAID磁盘阵列扩充硬盘</title>
+      <link href="/2024/07/26/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8RAID%E7%A3%81%E7%9B%98%E9%98%B5%E5%88%97%E6%89%A9%E5%85%85%E7%A1%AC%E7%9B%98/"/>
+      <url>/2024/07/26/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8RAID%E7%A3%81%E7%9B%98%E9%98%B5%E5%88%97%E6%89%A9%E5%85%85%E7%A1%AC%E7%9B%98/</url>
+      
+        <content type="html"><![CDATA[<p><strong>心累，每天都被服务器包围 T_T </strong><br><img src="/image/linux1.png" alt=""></p><h2>Linux(Ubuntu)服务器RAID磁盘阵列扩充硬盘</h2><p>首先关机，切断电源，把买好的硬盘插上去<br><img src="/image/linux2.jpg" alt=""></p><p>开机，等待一会，根据提示使用  <code>Ctrl+R</code>   快捷键进入阵列卡里，并使用  <code>↓</code>  选择刚刚插入的硬盘，按下 <code>F2</code> <br><img src="/image/linux3.png" alt=""><br><img src="/image/linux4.png" alt=""><br><img src="/image/linux5.png" alt=""><br><img src="/image/linux6.png" alt=""><br> 同时输入硬盘大小，点击 OK<br><img src="/image/linux7.png" alt=""><br> 格式化<br><img src="/image/linux8.png" alt=""><br>重启电脑，接着挂载即可</p><p><code>sudo  mkdir  /data</code></p><p>/dev/sdc 是装备扩充的硬盘名称，可以使用 <code>df -h</code>  或者 <code>lsblk</code>  命令查看， <code>data</code>  是要挂载的文件夹，该文件夹拥有该硬盘所有大小，要是需要分卷请参考<a href="https://blog.csdn.net/bill_wjn/article/details/106013425" style="color: LimeGreen;">博客</a></p><p><code>sudo mount  /dev/sdc  /data</code> <br> 如果报错，再使用命令 <code>mkfs -t ext4 /dev/sdc</code>  格式化</p><p>以上已经扩充完成，但是为零时挂载，每次重启电脑需要再次挂载，需要更完美的使用请继续往下看</p><p>把硬盘的 uuid 加进去<br> <code>sudo vi /etc/fstab</code></p><p>获取 uuid 命令：<br>在命令行模式下输入 <code>r! blkid /dev/sdc</code></p><p>然后按下面格式输入并保存退出，实现永久挂载<br><img src="/image/linux9.png" alt=""></p><h5>如有疑问请评论。</h5>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> 教程 </tag>
+            
+            <tag> 服务器 </tag>
+            
+            <tag> RAID磁盘阵列 </tag>
+            
+            <tag> Ubuntu </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>继RWKV、Mamba、KAN之后号称超越Transformer的线性架构TTT又来了</title>
       <link href="/2024/07/20/Learning%20to%20(Learn%20at%20Test%20Time)%20RNNs%20with%20Expressive%20Hidden%20States/"/>
       <url>/2024/07/20/Learning%20to%20(Learn%20at%20Test%20Time)%20RNNs%20with%20Expressive%20Hidden%20States/</url>
@@ -41,7 +142,7 @@
       <link href="/2024/06/23/RCL%E5%AE%9E%E9%AA%8C%E5%AE%A4Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%93%8D%E4%BD%9C%E6%89%8B%E5%86%8C/"/>
       <url>/2024/06/23/RCL%E5%AE%9E%E9%AA%8C%E5%AE%A4Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%93%8D%E4%BD%9C%E6%89%8B%E5%86%8C/</url>
       
-        <content type="html"><![CDATA[<h2>RCL实验室Linux服务器操作手册</h2>仅供东北大学机器人科学与工程学院<strong>机器人认知实验室（Robot Cognition Lab，RCL）</strong>成员使用。<p>RCL 实验室官网见<a href="http://neurcl.cn/index.html"><strong><font color="LimeGreen">此处</font></strong></a>，感兴趣获取更多详细信息。</p><h4>账号申请方法</h4><p>联系目前服务器管理员<a href="tencent://message/?Menu=yes&uin=791037420& Service=300&sigT=45a1e5847943b64c6ff3990f8a9e644d2b31356cb0b4ac6b24663a3c8dd0f8aa12a595b1714f9d45" style="color: LimeGreen;">QQ</a></p><h4>服务器介绍</h4><h5>服务器IP地址：172.17.27.232</h5><table>  <tr>    <th align="center">Device</th>    <th align="center">Parameter</th>  </tr>  <tr>    <td align="center">CPU</td>    <td align="center">2*Intel(R) Xeon(R) Silver 4314 CPU @ 2.40GHz</td>  </tr>  <tr>    <td align="center">GPU</td>    <td align="center">8*NVIDIA GeForce RTX 3090</td>  </tr>  <tr>    <td rowspan="2">ROM</td>    <td align="center">2*Intel® SSD D3-S4510 Series 480GB</td>  </tr>  <tr>    <td align="center">2*Intel® SSD D3-S4510 Series 3.84TB</td>  </tr></table><ul><li>所有存储设备均采用 RAID 1 镜像配置，确保数据冗余与安全性</li><li>操作系统版本为 Ubuntu 18.04.6 LTS</li><li>CUDA 版本为 12.1</li></ul><h5>服务器IP地址：172.17.27.194</h5><table border="1">  <tr>    <th align="center">Device</th>    <th align="center">Parameter</th>  </tr>  <tr>    <td align="center">CPU</td>    <td align="center">2*Intel(R) Xeon(R) Silver 4314 CPU @ 2.40GHz</td>  </tr>  <tr>    <td align="center">GPU</td>    <td align="center">8*NVIDIA GeForce RTX 3090</td>  </tr>  <tr>    <td align="center" rowspan="3">ROM</td>    <td align="center">2*Intel® SSD D3-S4510 Series 480GB</td>  </tr>  <tr>    <td align="center">2*Intel® SSD D3-S4510 Series 3.84TB</td>  </tr>  <tr>    <td align="center">2*致态 SC001 XT SATA SSD 2TB</td>  </tr></table><ul><li>致态 SC001 XT SATA SSD 2TB 采用 RAID 0 条带化配置，优化读写性能</li><li>其余存储设备采用 RAID 1 镜像配置，确保数据冗余与安全性</li><li>操作系统版本为 Ubuntu 18.04.6 LTS</li><li>CUDA 版本为 11.8</li></ul><h4>登陆方法</h4>目前是校内分配的ip，校外是无法访问的。<p>①使用校园网 (每个月免费 10G，凌晨 0:00-6:00 免费)，校园网具体资费标准见 <a href="https://ipgw.neu.edu.cn" style="color: LimeGreen;">此处</a>。</p><p>②使用 OpenVPN，使用学号和手机号验证码登陆，详细介绍在 <a href="http://xwb.neu.edu.cn/10185/list.htm" style="color: LimeGreen;">此处</a>。</p><h5>命令行使用</h5>在 Windows 系统中，使用"win+R"快捷键，输入"cmd"，然后回车输入ssh user@hostname 或者ssh -l user hostname ，输入密码即可。<p>ssh 登录服务器的命令如下。ssh 默认连接服务器的 22 端口，-p 参数可以指定其他端口。<br> <code>$ ssh hostname </code> <br>上面命令中，hostname 是主机名，它可以是域名，也可能是 IP 地址或局域网内部的主机名（对于 RCL 实验室，为 172.17.27.194 或者 172.17.27.232）。不指定用户名的情况下，将使用客户端的当前用户名，作为远程服务器的登录用户名。如果要指定用户名，可以采用下面的命令。<br> <code>$ ssh user@hostname </code> <br>上面的命令中，用户名和主机名写在一起了，之间使用 @分隔。用户名也可以使用 ssh 的 - l 参数指定，这样的话，用户名和主机名就不用写在一起了。<br> <code>$ ssh -l user hostname </code></p><h5>图形界面使用</h5>首先下载VNC，在此处<a href="https://www.realvnc.com/en/connect/download/viewer/windows/" style="color: LimeGreen;">官网</a>下载，或者<a href="https://pan.baidu.com/s/1qyTUfb-U2HPKqmGyg_GupQ?pwd=qn4o" style="color: LimeGreen;">百度网盘</a>。<p>然后输入 IP 地址和端口号 (端口号为最后两位，以 63 为例)<br><img src="/image/RCL-linux-fig1.jpg" alt=""><br> 点击 continue<br><img src="/image/RCL-linux-fig2.jpg" alt=""><br> 输入默认密码 123456 即可<br><img src="/image/RCL-linux-fig3.jpg" alt=""></p><h4>传输文件</h4>①在本地cmd上，可以直接通过scp命令传输文件和文件夹。<p>从本地上传到服务器，如果想要把文件夹整个上传到服务器，那么加上参数 - r 即可。</p><p><code>$ scp [-r] &#123;local_file_path&#125; &#123;user&#125;@&#123;hostname&#125;:&#123;remote_file_path&#125;</code></p><p>从远程下载到本地</p><p><code>$ scp [-r] &#123;user&#125;@&#123;hostname&#125;:&#123;remote_file_path&#125; &#123;local_file_path&#125;</code></p><p>详细使用信息见  <a href="https://www.runoob.com/linux/linux-comm-scp.html"><strong><font color="LimeGreen">此处</font></strong></a></p><p>②使用 ftp 工具 WinSCP 或者 FileZilla<br> 参考教程 <a href="https://blog.csdn.net/qq_26383975/article/details/120220823"><strong><font color="LimeGreen">文件传输工具 WinSCP 下载安装教程</font></strong></a>和<a href="https://blog.csdn.net/weixin_45309916/article/details/107782070"><strong><font color="LimeGreen">FileZilla 的下载与安装以及简单使用（有图解超简单）</font></strong></a></p><h4>文件系统介绍</h4>目前每人的账号默认分配在home中（容量较小），请将数据集，conda环境创建在data(自动备份)或者bigdata(有需要请自行备份)中进行。<p><strong>如有疑问请评论。</strong></p>]]></content>
+        <content type="html"><![CDATA[<h2>RCL实验室Linux服务器操作手册</h2>仅供东北大学机器人科学与工程学院<strong>机器人认知实验室（Robot Cognition Lab，RCL）</strong>成员使用。<p>RCL 实验室官网见<a href="http://neurcl.cn/index.html"><strong><font color="LimeGreen">此处</font></strong></a>，感兴趣获取更多详细信息。</p><h4>账号申请方法</h4><p>联系目前服务器管理员<a href="tencent://message/?Menu=yes&uin=791037420& Service=300&sigT=45a1e5847943b64c6ff3990f8a9e644d2b31356cb0b4ac6b24663a3c8dd0f8aa12a595b1714f9d45" style="color: LimeGreen;">QQ</a></p><h4>服务器介绍</h4><h5>服务器IP地址：172.17.27.199</h5><table>  <tr>    <th align="center">Device</th>    <th align="center">Parameter</th>  </tr>  <tr>    <td align="center">CPU</td>    <td align="center">2*Intel(R) Xeon(R) Silver 4314 CPU @ 2.40GHz</td>  </tr>  <tr>    <td align="center">GPU</td>    <td align="center">8*NVIDIA GeForce RTX 3090</td>  </tr>  <tr>    <td rowspan="2">ROM</td>    <td align="center">2*Intel® SSD D3-S4510 Series 480GB</td>  </tr>  <tr>    <td align="center">2*Intel® SSD D3-S4510 Series 3.84TB</td>  </tr></table><ul><li>所有存储设备均采用 RAID 1 镜像配置，确保数据冗余与安全性</li><li>操作系统版本为 Ubuntu 18.04.6 LTS</li><li>CUDA 版本为 12.1</li></ul><h5>服务器IP地址：172.17.27.194</h5><table border="1">  <tr>    <th align="center">Device</th>    <th align="center">Parameter</th>  </tr>  <tr>    <td align="center">CPU</td>    <td align="center">2*Intel(R) Xeon(R) Silver 4314 CPU @ 2.40GHz</td>  </tr>  <tr>    <td align="center">GPU</td>    <td align="center">8*NVIDIA GeForce RTX 3090</td>  </tr>  <tr>    <td align="center" rowspan="3">ROM</td>    <td align="center">2*Intel® SSD D3-S4510 Series 480GB</td>  </tr>  <tr>    <td align="center">2*Intel® SSD D3-S4510 Series 3.84TB</td>  </tr>  <tr>    <td align="center">2*致态 SC001 XT SATA SSD 2TB</td>  </tr></table><ul><li>致态 SC001 XT SATA SSD 2TB 采用 RAID 0 条带化配置，优化读写性能</li><li>其余存储设备采用 RAID 1 镜像配置，确保数据冗余与安全性</li><li>操作系统版本为 Ubuntu 18.04.6 LTS</li><li>CUDA 版本为 11.8</li></ul><h4>登陆方法</h4>目前是校内分配的ip，校外是无法访问的。<p>①使用校园网 (每个月免费 10G，凌晨 0:00-6:00 免费)，校园网具体资费标准见 <a href="https://ipgw.neu.edu.cn" style="color: LimeGreen;">此处</a>。</p><p>②使用 OpenVPN，使用学号和手机号验证码登陆，详细介绍在 <a href="http://xwb.neu.edu.cn/10185/list.htm" style="color: LimeGreen;">此处</a>。</p><h5>命令行使用</h5>在 Windows 系统中，使用"win+R"快捷键，输入"cmd"，然后回车输入ssh user@hostname 或者ssh -l user hostname ，输入密码即可。<p>ssh 登录服务器的命令如下。ssh 默认连接服务器的 22 端口，-p 参数可以指定其他端口。<br> <code>$ ssh hostname </code> <br>上面命令中，hostname 是主机名，它可以是域名，也可能是 IP 地址或局域网内部的主机名（对于 RCL 实验室，为 172.17.27.194 或者 172.17.27.199）。不指定用户名的情况下，将使用客户端的当前用户名，作为远程服务器的登录用户名。如果要指定用户名，可以采用下面的命令。<br> <code>$ ssh user@hostname </code> <br>上面的命令中，用户名和主机名写在一起了，之间使用 @分隔。用户名也可以使用 ssh 的 - l 参数指定，这样的话，用户名和主机名就不用写在一起了。<br> <code>$ ssh -l user hostname </code></p><h5>图形界面使用</h5>首先下载VNC，在此处<a href="https://www.realvnc.com/en/connect/download/viewer/windows/" style="color: LimeGreen;">官网</a>下载，或者<a href="https://pan.baidu.com/s/1qyTUfb-U2HPKqmGyg_GupQ?pwd=qn4o" style="color: LimeGreen;">百度网盘</a>。<p>然后输入 IP 地址和端口号 (端口号为最后两位，以 63 为例)<br><img src="/image/RCL-linux-fig1.jpg" alt=""><br> 点击 continue<br><img src="/image/RCL-linux-fig2.jpg" alt=""><br> 输入默认密码 123456 即可<br><img src="/image/RCL-linux-fig3.jpg" alt=""></p><h4>传输文件</h4>①在本地cmd上，可以直接通过scp命令传输文件和文件夹。<p>从本地上传到服务器，如果想要把文件夹整个上传到服务器，那么加上参数 - r 即可。</p><p><code>$ scp [-r] &#123;local_file_path&#125; &#123;user&#125;@&#123;hostname&#125;:&#123;remote_file_path&#125;</code></p><p>从远程下载到本地</p><p><code>$ scp [-r] &#123;user&#125;@&#123;hostname&#125;:&#123;remote_file_path&#125; &#123;local_file_path&#125;</code></p><p>详细使用信息见  <a href="https://www.runoob.com/linux/linux-comm-scp.html"><strong><font color="LimeGreen">此处</font></strong></a></p><p>②使用 ftp 工具 WinSCP 或者 FileZilla<br> 参考教程 <a href="https://blog.csdn.net/qq_26383975/article/details/120220823"><strong><font color="LimeGreen">文件传输工具 WinSCP 下载安装教程</font></strong></a>和<a href="https://blog.csdn.net/weixin_45309916/article/details/107782070"><strong><font color="LimeGreen">FileZilla 的下载与安装以及简单使用（有图解超简单）</font></strong></a></p><h4>文件系统介绍</h4>目前每人的账号默认分配在home中（容量较小），请将数据集，conda环境创建在data(自动备份)或者bigdata(有需要请自行备份)中进行。<p><strong>如有疑问请评论。</strong></p>]]></content>
       
       
       <categories>
