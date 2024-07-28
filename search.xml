@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>Linux(Ubuntu)服务器无法使用ssh登陆</title>
+      <link href="/2024/07/28/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8ssh%E7%99%BB%E9%99%86/"/>
+      <url>/2024/07/28/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8ssh%E7%99%BB%E9%99%86/</url>
+      
+        <content type="html"><![CDATA[<h2>Linux(Ubuntu)服务器无法使用ssh登陆</h2><p><strong>心累，每天都被服务器包围 T_T </strong></p><p><img src="/image/linux1.png" alt=""></p><p>首先 ping 服务器地址，如果不可以，参照<a href="https://liuliai.github.io/2024/07/27/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BD%91%E7%BB%9C%E9%97%AE%E9%A2%98,%E7%94%9A%E8%87%B3%E7%BD%91%E5%85%B3%E9%83%BD%E4%B8%8D%E8%83%BDping%E9%80%9A/" style="color: LimeGreen;">上篇博客</a>解决方案</p><p>如果可以 ping 通，但是使用 ssh 无法登陆，显示 connection time out</p><h4>检查SSH服务是否运行</h4><p><code>sudo systemctl status ssh</code></p><p>如果没有出现绿色的 <code>active(running)</code> ，则使用命令 <code>sudo systemctl start ssh</code>  启动 ssh 服务<br><img src="/image/linux18.png" alt=""></p><h4>检查防火墙</h4><p>如果 ssh 还是无法登陆，使用以下命令添加规则允许 22 端口的所有流量 (一般默认 22 端口)<br> iptables 防火墙系统：</p><p><code>sudo iptables -I INPUT -p tcp --dport 5922 -j ACCEPT</code></p><p>如果不确定端口，使用以下命令查看</p><p><code>sudo netstat -tulnp</code>  或者  <code>sudo ss -tulnp</code></p><p>ufw 防火墙：</p><p>修改 ssh 配置文件，将 <code>Port</code>  中后的端口设置为 22</p><p><code>sudo vim /etc/ssh/sshd_config</code></p><p>使用以下命令允许新端口的流量通过防火墙</p><p><code>sudo ufw allow 22/tcp</code></p><p>然后启用防火墙：</p><p>sudo ufw enable</p><h5>如有疑问请评论。</h5>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> 教程 </tag>
+            
+            <tag> 服务器 </tag>
+            
+            <tag> SSH </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Linux(Ubuntu)服务器网络问题,甚至网关都不能ping通</title>
       <link href="/2024/07/27/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BD%91%E7%BB%9C%E9%97%AE%E9%A2%98,%E7%94%9A%E8%87%B3%E7%BD%91%E5%85%B3%E9%83%BD%E4%B8%8D%E8%83%BDping%E9%80%9A/"/>
       <url>/2024/07/27/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BD%91%E7%BB%9C%E9%97%AE%E9%A2%98,%E7%94%9A%E8%87%B3%E7%BD%91%E5%85%B3%E9%83%BD%E4%B8%8D%E8%83%BDping%E9%80%9A/</url>
