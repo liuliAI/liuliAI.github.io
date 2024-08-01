@@ -601,8 +601,7 @@ https://www.nvidia.cn/driver
                                 Linux(Ubuntu)服务器网络问题,甚至网关都不能ping通
 心累，每天都被服务器包围 T_T 
 
-如果 ping，显示 100% 丢包 time out，使用常规方法即可，参考博客。
-如果无法 ping 通网关并且 ping 百度显
+首先使用命令 route -n  查看服务器网关（第一行），然后 ping 网关，如果正常表示服务器可以正常上网，使用 pip ins
                             
                         </div>
                         <div class="publish-info">
@@ -1153,6 +1152,21 @@ $(function () {
     <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>

@@ -8,8 +8,7 @@
     <meta name="description" content="Linux(Ubuntu)服务器网络问题,甚至网关都不能ping通
 心累，每天都被服务器包围 T_T 
 
-如果 ping，显示 100% 丢包 time out，使用常规方法即可，参考博客。
-如果无法 ping 通网关并且 ping 百度显">
+首先使用命令 route -n  查看服务器网关（第一行），然后 ping 网关，如果正常表示服务器可以正常上网，使用 pip ins">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -428,14 +427,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2024-07-27
+                    2024-08-01
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    170
+                    231
                 </div>
                 
 
@@ -463,8 +462,9 @@
                 <h2>Linux(Ubuntu)服务器网络问题,甚至网关都不能ping通</h2>
 <p><strong>心累，每天都被服务器包围 T_T </strong></p>
 <p><img src="/image/linux1.png" alt=""></p>
-<p>如果 ping，显示 100% 丢包 time out，使用常规方法即可，参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43700340/article/details/88393833" style="color: LimeGreen;">博客</a>。</p>
-<p>如果无法 ping 通网关并且 ping 百度显示 <code>ping:未知的名称或服务</code></p>
+<p>首先使用命令 <code>route -n</code>  查看服务器网关（第一行），然后 ping 网关，如果正常表示服务器可以正常上网，使用 pip install 和 conda install 都是可以正常下载的</p>
+<p>ping 百度，显示 100% 丢包 time out，使用常规方法即可，参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43700340/article/details/88393833" style="color: LimeGreen;">博客</a>。</p>
+<p>如果无法 ping 通网关或者 ping 百度显示 <code>ping:未知的名称或服务</code> ，则不能正常上网</p>
 <p>使用命令 <code>vim /etc/netplan/01-network-manager-all.yaml</code>  修改配置</p>
 <p>使用 ifconfig 获取信息并修改<br>
 <img src="/image/linux10.jpg" alt=""></p>
@@ -1772,6 +1772,21 @@ $(function () {
     <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>
