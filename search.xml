@@ -4,6 +4,45 @@
   
     
     <entry>
+      <title>Gradle、Maven、Nacos、Redis、MySQL下载安装</title>
+      <link href="/2024/08/02/Gradle%E3%80%81Maven%E3%80%81Nacos%E3%80%81Redis%E3%80%81MySQL%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85/"/>
+      <url>/2024/08/02/Gradle%E3%80%81Maven%E3%80%81Nacos%E3%80%81Redis%E3%80%81MySQL%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85/</url>
+      
+        <content type="html"><![CDATA[<p><strong>心累，又要干项目了 T_T</strong></p><h4>Gradle下载</h4>首先去官网下载，<a href="https://gradle.org/releases/" style="color: LimeGreen;">https://gradle.org/releases/</a>，我安装的是8.9版本<p>将 Gradle 解压到一个没有中文没有空格的路径下，解压完成后，配置环境变量</p><p><code>此电脑→系统属性→高级系统设置→高级→环境变量</code></p><p>在系统变量中的 path 中新建一个，填写解压 Gradle 的地址再加上 <code>\bin</code> ，例如</p><p><code>D:\Maven\apache-maven-3.9.8\bin</code></p><p>然后打开 <code>cmd</code> ，输入 <code>gradle -v</code>  检查是否安装成功<br><img src="/image/Java-plug-download-1.jpg" alt=""></p><h4>Maven下载</h4>首先去官网下载，<a href="https://maven.apache.org/download.cgi" style="color: LimeGreen;">https://maven.apache.org/download.cgi</a>，我安装的是3.9.8版本<p>同样的，将 Maven 解压到一个没有中文没有空格的路径下，同样的，配置环境变量</p><p>然后打开 <code>cmd</code> ，输入 <code>mvn -v</code>  检查是否安装成功<br><img src="/image/Java-plug-download-2.jpg" alt=""></p><p>Maven 默认的远程仓库是在国外，所以下载 jar 包时速度会非常慢，这里推荐大家添加阿里云仓库，打开 settings.xml, 找到 mirrors 标签，下面的内容复制到其中即可</p><pre class="line-numbers language-none"><code class="language-none">&lt;mirror&gt;    &lt;id&gt;alimaven&lt;&#x2F;id&gt;    &lt;name&gt;aliyun maven&lt;&#x2F;name&gt;    &lt;url&gt;        http:&#x2F;&#x2F;maven.aliyun.com&#x2F;nexus&#x2F;content&#x2F;groups&#x2F;public&#x2F;    &lt;&#x2F;url&gt;    &lt;mirrorOf&gt;central&lt;&#x2F;mirrorOf&gt;        &lt;&#x2F;mirror&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h4>Nacos下载</h4>首先去官网下载，<a href="https://nacos.io/download/nacos-server/" style="color: LimeGreen;">https://nacos.io/download/nacos-server/</a>，我安装的是2.2.0版本<p>解压后修改启动文件，使用本文编辑器或其他方式打开 startup.cmd 脚本文件，<strong>将 cluster 修改为 standalone 后保存</strong></p><p>双击运行 startup.cmd，等待成功启动后，输入 <code>http://localhost:8848/nacos</code>  访问网站，默认的用户名和密码均为 <code>nacos</code> <br><img src="/image/Java-plug-download-3.jpg" alt=""></p><h4>Redis下载</h4>首先去官网下载，<a href="https://github.com/MicrosoftArchive/redis/releases" style="color: LimeGreen;">https://github.com/MicrosoftArchive/redis/releases</a>，我安装的是3.2.100版本<p>双击 redis-server.exe 运行服务即可</p><h4>MySQL下载</h4>首先去官网下载，<a href="https://dev.mysql.com/downloads/installer/" style="color: LimeGreen;">https://dev.mysql.com/downloads/installer/</a>，我安装的是8.0.30版本<p>选择第二个离线安装→左下角 <code>No thanks, just start my download.</code></p><p>双击下载完成的 msi 文件→选择 <code>no</code>  不更新→选择第二个 <code>server only</code> →然后一直 <code>Next</code>  和 <code>Execute</code></p><p>添加密码然后 <code>Next</code> →Windows Service Name 改成 <code>MySQL</code>  然后一直 <code>Next</code>  和 <code>Execute</code>  然后就安装完成了</p><p>最后产品配置 <code>Product Configuration</code>  点击 <code>Cancel</code></p><p><strong>设置开机自启动</strong></p><p>使用 <code>Win+R</code>  输入 <code>Services.msc</code>  找到 <code>MySQL</code>  右键属性，启动类型更改为自动</p><p>配置环境变量，同上，不过多赘述</p><p>使用命令 <code>mysql -V</code>  检查<br><img src="/image/Java-plug-download-4.jpg" alt=""></p><p><code> mysql -u root -p</code>  命令输入密码连接 MySQL</p><h5>如有疑问请评论。</h5>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Windows </tag>
+            
+            <tag> 大数据 </tag>
+            
+            <tag> Java开发 </tag>
+            
+            <tag> Gradle </tag>
+            
+            <tag> Maven </tag>
+            
+            <tag> Nacos </tag>
+            
+            <tag> Redis </tag>
+            
+            <tag> MySQL </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Linux(Ubuntu)服务器无法使用ssh登陆</title>
       <link href="/2024/07/28/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8ssh%E7%99%BB%E9%99%86/"/>
       <url>/2024/07/28/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8ssh%E7%99%BB%E9%99%86/</url>
