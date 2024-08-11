@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Datawhale AI夏令营第四期：从零入门多模态大模型数据合成</title>
+      <link href="/2024/08/11/Datawhale%20AI%E5%A4%8F%E4%BB%A4%E8%90%A5%E7%AC%AC%E5%9B%9B%E6%9C%9F%EF%BC%9A%E4%BB%8E%E9%9B%B6%E5%85%A5%E9%97%A8%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%90%88%E6%88%90/"/>
+      <url>/2024/08/11/Datawhale%20AI%E5%A4%8F%E4%BB%A4%E8%90%A5%E7%AC%AC%E5%9B%9B%E6%9C%9F%EF%BC%9A%E4%BB%8E%E9%9B%B6%E5%85%A5%E9%97%A8%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%90%88%E6%88%90/</url>
+      
+        <content type="html"><![CDATA[<h2>Datawhale AI夏令营第四期：从零入门多模态大模型数据合成</h2><p>多模态大模型数据合成 是 Datawhale 2024 年 AI 夏令营 第四期的学习活动 ——</p><ul><li>适合想 入门并实践 大模型应用全栈开发 的学习者参与</li><li>适合想成为 AI 大模型全栈工程师 的学习者参与</li></ul><p>从 源大模型部署、Gradio 入门 大模型算法原理 和 大模型应用开发，到通过 RAG 技术、微调技术 入门相关 技术原理 提升应用效果。</p><p>学习内容提要：通过学习大模型部署、大模型检索增强生成 <code>（Retrieval Augmented Generation, RAG）</code> 实战、大模型微调实战，掌握大模型应用全栈开发<br><img src="/image/datawhile1.jpg" alt=""></p><p><strong>小白零基础 10 分钟 速通指南</strong></p><p>参考教程 <a href="https://linklearner.com/activity/14/11/25" style="color: LimeGreen;">https://linklearner.com/activity/14/11/25</a>，里面是非常详细的手把手教程，笔者对于细节部分就不再赘叙了</p><h4>Step0：开通阿里云PAI-DSW试用</h4><p><a href="https://free.aliyun.com/?productCode=learn" style="color: LimeGreen;">https://free.aliyun.com/?productCode=learn</a></p><p>在魔搭社区进行授权，新用户还需要完成阿里云账号的实名认证，直接完成即可</p><h4>Step1：在魔搭社区创建PAI实例！</h4><h4>Step2：Demo搭建！</h4><strong>第一步：文件下载</strong>点击终端`Terminal`<p>复制粘贴以下命令</p><pre class="line-numbers language-none"><code class="language-none">git lfs installgit clone https:&#x2F;&#x2F;www.modelscope.cn&#x2F;datasets&#x2F;Datawhale&#x2F;AICamp_yuan_baseline.git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p><strong>第二步：环境安装</strong><br> <code>pip install streamlit==1.24.0</code></p><p><strong>第三步：启动 Demo</strong><br> <code>streamlit run AICamp_yuan_baseline/Task\ 1：零基础玩转源大模型/web_demo_2b.py --server.address 127.0.0.1 --server.port 6006</code></p><p>最后点击链接，等待一会模型加载，即可</p><p>可以看到，Yuan2-2B-Mars 模型还是出乎意料的能够正确回答 0.9 和 0.11 谁更大<br><img src="/image/datawhile2.jpg" alt=""></p><h5>如有疑问请评论。</h5>]]></content>
+      
+      
+      <categories>
+          
+          <category> 大模型 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 大模型 </tag>
+            
+            <tag> 多模态 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Datawhale AI夏令营第四期：动手学大模型应用全栈开发task1</title>
       <link href="/2024/08/08/Datawhale%20AI%E5%A4%8F%E4%BB%A4%E8%90%A5%E7%AC%AC%E5%9B%9B%E6%9C%9F%EF%BC%9A%E5%8A%A8%E6%89%8B%E5%AD%A6%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8%E5%85%A8%E6%A0%88%E5%BC%80%E5%8F%91task1/"/>
       <url>/2024/08/08/Datawhale%20AI%E5%A4%8F%E4%BB%A4%E8%90%A5%E7%AC%AC%E5%9B%9B%E6%9C%9F%EF%BC%9A%E5%8A%A8%E6%89%8B%E5%AD%A6%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8%E5%85%A8%E6%A0%88%E5%BC%80%E5%8F%91task1/</url>
