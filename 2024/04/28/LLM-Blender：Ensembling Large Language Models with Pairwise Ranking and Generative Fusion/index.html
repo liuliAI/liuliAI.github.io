@@ -373,12 +373,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/">
-                                <span class="chip bg-color">大模型</span>
-                            </a>
-                        
                             <a href="/tags/Ensemb/">
                                 <span class="chip bg-color">Ensemb</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/">
+                                <span class="chip bg-color">大模型</span>
                             </a>
                         
                     </div>
@@ -458,7 +458,7 @@
 <p>LLM-Blender</p>
 </blockquote>
 <p>我们提出了一个秩和保险丝的管道框架，llm-blender，用于集成 llm，如图 2 所示。该框架由两个主要组件组成：一个成对排序模块，成对排序器（第 3 节），和一个融合模块，genfuser（第 4 节）。配对者模块学习为每个输入比较所有候选对，然后对候选列表进行排序。然后我们选择排名前 K = 3 的候选序列，将它们与输入 x 连接，并构建基因用户模块的输入序列。GENFUSER 模块，一个 seq2seq LM，最终生成最终输出，为用户服务。<br>
-<img src="/image/LLM-Blender2.png" alt="framework"></p>
+<img src="/image/LLM-Blender2.jpg" alt="framework"></p>
 <h6>LLM-Blender的框架图</h6>
 <p><strong>他的思路很巧妙，成对的去进行比较训练，有 N 个 LLM，那两互不相同的输出就有 N (N-1)/2 个（N-1 加到 1 的等差数列），然后一个输入两个输出去训练（一般都是一个输入，一个输出），然后去训练一个模型，使得预测的时候一个输入获得一个输出，他这种用两个输出的方式就可以学习到二者的差异。它实现的方式也很简单，就是在 embedding 的时候分别把 x 和 yi 和 yj 进行 concate 拼接，得到最后可以得到一个聚合矩阵作为比较结果，然后就可以排序选出 topk 个作为最后的输出</strong></p>
 
@@ -525,12 +525,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/">
-                                    <span class="chip bg-color">大模型</span>
-                                </a>
-                            
                                 <a href="/tags/Ensemb/">
                                     <span class="chip bg-color">Ensemb</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/">
+                                    <span class="chip bg-color">大模型</span>
                                 </a>
                             
                         </div>
@@ -1241,12 +1241,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/CoT/">
-                        <span class="chip bg-color">CoT</span>
-                    </a>
-                    
                     <a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/">
                         <span class="chip bg-color">大模型</span>
+                    </a>
+                    
+                    <a href="/tags/CoT/">
+                        <span class="chip bg-color">CoT</span>
                     </a>
                     
                     <a href="/tags/Prompt/">
