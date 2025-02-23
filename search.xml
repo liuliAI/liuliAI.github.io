@@ -74,6 +74,39 @@
     
     
     <entry>
+      <title>Linux(Ubuntu)服务器重装NVIDIA驱动</title>
+      <link href="/2024/07/27/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%87%8D%E8%A3%85NVIDIA%E9%A9%B1%E5%8A%A8/"/>
+      <url>/2024/07/27/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%87%8D%E8%A3%85NVIDIA%E9%A9%B1%E5%8A%A8/</url>
+      
+        <content type="html"><![CDATA[<p><strong>心累，每天都被服务器包围 T_T </strong><br><img src="/image/linux1.png" alt=""></p><h2>Linux(Ubuntu)服务器重装NVIDIA驱动</h2><h4>下载显卡驱动</h4>准备 gpu 驱动和 CUDA 软件包，下载显卡驱动，下面是下载显卡驱动链接<p><a href="https://www.nvidia.cn/drivers/lookup/" style="color: LimeGreen;">https://www.nvidia.cn/drivers/lookup/</a></p><p>选择对应显卡下载，点击查找 ——&gt; 点击下载<br><img src="/image/linux11.jpg" alt=""></p><p>CUDA 下载链接：<a href="https://developer.nvidia.com/cuda-downloads" style="color: LimeGreen;">https://developer.nvidia.com/cuda-downloads</a>选择合适的操作系统版本进行下载。<br><img src="/image/linux12.jpg" alt=""></p><ul><li>deb 方式安装 CUDA，会附带安装显卡驱动，默认安装；</li><li>run 方式安装 CUDA，会附带安装显卡驱动，可以选择不安装；</li><li>安装显卡驱动的时候，最好安装高版本的，这样不会受 CUDA 版本的影响；</li><li>runfile：下载并运行.run 文件，可以选择是否安装 N 卡驱动；</li><li>deb：下载.deb 包，利用 apt-get install 方式安装，会自动安装.deb 包名中写的 N 卡驱动；</li><li>如果 N 卡驱动和.deb 包名中写的 N 卡驱动对应（或低于），则安装完 CUDA 之后 N 卡驱动可以正常启动。</li></ul><h4>安装显卡驱动以及 cuda</h4><h5>服务器端安装 ssh 功能</h5>` sudo apt-get install openssh-server `<p>首先将提前下载好的驱动使用 xftp 传输到命令行端，或者 U 盘挂载放入系统中</p><p>然后 ls 查看传输的驱动包是否存在，禁用系统自带的 nouveau 模块</p><p><code>sudo lsmod | grep nouveau</code></p><p><code>sudo vi /etc/modprobe.d/blacklist.conf</code></p><p>在文本最后添加以下内容：</p><pre class="line-numbers language-none"><code class="language-none">blacklist nouveauoptions nouveau modeset&#x3D;0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p>保存退出，执行以下命令生效</p><p><code>update-initramfs -u</code></p><p>重启操作系统</p><p><code>sudo reboot</code></p><h4>hmod +x 给予显卡驱动包权限，以及安装软件包</h4><p>例如  <code>chmod +x NVIDIA-Linux-x86 64-550.100.run</code></p><p><code>sudo apt-get update</code></p><p><code>sudo apt-get install gcc</code></p><p><code>sudo apt-get install g++</code></p><p><code>sudo apt-get install make</code></p><h4>然后安装显卡驱动前查看 GPU 是否识别全</h4><p><code>sudo lspci | grep -i nvidia</code>  或者  <code>sudo lspci | grep -i vga</code> <br><img src="/image/linux13.png" alt=""></p><p>之后输入命令进行安装</p><p><code>sudo ./NVIDIA-Linux-x86 64-550.100.run</code></p><p>出现如下界面<br><img src="/image/linux15.png" alt=""></p><p>第一个选择选择 &quot;Continue installation&quot;，使用 <code>←</code> 和 <code>→</code> 控制</p><p>选择 &quot;No&quot;<br><img src="/image/linux16.png" alt=""></p><p>选择 &quot;Yes&quot;<br><img src="/image/linux17.png" alt=""></p><p>查看驱动包是否安装</p><p><code>nvidia-smi</code></p><p>同样的，chmod +x 给予 cuda 软件包权限，安装 cuda 软件包，sudo ./cuda-xxx.run</p><p><img src="/image/linux14.jpg" alt=""><br>注意 driver 选项，表示是否安装 GPU 驱动，如果之前已经安装了 GPU 驱动，这里不<br>要再勾选。</p><p>配置环境变量</p><p>添加到 /etc/profile 文件中</p><p><code>sudo vi /etc/profile</code></p><p>在文本最后添加以下内容：</p><pre class="line-numbers language-none"><code class="language-none">export PATH&#x3D;&#x2F;usr&#x2F;local&#x2F;cuda&#x2F;bin:$PATH export LD_LIBRARY_PATH&#x3D;&#x2F;usr&#x2F;local&#x2F;cuda&#x2F;lib64:$LD_LIBRARY_PATH <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p>保存退出，执行以下命令生效：</p><p><code>sudo source /etc/profile</code></p><p>安装完成后查看  <code>nvcc -V </code> 是否安装成功</p><h5>如有疑问请评论。</h5>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> 教程 </tag>
+            
+            <tag> 服务器 </tag>
+            
+            <tag> NVIDIA </tag>
+            
+            <tag> 驱动 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Linux(Ubuntu)服务器网络问题,甚至网关都不能ping通</title>
       <link href="/2024/07/27/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BD%91%E7%BB%9C%E9%97%AE%E9%A2%98,%E7%94%9A%E8%87%B3%E7%BD%91%E5%85%B3%E9%83%BD%E4%B8%8D%E8%83%BDping%E9%80%9A/"/>
       <url>/2024/07/27/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BD%91%E7%BB%9C%E9%97%AE%E9%A2%98,%E7%94%9A%E8%87%B3%E7%BD%91%E5%85%B3%E9%83%BD%E4%B8%8D%E8%83%BDping%E9%80%9A/</url>
@@ -101,39 +134,6 @@
             <tag> DNS </tag>
             
             <tag> IPv4 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Linux(Ubuntu)服务器重装NVIDIA驱动</title>
-      <link href="/2024/07/27/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%87%8D%E8%A3%85NVIDIA%E9%A9%B1%E5%8A%A8/"/>
-      <url>/2024/07/27/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%87%8D%E8%A3%85NVIDIA%E9%A9%B1%E5%8A%A8/</url>
-      
-        <content type="html"><![CDATA[<p><strong>心累，每天都被服务器包围 T_T </strong><br><img src="/image/linux1.png" alt=""></p><h2>Linux(Ubuntu)服务器重装NVIDIA驱动</h2><h4>下载显卡驱动</h4>准备 gpu 驱动和 CUDA 软件包，下载显卡驱动，下面是下载显卡驱动链接<p><a href="https://www.nvidia.cn/drivers/lookup/" style="color: LimeGreen;">https://www.nvidia.cn/drivers/lookup/</a></p><p>选择对应显卡下载，点击查找 ——&gt; 点击下载<br><img src="/image/linux11.jpg" alt=""></p><p>CUDA 下载链接：<a href="https://developer.nvidia.com/cuda-downloads" style="color: LimeGreen;">https://developer.nvidia.com/cuda-downloads</a>选择合适的操作系统版本进行下载。<br><img src="/image/linux12.jpg" alt=""></p><ul><li>deb 方式安装 CUDA，会附带安装显卡驱动，默认安装；</li><li>run 方式安装 CUDA，会附带安装显卡驱动，可以选择不安装；</li><li>安装显卡驱动的时候，最好安装高版本的，这样不会受 CUDA 版本的影响；</li><li>runfile：下载并运行.run 文件，可以选择是否安装 N 卡驱动；</li><li>deb：下载.deb 包，利用 apt-get install 方式安装，会自动安装.deb 包名中写的 N 卡驱动；</li><li>如果 N 卡驱动和.deb 包名中写的 N 卡驱动对应（或低于），则安装完 CUDA 之后 N 卡驱动可以正常启动。</li></ul><h4>安装显卡驱动以及 cuda</h4><h5>服务器端安装 ssh 功能</h5>` sudo apt-get install openssh-server `<p>首先将提前下载好的驱动使用 xftp 传输到命令行端，或者 U 盘挂载放入系统中</p><p>然后 ls 查看传输的驱动包是否存在，禁用系统自带的 nouveau 模块</p><p><code>sudo lsmod | grep nouveau</code></p><p><code>sudo vi /etc/modprobe.d/blacklist.conf</code></p><p>在文本最后添加以下内容：</p><pre class="line-numbers language-none"><code class="language-none">blacklist nouveauoptions nouveau modeset&#x3D;0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p>保存退出，执行以下命令生效</p><p><code>update-initramfs -u</code></p><p>重启操作系统</p><p><code>sudo reboot</code></p><h4>hmod +x 给予显卡驱动包权限，以及安装软件包</h4><p>例如  <code>chmod +x NVIDIA-Linux-x86 64-550.100.run</code></p><p><code>sudo apt-get update</code></p><p><code>sudo apt-get install gcc</code></p><p><code>sudo apt-get install g++</code></p><p><code>sudo apt-get install make</code></p><h4>然后安装显卡驱动前查看 GPU 是否识别全</h4><p><code>sudo lspci | grep -i nvidia</code>  或者  <code>sudo lspci | grep -i vga</code> <br><img src="/image/linux13.png" alt=""></p><p>之后输入命令进行安装</p><p><code>sudo ./NVIDIA-Linux-x86 64-550.100.run</code></p><p>出现如下界面<br><img src="/image/linux15.png" alt=""></p><p>第一个选择选择 &quot;Continue installation&quot;，使用 <code>←</code> 和 <code>→</code> 控制</p><p>选择 &quot;No&quot;<br><img src="/image/linux16.png" alt=""></p><p>选择 &quot;Yes&quot;<br><img src="/image/linux17.png" alt=""></p><p>查看驱动包是否安装</p><p><code>nvidia-smi</code></p><p>同样的，chmod +x 给予 cuda 软件包权限，安装 cuda 软件包，sudo ./cuda-xxx.run</p><p><img src="/image/linux14.jpg" alt=""><br>注意 driver 选项，表示是否安装 GPU 驱动，如果之前已经安装了 GPU 驱动，这里不<br>要再勾选。</p><p>配置环境变量</p><p>添加到 /etc/profile 文件中</p><p><code>sudo vi /etc/profile</code></p><p>在文本最后添加以下内容：</p><pre class="line-numbers language-none"><code class="language-none">export PATH&#x3D;&#x2F;usr&#x2F;local&#x2F;cuda&#x2F;bin:$PATH export LD_LIBRARY_PATH&#x3D;&#x2F;usr&#x2F;local&#x2F;cuda&#x2F;lib64:$LD_LIBRARY_PATH <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p>保存退出，执行以下命令生效：</p><p><code>sudo source /etc/profile</code></p><p>安装完成后查看  <code>nvcc -V </code> 是否安装成功</p><h5>如有疑问请评论。</h5>]]></content>
-      
-      
-      <categories>
-          
-          <category> Linux </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Linux </tag>
-            
-            <tag> 教程 </tag>
-            
-            <tag> 服务器 </tag>
-            
-            <tag> NVIDIA </tag>
-            
-            <tag> 驱动 </tag>
             
         </tags>
       
@@ -253,11 +253,11 @@
       
         <tags>
             
-            <tag> 大模型 </tag>
-            
             <tag> CoT </tag>
             
             <tag> 多模态 </tag>
+            
+            <tag> 大模型 </tag>
             
         </tags>
       
@@ -307,11 +307,11 @@
       
         <tags>
             
+            <tag> 大模型 </tag>
+            
             <tag> 长期记忆 </tag>
             
             <tag> RAG </tag>
-            
-            <tag> 大模型 </tag>
             
         </tags>
       
@@ -339,6 +339,62 @@
             <tag> Python </tag>
             
             <tag> 多核并行 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>LLM-Blender：Ensembling Large Language Models with Pairwise Ranking and Generative Fusion</title>
+      <link href="/2024/04/28/LLM-Blender%EF%BC%9AEnsembling%20Large%20Language%20Models%20with%20Pairwise%20Ranking%20and%20Generative%20Fusion/"/>
+      <url>/2024/04/28/LLM-Blender%EF%BC%9AEnsembling%20Large%20Language%20Models%20with%20Pairwise%20Ranking%20and%20Generative%20Fusion/</url>
+      
+        <content type="html"><![CDATA[<h2>LLM-Blender：Ensembling Large Language Models with Pairwise Ranking and Generative Fusion</h2><p>本文是论文<a href="https://arxiv.org/abs/2306.02561"><strong><font color="LimeGreen">LLM-Blender：Ensembling Large Language Models with Pairwise Ranking and Generative Fusion</font></strong></a>的阅读笔记和个人理解。</p><p>首先介绍论文中提出的一些概念</p><p><strong>LLM Blender：</strong>集成多个 LLMs 的不同优势获得更好的性能。集成学习。总体思想就是 PAIRRANKER 比较来自 N 个 llm 的输出，然后 GENFUSER 从排名前 K 的输出生成最终输出。LLM Blender 由 PAIRRANKER 和 GENFUSER 组成。</p><p><strong>PAIRRANKER：</strong>成对比较方法来区分候选输出之间的细微差异，用交叉注意编码器确定优选文本</p><p><strong>GENFUSER：</strong>合并排名最高的候选答案，通过利用他们的优势和减轻弱点来产生更好的答案</p><p><strong>具体来说每个 LLM 在不同的问题下都会产生不同的回答，例如，你问感冒了怎么办，每个 LLM 都会回答一个答案，然后可以得出一个最好的答案并记录，比如百度的文心一言，虽然总体能力没有 GPT-4 强，但在中国传统文化，写诗，韵脚，一些通假字等中文能力更强，在综合多个 LLM 的回答后选出最优的，不管哪方面的问题，都能有很好的鲁棒性。</strong></p><blockquote><p>摘要</p></blockquote><p>我们介绍了 LLM-BLENDER，这是一个集成框架，旨在通过利用多个开源大型语言模型（llm）的不同优势来获得持续的卓越性能。我们的框架由两个模块组成：配对器和基因器，解决了不同例子的最佳 llm 可能显著不同的观察。成对器采用一种专门的成对比较方法来区分候选输出之间的细微差异。它联合编码输入文本和一对候选文本，使用交叉注意编码器来确定优选文本。我们的结果表明，配对排序者与基于 chatgpt 的排名的相关性最高。然后，GENFUSER 旨在合并排名最高的候选人，通过利用他们的优势和减轻他们的弱点来产生更好的产量。为了方便大规模的评估，我们引入了一个基准数据集，Mix 指示，它是一个具有 oracle 成对比较的多个指令数据集的混合。我们的 llm 混合器在各种指标上显著优于单个 llm 和基线方法，建立了一个巨大的性能差距。</p><p><img src="/image/LLM-Blender1.png" alt="动机"></p><h6>ensemble LLM的motivation，最优LLM不同的例子有很大的不同</h6><blockquote><p>LLM-Blender</p></blockquote><p>我们提出了一个秩和保险丝的管道框架，llm-blender，用于集成 llm，如图 2 所示。该框架由两个主要组件组成：一个成对排序模块，成对排序器（第 3 节），和一个融合模块，genfuser（第 4 节）。配对者模块学习为每个输入比较所有候选对，然后对候选列表进行排序。然后我们选择排名前 K = 3 的候选序列，将它们与输入 x 连接，并构建基因用户模块的输入序列。GENFUSER 模块，一个 seq2seq LM，最终生成最终输出，为用户服务。<br><img src="/image/LLM-Blender2.png" alt="framework"></p><h6>LLM-Blender的框架图</h6><p><strong>他的思路很巧妙，成对的去进行比较训练，有 N 个 LLM，那两互不相同的输出就有 N (N-1)/2 个（N-1 加到 1 的等差数列），然后一个输入两个输出去训练（一般都是一个输入，一个输出），然后去训练一个模型，使得预测的时候一个输入获得一个输出，他这种用两个输出的方式就可以学习到二者的差异。它实现的方式也很简单，就是在 embedding 的时候分别把 x 和 yi 和 yj 进行 concate 拼接，得到最后可以得到一个聚合矩阵作为比较结果，然后就可以排序选出 topk 个作为最后的输出</strong></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 论文 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 大模型 </tag>
+            
+            <tag> Ensemb </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Plan-and-Solve Prompting：Improving Zero-Shot Chain-of-Thought Reasoning by Large Language Model</title>
+      <link href="/2024/04/27/Plan-and-Solve%20Prompting%EF%BC%9AImproving%20Zero-Shot%20Chain-of-Thought%20Reasoning%20by%20Large%20Language%20Model/"/>
+      <url>/2024/04/27/Plan-and-Solve%20Prompting%EF%BC%9AImproving%20Zero-Shot%20Chain-of-Thought%20Reasoning%20by%20Large%20Language%20Model/</url>
+      
+        <content type="html"><![CDATA[<h2>Plan-and-Solve Prompting：Improving Zero-Shot Chain-of-Thought Reasoning by Large Language Model</h2><p>本文是论文<a href="https://aclanthology.org/2023.acl-long.147.pdf"><strong><font color="LimeGreen">Plan-and-Solve Prompting：Improving Zero-Shot Chain-of-Thought Reasoning by Large Language Model</font></strong></a>的阅读笔记和个人理解。</p><p>首先介绍一些知识。</p><p><strong>COT 三个缺陷：计算错误（7%）、遗漏步骤错误（12%）和语义误解错误（27%）</strong></p><p><strong>Plan-and-Solve Prompting：</strong>设计一个计划，将整个任务划分为更小的子任务，然后根据计划来划分子任务，优于 Zero-Shot-COT 的一种 prompt</p><p><strong>Zero shot prompt：</strong>Let’s think step by step</p><p><strong>Plan-and-Solve Prompt：Let’s first understand the problem and devise a plan to solve the problem. Then, let’s carry out the plan and solve the problem step by step</strong></p><p><strong>值得注意的是，论文实验证明：</p><p>①当提示中包含更详细的指令来指导 llm 时，llm 能够生成高质量的推理文本</p><p>②在问题句子中添加特定描述的策略是一种提高复杂推理 zero shot 性能的新方法</strong></p><p>Self-Consistency（自一致性）：通过生成 N 个推理结果并通过多数投票确定最终答案来减少 LLM 输出的随机性（思路有点像，但是不同，这篇文章是通过不同的 LLM，取长补短，获得最优的输出，Self-Consistency 是通过一个 LLM 的多次输出获取一个稳定的最终输出）</p><blockquote><p>摘要</p></blockquote><p>大型语言模型（LLM）最近被证明在各种 NLP 任务中提供了令人印象深刻的性能。为了解决多步骤推理任务，少镜头思维链（CoT）提示包括一些手工制作的逐步推理演示，使 LLM 能够显式生成推理步骤，并提高其推理任务的准确性。为了消除手动操作，Zero-shot CoT 将目标问题状态与 “让我们一步一步地思考” 连接起来，作为 LLM 的输入提示。尽管 Zero-shotCoT 取得了成功，但它仍然存在三个缺陷：计算错误、遗漏步骤错误和语义误解错误。为了弥补遗漏的步骤错误，我们提出了计划和解决（PS）提示。它由两个部分组成：首先，设计一个计划，将整个任务划分为更小的子任务，然后根据计划来划分子任务。为了解决计算错误并提高生成推理步骤的质量，我们将 PS 提示扩展为更详细的指令，并推导出 PS + 提示。我们在三个推理问题的十个数据集上评估了我们提出的提示策略。在 GPT-3 上的实验结果表明，我们提出的零样本提示在所有数据集上的表现都大大优于零热 CoT，与思想提示的零热程序相当或超过零热程序，并且在数学推理问题上具有与 8 次 CoT 提示相当的表现。代码可在<a href="https://github.com/AGIEdgerunners/Plan and Solve Promoting" style="color: LimeGreen;">https://github.com/AGIEdgerunners/Plan and Solve Promoting</a>找到 。</p><blockquote><p>Plan-and-Solve Prompting</p></blockquote><p>概述。我们引入了 PS 提示，一种新的零射击 CoT 提示方法，它使 llm 能够明确地设计一个解决给定问题的计划，并在预测输入问题的最终答案之前生成中间推理过程。与之前提示中包含的少镜头 CoT 方法不同，零镜头 PS 提示方法不需要演示示例，它的提示涵盖了问题本身和一个简单的触发句。与零镜头类似，零射击 PS 提示包括两个步骤。在步骤 1 中，提示符首先使用建议的提示模板进行推理，以生成推理过程和问题的答案。在步骤 2 中，它通过使用答案提取提示来提取要进行评估的答案，例如 “因此，答案（阿拉伯语数字）是”。</p><p>2.1 步骤 1：提示推理生成<br>为了解决输入问题，同时避免由错误的计算和缺少推理步骤而导致的错误，这一步的目的是构建满足以下两个标准的模板：</p><p>・模板应该引出 llm 来确定子任务并完成子任务。</p><p>・模板应该指导 llm 更多地关注计算和中间结果，并确保它们尽可能正确地执行它们。</p><p>为了满足第一个标准，我们遵循 Zero-shotCoT，首先将输入数据示例转换为一个具有简单模板 “Q：[X]” 的提示符。 A: [T]&quot;. 具体来说，输入槽 [X] 包含输入问题语句，并在输入槽 [T] 中指定了一个手工制作的指令来触发 llm 来生成一个推理过程，其中包括一个计划和完成计划的步骤。在零镜头 - cot 中，输入槽中的指令包括触发指令 “让我们一步一步地思考”。我们的零镜头 PS 提示方法反而包括了 “设计计划” 和 “执行计划” 的指令，如图 2 (b). 所示因此，提示符将是 “Q：[X]”。 A: 让我们先了解这个问题，并设计一个计划来解决这个问题。然后，让我们来实施计划，逐步解决问题。”</p><p>然后，我们将上述提示符传递给 LLM，LLM 随后输出一个推理过程。根据零射击 cot，我们的方法默认使用贪婪解码策略（1 输出链）来生成输出。</p><p>为了满足第二个标准，我们对基于平面的触发句，扩展了更详细的指令。具体来说，在触发语句中添加了 “注意计算”，以要求 llm 尽可能准确地执行计算。为了减少由于缺少必要的推理步骤而导致的错误，我们包括 “提取相关变量及其相应的数字” 来明确地指示 llm 不要忽略输入问题语句中的相关信息。我们假设，如果 llm 遗漏了相关的和重要的变量，那么它就更有可能错过相关的推理步骤。对生成的变量内容和缺失的推理步长误差的相关性分析，如图 5 所示，实证支持了这一假设（相关性值小于 0）。</p><p>此外，我们还在提示符中添加了 “计算中间结果”，以增强 LLM 生成相关和重要的推理步骤的能力。具体的例子如图 3 (b). 所示在步骤 1 的最后，LLM 生成包含答案的推理文本。例如，图 3 (b) 中生成的推理文本包括 “Grace 和 Alex = 125 + 498 = 623 磅的组合重量”。在触发器句子中添加特定描述的策略是一种提高复杂推理零射击性能的新方法。</p><p>2.2 步骤 2：提示提取答案<br>与 Zero-shot-CoT 类似，我们在步骤 2 中设计了另一个提示符，让 LLM 从步骤 1 中生成的推理文本中提取最终的数值答案。这个提示包括附加在第一个提示后面的答案提取指令，后面是 LLM 生成的推理文本。这样，LLM 将以所需的形式返回最终答案。</p><p>基于图 3 (b) 中的例子，步骤 2 中使用的提示将包括 “Q：Grace 重 125 磅・・・变量： Grace： 125 磅・・・回答： Grace 和 Alex = 的总重 125 + 498 = 623 磅。” 因此，答案（阿拉伯语数字）是 “”。对于这个例子，LLM 返回的最终答案是 “623”。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 论文 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> CoT </tag>
+            
+            <tag> 大模型 </tag>
+            
+            <tag> Prompt </tag>
             
         </tags>
       
