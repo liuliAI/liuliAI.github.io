@@ -74,39 +74,6 @@
     
     
     <entry>
-      <title>Linux(Ubuntu)服务器重装NVIDIA驱动</title>
-      <link href="/2024/07/27/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%87%8D%E8%A3%85NVIDIA%E9%A9%B1%E5%8A%A8/"/>
-      <url>/2024/07/27/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%87%8D%E8%A3%85NVIDIA%E9%A9%B1%E5%8A%A8/</url>
-      
-        <content type="html"><![CDATA[<p><strong>心累，每天都被服务器包围 T_T </strong><br><img src="/image/linux1.png" alt=""></p><h2>Linux(Ubuntu)服务器重装NVIDIA驱动</h2><h4>下载显卡驱动</h4>准备 gpu 驱动和 CUDA 软件包，下载显卡驱动，下面是下载显卡驱动链接<p><a href="https://www.nvidia.cn/drivers/lookup/" style="color: LimeGreen;">https://www.nvidia.cn/drivers/lookup/</a></p><p>选择对应显卡下载，点击查找 ——&gt; 点击下载<br><img src="/image/linux11.jpg" alt=""></p><p>CUDA 下载链接：<a href="https://developer.nvidia.com/cuda-downloads" style="color: LimeGreen;">https://developer.nvidia.com/cuda-downloads</a>选择合适的操作系统版本进行下载。<br><img src="/image/linux12.jpg" alt=""></p><ul><li>deb 方式安装 CUDA，会附带安装显卡驱动，默认安装；</li><li>run 方式安装 CUDA，会附带安装显卡驱动，可以选择不安装；</li><li>安装显卡驱动的时候，最好安装高版本的，这样不会受 CUDA 版本的影响；</li><li>runfile：下载并运行.run 文件，可以选择是否安装 N 卡驱动；</li><li>deb：下载.deb 包，利用 apt-get install 方式安装，会自动安装.deb 包名中写的 N 卡驱动；</li><li>如果 N 卡驱动和.deb 包名中写的 N 卡驱动对应（或低于），则安装完 CUDA 之后 N 卡驱动可以正常启动。</li></ul><h4>安装显卡驱动以及 cuda</h4><h5>服务器端安装 ssh 功能</h5>` sudo apt-get install openssh-server `<p>首先将提前下载好的驱动使用 xftp 传输到命令行端，或者 U 盘挂载放入系统中</p><p>然后 ls 查看传输的驱动包是否存在，禁用系统自带的 nouveau 模块</p><p><code>sudo lsmod | grep nouveau</code></p><p><code>sudo vi /etc/modprobe.d/blacklist.conf</code></p><p>在文本最后添加以下内容：</p><pre class="line-numbers language-none"><code class="language-none">blacklist nouveauoptions nouveau modeset&#x3D;0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p>保存退出，执行以下命令生效</p><p><code>update-initramfs -u</code></p><p>重启操作系统</p><p><code>sudo reboot</code></p><h4>hmod +x 给予显卡驱动包权限，以及安装软件包</h4><p>例如  <code>chmod +x NVIDIA-Linux-x86 64-550.100.run</code></p><p><code>sudo apt-get update</code></p><p><code>sudo apt-get install gcc</code></p><p><code>sudo apt-get install g++</code></p><p><code>sudo apt-get install make</code></p><h4>然后安装显卡驱动前查看 GPU 是否识别全</h4><p><code>sudo lspci | grep -i nvidia</code>  或者  <code>sudo lspci | grep -i vga</code> <br><img src="/image/linux13.png" alt=""></p><p>之后输入命令进行安装</p><p><code>sudo ./NVIDIA-Linux-x86 64-550.100.run</code></p><p>出现如下界面<br><img src="/image/linux15.png" alt=""></p><p>第一个选择选择 &quot;Continue installation&quot;，使用 <code>←</code> 和 <code>→</code> 控制</p><p>选择 &quot;No&quot;<br><img src="/image/linux16.png" alt=""></p><p>选择 &quot;Yes&quot;<br><img src="/image/linux17.png" alt=""></p><p>查看驱动包是否安装</p><p><code>nvidia-smi</code></p><p>同样的，chmod +x 给予 cuda 软件包权限，安装 cuda 软件包，sudo ./cuda-xxx.run</p><p><img src="/image/linux14.jpg" alt=""><br>注意 driver 选项，表示是否安装 GPU 驱动，如果之前已经安装了 GPU 驱动，这里不<br>要再勾选。</p><p>配置环境变量</p><p>添加到 /etc/profile 文件中</p><p><code>sudo vi /etc/profile</code></p><p>在文本最后添加以下内容：</p><pre class="line-numbers language-none"><code class="language-none">export PATH&#x3D;&#x2F;usr&#x2F;local&#x2F;cuda&#x2F;bin:$PATH export LD_LIBRARY_PATH&#x3D;&#x2F;usr&#x2F;local&#x2F;cuda&#x2F;lib64:$LD_LIBRARY_PATH <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p>保存退出，执行以下命令生效：</p><p><code>sudo source /etc/profile</code></p><p>安装完成后查看  <code>nvcc -V </code> 是否安装成功</p><h5>如有疑问请评论。</h5>]]></content>
-      
-      
-      <categories>
-          
-          <category> Linux </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Linux </tag>
-            
-            <tag> 教程 </tag>
-            
-            <tag> 服务器 </tag>
-            
-            <tag> NVIDIA </tag>
-            
-            <tag> 驱动 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Linux(Ubuntu)服务器网络问题,甚至网关都不能ping通</title>
       <link href="/2024/07/27/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BD%91%E7%BB%9C%E9%97%AE%E9%A2%98,%E7%94%9A%E8%87%B3%E7%BD%91%E5%85%B3%E9%83%BD%E4%B8%8D%E8%83%BDping%E9%80%9A/"/>
       <url>/2024/07/27/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BD%91%E7%BB%9C%E9%97%AE%E9%A2%98,%E7%94%9A%E8%87%B3%E7%BD%91%E5%85%B3%E9%83%BD%E4%B8%8D%E8%83%BDping%E9%80%9A/</url>
@@ -134,6 +101,39 @@
             <tag> DNS </tag>
             
             <tag> IPv4 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Linux(Ubuntu)服务器重装NVIDIA驱动</title>
+      <link href="/2024/07/27/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%87%8D%E8%A3%85NVIDIA%E9%A9%B1%E5%8A%A8/"/>
+      <url>/2024/07/27/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%87%8D%E8%A3%85NVIDIA%E9%A9%B1%E5%8A%A8/</url>
+      
+        <content type="html"><![CDATA[<p><strong>心累，每天都被服务器包围 T_T </strong><br><img src="/image/linux1.png" alt=""></p><h2>Linux(Ubuntu)服务器重装NVIDIA驱动</h2><h4>下载显卡驱动</h4>准备 gpu 驱动和 CUDA 软件包，下载显卡驱动，下面是下载显卡驱动链接<p><a href="https://www.nvidia.cn/drivers/lookup/" style="color: LimeGreen;">https://www.nvidia.cn/drivers/lookup/</a></p><p>选择对应显卡下载，点击查找 ——&gt; 点击下载<br><img src="/image/linux11.jpg" alt=""></p><p>CUDA 下载链接：<a href="https://developer.nvidia.com/cuda-downloads" style="color: LimeGreen;">https://developer.nvidia.com/cuda-downloads</a>选择合适的操作系统版本进行下载。<br><img src="/image/linux12.jpg" alt=""></p><ul><li>deb 方式安装 CUDA，会附带安装显卡驱动，默认安装；</li><li>run 方式安装 CUDA，会附带安装显卡驱动，可以选择不安装；</li><li>安装显卡驱动的时候，最好安装高版本的，这样不会受 CUDA 版本的影响；</li><li>runfile：下载并运行.run 文件，可以选择是否安装 N 卡驱动；</li><li>deb：下载.deb 包，利用 apt-get install 方式安装，会自动安装.deb 包名中写的 N 卡驱动；</li><li>如果 N 卡驱动和.deb 包名中写的 N 卡驱动对应（或低于），则安装完 CUDA 之后 N 卡驱动可以正常启动。</li></ul><h4>安装显卡驱动以及 cuda</h4><h5>服务器端安装 ssh 功能</h5>` sudo apt-get install openssh-server `<p>首先将提前下载好的驱动使用 xftp 传输到命令行端，或者 U 盘挂载放入系统中</p><p>然后 ls 查看传输的驱动包是否存在，禁用系统自带的 nouveau 模块</p><p><code>sudo lsmod | grep nouveau</code></p><p><code>sudo vi /etc/modprobe.d/blacklist.conf</code></p><p>在文本最后添加以下内容：</p><pre class="line-numbers language-none"><code class="language-none">blacklist nouveauoptions nouveau modeset&#x3D;0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p>保存退出，执行以下命令生效</p><p><code>update-initramfs -u</code></p><p>重启操作系统</p><p><code>sudo reboot</code></p><h4>hmod +x 给予显卡驱动包权限，以及安装软件包</h4><p>例如  <code>chmod +x NVIDIA-Linux-x86 64-550.100.run</code></p><p><code>sudo apt-get update</code></p><p><code>sudo apt-get install gcc</code></p><p><code>sudo apt-get install g++</code></p><p><code>sudo apt-get install make</code></p><h4>然后安装显卡驱动前查看 GPU 是否识别全</h4><p><code>sudo lspci | grep -i nvidia</code>  或者  <code>sudo lspci | grep -i vga</code> <br><img src="/image/linux13.png" alt=""></p><p>之后输入命令进行安装</p><p><code>sudo ./NVIDIA-Linux-x86 64-550.100.run</code></p><p>出现如下界面<br><img src="/image/linux15.png" alt=""></p><p>第一个选择选择 &quot;Continue installation&quot;，使用 <code>←</code> 和 <code>→</code> 控制</p><p>选择 &quot;No&quot;<br><img src="/image/linux16.png" alt=""></p><p>选择 &quot;Yes&quot;<br><img src="/image/linux17.png" alt=""></p><p>查看驱动包是否安装</p><p><code>nvidia-smi</code></p><p>同样的，chmod +x 给予 cuda 软件包权限，安装 cuda 软件包，sudo ./cuda-xxx.run</p><p><img src="/image/linux14.jpg" alt=""><br>注意 driver 选项，表示是否安装 GPU 驱动，如果之前已经安装了 GPU 驱动，这里不<br>要再勾选。</p><p>配置环境变量</p><p>添加到 /etc/profile 文件中</p><p><code>sudo vi /etc/profile</code></p><p>在文本最后添加以下内容：</p><pre class="line-numbers language-none"><code class="language-none">export PATH&#x3D;&#x2F;usr&#x2F;local&#x2F;cuda&#x2F;bin:$PATH export LD_LIBRARY_PATH&#x3D;&#x2F;usr&#x2F;local&#x2F;cuda&#x2F;lib64:$LD_LIBRARY_PATH <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p>保存退出，执行以下命令生效：</p><p><code>sudo source /etc/profile</code></p><p>安装完成后查看  <code>nvcc -V </code> 是否安装成功</p><h5>如有疑问请评论。</h5>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> 教程 </tag>
+            
+            <tag> 服务器 </tag>
+            
+            <tag> NVIDIA </tag>
+            
+            <tag> 驱动 </tag>
             
         </tags>
       
