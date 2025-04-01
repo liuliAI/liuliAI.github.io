@@ -4,13 +4,12 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="RCL实验室Linux服务器操作手册, 全栈,深度学习,大型语言模型,LLM,python,算法">
-    <meta name="description" content="RCL实验室Linux服务器操作手册
-仅供东北大学机器人科学与工程学院机器人认知实验室（Robot Cognition Lab，RCL）成员使用。
-RCL 实验室官网见此处，感兴趣获取更多详细信息。
-账号申请方法
-联系目前服务器管理员QQ
-">
+    <meta name="keywords" content="基于大语言模型（LLM）的智能体（Agent）构建指南, 全栈,深度学习,大型语言模型,LLM,python,算法">
+    <meta name="description" content="
+图1：LLM Agent核心架构示意图
+# 一、LLM Agent 技术解析
+# 1.1 什么是智能体（Agent）？
+在人工智能领域，智能体（Agent）是指能够感知环境并自主采取行动实现目标的智能系统。具有主观能动性，实现从 “计划”">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -22,7 +21,7 @@ RCL 实验室官网见此处，感兴趣获取更多详细信息。
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>RCL实验室Linux服务器操作手册 | liuliAI</title>
+    <title>基于大语言模型（LLM）的智能体（Agent）构建指南 | liuliAI</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
     <style>
@@ -348,12 +347,12 @@ RCL 实验室官网见此处，感兴趣获取更多详细信息。
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">RCL实验室Linux服务器操作手册</h1>
+                    <h1 class="description center-align post-title">基于大语言模型（LLM）的智能体（Agent）构建指南</h1>
                 </div>
             </div>
         </div>
@@ -377,16 +376,12 @@ RCL 实验室官网见此处，感兴趣获取更多详细信息。
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Linux/">
-                                <span class="chip bg-color">Linux</span>
+                            <a href="/tags/LLM/">
+                                <span class="chip bg-color">LLM</span>
                             </a>
                         
-                            <a href="/tags/%E6%95%99%E7%A8%8B/">
-                                <span class="chip bg-color">教程</span>
-                            </a>
-                        
-                            <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">
-                                <span class="chip bg-color">服务器</span>
+                            <a href="/tags/Agent/">
+                                <span class="chip bg-color">Agent</span>
                             </a>
                         
                     </div>
@@ -397,8 +392,8 @@ RCL 实验室官网见此处，感兴趣获取更多详细信息。
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Linux/" class="post-category">
-                                Linux
+                            <a href="/categories/Agent/" class="post-category">
+                                Agent
                             </a>
                         
                     </div>
@@ -410,21 +405,21 @@ RCL 实验室官网见此处，感兴趣获取更多详细信息。
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-06-23
+                    2024-10-03
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2024-07-27
+                    2025-04-01
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    879
+                    791
                 </div>
                 
 
@@ -449,102 +444,130 @@ RCL 实验室官网见此处，感兴趣获取更多详细信息。
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2>RCL实验室Linux服务器操作手册</h2>
-仅供东北大学机器人科学与工程学院<strong>机器人认知实验室（Robot Cognition Lab，RCL）</strong>成员使用。
-<p>RCL 实验室官网见<a target="_blank" rel="noopener" href="http://neurcl.cn/index.html"><strong><font color="LimeGreen">此处</font></strong></a>，感兴趣获取更多详细信息。</p>
-<h4>账号申请方法</h4>
-<p>联系目前服务器管理员<a href="tencent://message/?Menu=yes&uin=791037420& Service=300&sigT=45a1e5847943b64c6ff3990f8a9e644d2b31356cb0b4ac6b24663a3c8dd0f8aa12a595b1714f9d45" style="color: LimeGreen;">QQ</a></p>
-<h4>服务器介绍</h4>
-<h5>服务器IP地址：172.17.27.199</h5>
-<table>
-  <tr>
-    <th align="center">Device</th>
-    <th align="center">Parameter</th>
-  </tr>
-  <tr>
-    <td align="center">CPU</td>
-    <td align="center">2*Intel(R) Xeon(R) Silver 4314 CPU @ 2.40GHz</td>
-  </tr>
-  <tr>
-    <td align="center">GPU</td>
-    <td align="center">8*NVIDIA GeForce RTX 3090</td>
-  </tr>
-  <tr>
-    <td rowspan="2">ROM</td>
-    <td align="center">2*Intel® SSD D3-S4510 Series 480GB</td>
-  </tr>
-  <tr>
-    <td align="center">2*Intel® SSD D3-S4510 Series 3.84TB</td>
-  </tr>
-</table>
+                <p><img src="https://example.com/llm-agent-architecture.png" alt="LLM Agent架构图"></p>
+<center>图1：LLM Agent核心架构示意图</center>
+<h2 id="一-llm-agent技术解析"><a class="markdownIt-Anchor" href="#一-llm-agent技术解析">#</a> 一、LLM Agent 技术解析</h2>
+<h3 id="11-什么是智能体agent"><a class="markdownIt-Anchor" href="#11-什么是智能体agent">#</a> 1.1 什么是智能体（Agent）？</h3>
+<p>在人工智能领域，智能体（Agent）是指能够感知环境并自主采取行动实现目标的智能系统。具有主观能动性，实现从 “计划”，“组织”，“执行”，“学习” 等过程直至完成一个任务。</p>
+<p>Agent：大模型驱动的自主智能体。Agent 具有以下核心特征：</p>
+<p><strong>Agent = 大模型 + 工具插件 + 执行流程 / 思维链</strong><br>
+<img src="/image/agent1.jpg" alt="图1：Agent的组成"></p>
 <ul>
-<li>所有存储设备均采用 RAID 1 镜像配置，确保数据冗余与安全性</li>
-<li>操作系统版本为 Ubuntu 18.04.6 LTS</li>
-<li>CUDA 版本为 12.1</li>
+<li><strong>Automatic</strong>：全流程自动，无需人工干预的独立决策能力，这也是 Agent 和 Workflow（需要人工干预）最大的区别</li>
+<li><strong>Reflection</strong>：自我反思</li>
+<li><strong>Tool Use</strong>：工具调用</li>
+<li><strong>Planning</strong>：规划设计</li>
+<li><strong>Memory</strong>：记忆<br>
+<img src="/image/agent2.jpg" alt="图2：Agent的典型工作流程"></li>
 </ul>
-<h5>服务器IP地址：172.17.27.194</h5>
-<table border="1">
-  <tr>
-    <th align="center">Device</th>
-    <th align="center">Parameter</th>
-  </tr>
-  <tr>
-    <td align="center">CPU</td>
-    <td align="center">2*Intel(R) Xeon(R) Silver 4314 CPU @ 2.40GHz</td>
-  </tr>
-  <tr>
-    <td align="center">GPU</td>
-    <td align="center">8*NVIDIA GeForce RTX 3090</td>
-  </tr>
-  <tr>
-    <td align="center" rowspan="3">ROM</td>
-    <td align="center">2*Intel® SSD D3-S4510 Series 480GB</td>
-  </tr>
-  <tr>
-    <td align="center">2*Intel® SSD D3-S4510 Series 3.84TB</td>
-  </tr>
-  <tr>
-    <td align="center">2*致态 SC001 XT SATA SSD 2TB</td>
-  </tr>
-</table>
+<h3 id="12-大语言模型在agent中的角色"><a class="markdownIt-Anchor" href="#12-大语言模型在agent中的角色">#</a> 1.2 大语言模型在 Agent 中的角色</h3>
+<p>现代 LLM Agent 通常采用三层架构：</p>
+<pre class="line-numbers language-none"><code class="language-none">class LLMAgent:
+    def __init__(self, llm, tools):
+        self.llm &#x3D; llm  # 大语言模型核心
+        self.memory &#x3D; VectorStore()  # 向量记忆库
+        self.tools &#x3D; &#123;tool.name: tool for tool in tools&#125;  # 工具集
+
+    def run(self, query):
+        plan &#x3D; self._generate_plan(query)
+        while not plan.complete():
+            action &#x3D; plan.next_step()
+            if action.type &#x3D;&#x3D; &quot;TOOL_USE&quot;:
+                result &#x3D; self.tools[action.tool].execute(action.params)
+                self.memory.store(result)
+            elif action.type &#x3D;&#x3D; &quot;LLM_CALL&quot;:
+                response &#x3D; self.llm.generate(
+                    prompt&#x3D;action.prompt,
+                    memory&#x3D;self.memory.search(action.context)
+                )
+                plan.update(response)
+        return plan.final_output()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="12-关键技术组件"><a class="markdownIt-Anchor" href="#12-关键技术组件">#</a> 1.2 关键技术组件</h3>
 <ul>
-<li>致态 SC001 XT SATA SSD 2TB 采用 RAID 0 条带化配置，优化读写性能</li>
-<li>其余存储设备采用 RAID 1 镜像配置，确保数据冗余与安全性</li>
-<li>操作系统版本为 Ubuntu 18.04.6 LTS</li>
-<li>CUDA 版本为 11.8</li>
+<li><strong>规划模块</strong>：基于 Chain-of-Thought 的推理机制</li>
+<li><strong>记忆系统</strong>：向量数据库 + 时序记忆的混合架构</li>
+<li><strong>工具集成</strong>：通过 API 调用实现现实世界交互</li>
 </ul>
-<h4>登陆方法</h4>
-目前是校内分配的ip，校外是无法访问的。
-<p>①使用校园网 (每个月免费 10G，凌晨 0:00-6:00 免费)，校园网具体资费标准见 <a target="_blank" rel="noopener" href="https://ipgw.neu.edu.cn" style="color: LimeGreen;">此处</a>。</p>
-<p>②使用 OpenVPN，使用学号和手机号验证码登陆，详细介绍在 <a target="_blank" rel="noopener" href="http://xwb.neu.edu.cn/10185/list.htm" style="color: LimeGreen;">此处</a>。</p>
-<h5>命令行使用</h5>
-在 Windows 系统中，使用"win+R"快捷键，输入"cmd"，然后回车输入ssh user@hostname 或者ssh -l user hostname ，输入密码即可。
-<p>ssh 登录服务器的命令如下。ssh 默认连接服务器的 22 端口，-p 参数可以指定其他端口。<br>
- <code>$ ssh hostname </code> <br>
-上面命令中，hostname 是主机名，它可以是域名，也可能是 IP 地址或局域网内部的主机名（对于 RCL 实验室，为 172.17.27.194 或者 172.17.27.199）。不指定用户名的情况下，将使用客户端的当前用户名，作为远程服务器的登录用户名。如果要指定用户名，可以采用下面的命令。<br>
- <code>$ ssh user@hostname </code> <br>
-上面的命令中，用户名和主机名写在一起了，之间使用 @分隔。用户名也可以使用 ssh 的 - l 参数指定，这样的话，用户名和主机名就不用写在一起了。<br>
- <code>$ ssh -l user hostname </code></p>
-<h5>图形界面使用</h5>
-首先下载VNC，在此处<a target="_blank" rel="noopener" href="https://www.realvnc.com/en/connect/download/viewer/windows/" style="color: LimeGreen;">官网</a>下载，或者<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1qyTUfb-U2HPKqmGyg_GupQ?pwd=qn4o" style="color: LimeGreen;">百度网盘</a>。
-<p>然后输入 IP 地址和端口号 (端口号为最后两位，以 63 为例)<br>
-<img src="/image/RCL-linux-fig1.jpg" alt=""><br>
- 点击 continue<br>
-<img src="/image/RCL-linux-fig2.jpg" alt=""><br>
- 输入默认密码 123456 即可<br>
-<img src="/image/RCL-linux-fig3.jpg" alt=""></p>
-<h4>传输文件</h4>
-①在本地cmd上，可以直接通过scp命令传输文件和文件夹。
-<p>从本地上传到服务器，如果想要把文件夹整个上传到服务器，那么加上参数 - r 即可。</p>
-<p><code>$ scp [-r] &#123;local_file_path&#125; &#123;user&#125;@&#123;hostname&#125;:&#123;remote_file_path&#125;</code></p>
-<p>从远程下载到本地</p>
-<p><code>$ scp [-r] &#123;user&#125;@&#123;hostname&#125;:&#123;remote_file_path&#125; &#123;local_file_path&#125;</code></p>
-<p>详细使用信息见  <a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-scp.html"><strong><font color="LimeGreen">此处</font></strong></a></p>
-<p>②使用 ftp 工具 WinSCP 或者 FileZilla<br>
- 参考教程 <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_26383975/article/details/120220823"><strong><font color="LimeGreen">文件传输工具 WinSCP 下载安装教程</font></strong></a>和<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45309916/article/details/107782070"><strong><font color="LimeGreen">FileZilla 的下载与安装以及简单使用（有图解超简单）</font></strong></a></p>
-<h4>文件系统介绍</h4>
-目前每人的账号默认分配在home中（容量较小），请将数据集，conda环境创建在data(自动备份)或者bigdata(有需要请自行备份)中进行。
-<p><strong>如有疑问请评论。</strong></p>
+<p><img src="/image/agent3.jpg" alt="图2：Agent的典型工作流程"></p>
+<h2 id="二-实践构建会议安排agent"><a class="markdownIt-Anchor" href="#二-实践构建会议安排agent">#</a> 二、实践：构建会议安排 Agent</h2>
+<h3 id="21-环境准备"><a class="markdownIt-Anchor" href="#21-环境准备">#</a> 2.1 环境准备</h3>
+<p>使用 LangChain 框架和 OpenAI API：</p>
+<pre class="line-numbers language-none"><code class="language-none">pip install langchain openai python-dotenv<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>然后进行 .env 文件配置</p>
+<pre class="line-numbers language-none"><code class="language-none">OPENAI_API_KEY&#x3D;&quot;your-api-key&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="22-核心代码实现"><a class="markdownIt-Anchor" href="#22-核心代码实现">#</a> 2.2 核心代码实现</h3>
+<pre class="line-numbers language-none"><code class="language-none">from langchain.agents import AgentExecutor, create_openai_tools_agent
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_openai import ChatOpenAI
+
+# 自定义工具定义
+class CalendarTool:
+    name &#x3D; &quot;calendar_access&quot;
+    description &#x3D; &quot;访问用户日历数据&quot;
+
+    def execute(self, params):
+        # 实现日历访问逻辑
+        return available_slots
+
+# 构建Agent
+llm &#x3D; ChatOpenAI(model&#x3D;&quot;gpt-4-turbo&quot;)
+tools &#x3D; [CalendarTool()]
+prompt &#x3D; ChatPromptTemplate.from_messages([
+    (&quot;system&quot;, &quot;你是专业会议助手，当前时间：&#123;current_time&#125;&quot;),
+    (&quot;user&quot;, &quot;&#123;input&#125;&quot;)
+])
+
+agent &#x3D; create_openai_tools_agent(llm, tools, prompt)
+agent_executor &#x3D; AgentExecutor(agent&#x3D;agent, tools&#x3D;tools)
+
+# 执行示例
+result &#x3D; agent_executor.invoke(&#123;
+    &quot;input&quot;: &quot;安排下周团队会议&quot;,
+    &quot;current_time&quot;: &quot;2024-05-15 14:00&quot;
+&#125;)
+print(result[&quot;output&quot;])<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="23-功能扩展"><a class="markdownIt-Anchor" href="#23-功能扩展">#</a> 2.3 功能扩展</h3>
+<p>添加邮件通知功能：</p>
+<pre class="line-numbers language-none"><code class="language-none">class EmailTool:
+    name &#x3D; &quot;send_email&quot;
+    description &#x3D; &quot;发送会议通知邮件&quot;
+    
+    def execute(self, params):
+        # 实现邮件发送逻辑
+        return f&quot;邮件已发送至&#123;params[&#39;recipients&#39;]&#125;&quot;
+
+tools.append(EmailTool())<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="三-进阶优化策略"><a class="markdownIt-Anchor" href="#三-进阶优化策略">#</a> 三、进阶优化策略</h2>
+<h3 id="31-记忆优化"><a class="markdownIt-Anchor" href="#31-记忆优化">#</a> 3.1 记忆优化</h3>
+<p>使用 Chroma 向量数据库实现长期记忆：</p>
+<pre class="line-numbers language-none"><code class="language-none">from langchain_community.vectorstores import Chroma
+from langchain_openai import OpenAIEmbeddings
+
+class EnhancedMemory:
+    def __init__(self):
+        self.vectorstore &#x3D; Chroma(embedding_function&#x3D;OpenAIEmbeddings())
+        self.buffer &#x3D; []
+    
+    def store(self, record):
+        self.vectorstore.add_texts([record[&quot;content&quot;]])
+        self.buffer.append(record)
+    
+    def retrieve(self, query):
+        return self.vectorstore.similarity_search(query)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="32-多agent协同"><a class="markdownIt-Anchor" href="#32-多agent协同">#</a> 3.2 多 Agent 协同</h3>
+<p>集成本地和云端模型：</p>
+<pre class="line-numbers language-none"><code class="language-none">class HybridLLM:
+    def __init__(self):
+        self.cloud &#x3D; ChatOpenAI()
+        self.local &#x3D; Ollama(model&#x3D;&quot;llama3&quot;)
+    
+    def generate(self, prompt):
+        cloud_res &#x3D; self.cloud.invoke(prompt)
+        local_res &#x3D; self.local.generate(prompt)
+        return self._blend_responses(cloud_res, local_res)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="四-资源推荐"><a class="markdownIt-Anchor" href="#四-资源推荐">#</a> 四、资源推荐</h2>
+<p><a target="_blank" rel="noopener" href="https://python.langchain.com/docs/introduction/"><strong><font color="LimeGreen">LangChain 官方文档</font></strong></a><br>
+<a target="_blank" rel="noopener" href="https://github.com/huggingface/smolagents"><strong><font color="LimeGreen">Hugging Face Agents 库</font></strong></a></p>
 
                 
             </div>
@@ -571,7 +594,7 @@ RCL 实验室官网见此处，感兴趣获取更多详细信息。
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://liuliai.github.io/2024/06/23/RCL%E5%AE%9E%E9%AA%8C%E5%AE%A4Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%93%8D%E4%BD%9C%E6%89%8B%E5%86%8C/">https://liuliai.github.io/2024/06/23/RCL%E5%AE%9E%E9%AA%8C%E5%AE%A4Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%93%8D%E4%BD%9C%E6%89%8B%E5%86%8C/</a>
+                    <a href="https://liuliai.github.io/2024/10/03/%E5%9F%BA%E4%BA%8E%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%EF%BC%88LLM%EF%BC%89%E7%9A%84%E6%99%BA%E8%83%BD%E4%BD%93%EF%BC%88Agent%EF%BC%89%E6%9E%84%E5%BB%BA%E6%8C%87%E5%8D%97/">https://liuliai.github.io/2024/10/03/%E5%9F%BA%E4%BA%8E%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%EF%BC%88LLM%EF%BC%89%E7%9A%84%E6%99%BA%E8%83%BD%E4%BD%93%EF%BC%88Agent%EF%BC%89%E6%9E%84%E5%BB%BA%E6%8C%87%E5%8D%97/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -609,16 +632,12 @@ RCL 实验室官网见此处，感兴趣获取更多详细信息。
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Linux/">
-                                    <span class="chip bg-color">Linux</span>
+                                <a href="/tags/LLM/">
+                                    <span class="chip bg-color">LLM</span>
                                 </a>
                             
-                                <a href="/tags/%E6%95%99%E7%A8%8B/">
-                                    <span class="chip bg-color">教程</span>
-                                </a>
-                            
-                                <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">
-                                    <span class="chip bg-color">服务器</span>
+                                <a href="/tags/Agent/">
+                                    <span class="chip bg-color">Agent</span>
                                 </a>
                             
                         </div>
@@ -1238,17 +1257,18 @@ RCL 实验室官网见此处，感兴趣获取更多详细信息。
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2024/07/20/Learning%20to%20(Learn%20at%20Test%20Time)%20RNNs%20with%20Expressive%20Hidden%20States/">
+                <a href="/2024/10/03/%E5%9F%BA%E4%BA%8E%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%EF%BC%88LLM%EF%BC%89%E7%9A%84%E6%99%BA%E8%83%BD%E4%BD%93%EF%BC%88Agent%EF%BC%89%E6%9E%84%E5%BB%BA%E6%8C%87%E5%8D%97/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="继RWKV、Mamba、KAN之后号称超越Transformer的线性架构TTT又来了">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="基于大语言模型（LLM）的智能体（Agent）构建指南">
                         
-                        <span class="card-title">继RWKV、Mamba、KAN之后号称超越Transformer的线性架构TTT又来了</span>
+                        <span class="card-title">基于大语言模型（LLM）的智能体（Agent）构建指南</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1258,42 +1278,31 @@ RCL 实验室官网见此处，感兴趣获取更多详细信息。
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-07-20
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-10-03
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E8%AE%BA%E6%96%87/" class="post-category">
-                                    论文
+                            <a href="/categories/Agent/" class="post-category">
+                                    Agent
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/RWKV/">
-                        <span class="chip bg-color">RWKV</span>
+                    <a href="/tags/LLM/">
+                        <span class="chip bg-color">LLM</span>
                     </a>
                     
-                    <a href="/tags/Mamba/">
-                        <span class="chip bg-color">Mamba</span>
-                    </a>
-                    
-                    <a href="/tags/KAN/">
-                        <span class="chip bg-color">KAN</span>
-                    </a>
-                    
-                    <a href="/tags/TTT/">
-                        <span class="chip bg-color">TTT</span>
-                    </a>
-                    
-                    <a href="/tags/%E7%BA%BF%E6%80%A7%E6%9E%B6%E6%9E%84/">
-                        <span class="chip bg-color">线性架构</span>
+                    <a href="/tags/Agent/">
+                        <span class="chip bg-color">Agent</span>
                     </a>
                     
                 </div>
@@ -1307,13 +1316,13 @@ RCL 实验室官网见此处，感兴趣获取更多详细信息。
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2024/06/19/Cantor%EF%BC%9A%20Inspiring%20Multimodal%20Chain-of-Thought%20of%20MLLM/">
+                <a href="/2024/08/02/Gradle%E3%80%81Maven%E3%80%81Nacos%E3%80%81Redis%E3%80%81MySQL%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Cantor：Inspiring Multimodal Chain-of-Thought of MLLM">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="Gradle、Maven、Nacos、Redis、MySQL下载安装">
                         
-                        <span class="card-title">Cantor：Inspiring Multimodal Chain-of-Thought of MLLM</span>
+                        <span class="card-title">Gradle、Maven、Nacos、Redis、MySQL下载安装</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1324,14 +1333,14 @@ RCL 实验室官网见此处，感兴趣获取更多详细信息。
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-06-19
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-08-02
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E8%AE%BA%E6%96%87/" class="post-category">
-                                    论文
+                            <a href="/categories/Java%E5%BC%80%E5%8F%91/" class="post-category">
+                                    Java开发
                                 </a>
                             
                             
@@ -1341,16 +1350,36 @@ RCL 实验室官网见此处，感兴趣获取更多详细信息。
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/CoT/">
-                        <span class="chip bg-color">CoT</span>
+                    <a href="/tags/Windows/">
+                        <span class="chip bg-color">Windows</span>
                     </a>
                     
-                    <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/">
-                        <span class="chip bg-color">多模态</span>
+                    <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/">
+                        <span class="chip bg-color">大数据</span>
                     </a>
                     
-                    <a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/">
-                        <span class="chip bg-color">大模型</span>
+                    <a href="/tags/Java%E5%BC%80%E5%8F%91/">
+                        <span class="chip bg-color">Java开发</span>
+                    </a>
+                    
+                    <a href="/tags/Gradle/">
+                        <span class="chip bg-color">Gradle</span>
+                    </a>
+                    
+                    <a href="/tags/Maven/">
+                        <span class="chip bg-color">Maven</span>
+                    </a>
+                    
+                    <a href="/tags/Nacos/">
+                        <span class="chip bg-color">Nacos</span>
+                    </a>
+                    
+                    <a href="/tags/Redis/">
+                        <span class="chip bg-color">Redis</span>
+                    </a>
+                    
+                    <a href="/tags/MySQL/">
+                        <span class="chip bg-color">MySQL</span>
                     </a>
                     
                 </div>
